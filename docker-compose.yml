@@ -1,0 +1,34 @@
+version: '3.0'
+
+services:
+  webserver:
+    image: ylked/calm-laravel
+    build: docker-images/calm-php8
+    container_name: calm-webserver
+    ports:
+      - 8000:8000
+    volumes:
+      - ./calm-webserver/:/files
+    working_dir: /files
+
+  db:
+    image: mariadb
+    container_name: calm-database
+    volumes:
+      - ./db-data:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+    environment:
+      MYSQL_ROOT_PASSWORD: "admin"
+      MYSQL_DATABASE: "default"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "pass"
+
+  adminer:
+    image: adminer
+    container_name: calm-adminer
+
+    ports:
+      - 8080:8080
+
