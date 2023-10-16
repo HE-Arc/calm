@@ -1,4 +1,6 @@
 FROM debian:latest
+ARG user_id="1000"
+ARG grp_id="1000"
 RUN apt-get update
 RUN apt-get install -y \
   lsb-release \
@@ -14,17 +16,27 @@ RUN apt-get install -y php8.2
 RUN apt-get install -y \
   systemctl\
   libapache2-mod-php\
+  php-xdebug\
   php8.2-pdo php-mysql\
   php8.2-curl\
   php8.2-dom\
   php8.2-xml\
   php8.2-curl\
+  php8.2-mbstring\
   curl\
   vim\
   git\
   unzip
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
-COPY ./startup.sh /root/startup.sh
+
+# create user
+# RUN groupadd -g $grp_id defaultgrp
+# RUN useradd -m -u $user_id defaultuser
+# RUN usermod -aG $grp_id $user_id
+RUN echo "sail:x:$user_id:$grp_id:sail:/tmp:/bin/bash" >> /etc/passwd  
+USER $user_id
+
+COPY ./startup.sh /home/user/startup.sh
 ENTRYPOINT []
-CMD ["/root/startup.sh"]
+CMD ["/home/user/startup.sh"]

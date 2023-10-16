@@ -2,14 +2,20 @@ version: '3.0'
 
 services:
   webserver:
-    image: ylked/calm-laravel
-    build: docker-images/calm-php8
+    image: ylked/calm-webserver
     container_name: calm-webserver
     ports:
       - 8000:8000
     volumes:
       - ./calm-webserver/:/files
     working_dir: /files
+    build: 
+      context: ./docker-images/calm-php8/
+      dockerfile: Dockerfile
+      args:
+        user_id: ${DOCKER_USER}
+        grp_id: ${DOCKER_GRP}
+    user: $DOCKER_USER:$DOCKER_GRP
 
   db:
     image: mariadb
@@ -31,4 +37,5 @@ services:
 
     ports:
       - 8080:8080
+
 
