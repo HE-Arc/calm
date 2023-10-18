@@ -3,19 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="@yield('pageDescription')">
+        <meta name="description" content="{{$pageDescription}}">
 
-        <title> @yield('pageTitle') | CALM</title>
+        <title> {{ $pageTitle }} | CALM</title>
 
         <!-- Custom Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Itim&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
+
         @vite(['resources/css/app.css','resources/js/app.js'])
     </head>
 
-    <body class="antialiased">
+    <body class="antialiased min-h-screen flex flex-col">
         <header>
             <nav class="bg-seaNymph shadow-lg">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -93,11 +95,11 @@
             </nav>
         </header>
 
-        <main class="md:container md:mx-auto px-4">
+        <main class="md:container md:mx-auto px-6 my-5">
             @yield('content')
         </main>
 
-        <footer class="bg-white rounded-lg m-4">
+        <footer class="bg-white rounded-lg m-4 text-center mt-auto">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <span class="text-sm text-gray-500 sm:text-center">
                 &copy; 2023 <a href="https://he-arc.ch" target="_blank" class="hover:underline">Haute École Arc</a>.
