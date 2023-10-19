@@ -61,12 +61,12 @@
                     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                         <ul class="flex flex-col font-bold md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 text-white">
                             <li>
-                                <a href="#" class="block py-2 pl-3 pr-4 bg-rollingStone rounded md:bg-transparent md:text-rollingStone md:p-0" aria-current="page">Accueil</a>
+                                <a href="{{ route('home') }}" class="block py-2 pl-3 pr-4 rounded md:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'home' ? 'md:text-rollingStone bg-rollingStone' : '' }}" aria-current="page">Accueil</a>
                             </li>
 
                             <!-- IF NOT CONNECTED -->
                             <li>
-                                <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Connexion</a>
+                                <a href="{{ route('login') }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'login' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Connexion</a>
                             </li>
                             <li>
                                 <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Inscription</a>
@@ -99,7 +99,7 @@
             @yield('content')
         </main>
 
-        <footer class="bg-white rounded-lg m-4 text-center mt-auto">
+        <footer class="bg-white rounded-lg m-4 text-center mt-auto mx-auto">
             <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
                 <span class="text-sm text-gray-500 sm:text-center">
                 &copy; 2023 <a href="https://he-arc.ch" target="_blank" class="hover:underline">Haute École Arc</a>.
