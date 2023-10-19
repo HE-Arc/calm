@@ -10,7 +10,7 @@
                 <div>
                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nom d'utilisateur ou adresse e-mail</label>
                     <div class="mt-2">
-                        <input id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone sm:text-sm sm:leading-6">
+                        <input id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
@@ -22,7 +22,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone sm:text-sm sm:leading-6">
+                        <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
