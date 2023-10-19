@@ -28,7 +28,7 @@
                         </svg>
                     </button>
 
-                    <a href="#" class="flex items-center">
+                    <a href="{{ route('home') }}" class="flex items-center">
                         <span class="self-center text-4xl font-title text-white">CALM</span>
                     </a>
 
@@ -69,7 +69,7 @@
                                 <a href="{{ route('login') }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'login' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Connexion</a>
                             </li>
                             <li>
-                                <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Inscription</a>
+                                <a href="{{ route('register') }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'register' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Inscription</a>
                             </li>
 
                             <!-- IF NOT IN ORGANISATION -->

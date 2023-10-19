@@ -33,7 +33,7 @@
 
             <p class="mt-10 text-center text-sm text-gray-500">
                 Pas de compte ?
-                <a href="#" class="font-semibold leading-6 text-rollingStone hover:text-seaNymph">Inscrivez-vous !</a>
+                <a href="{{ route('register') }}" class="font-semibold leading-6 text-rollingStone hover:text-seaNymph">Inscrivez-vous !</a>
             </p>
         </div>
     </div>
