@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\LoginController;
+use \App\Http\Controllers\BookingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,7 @@ use \App\Http\Controllers\LoginController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/login', [LoginController::class, 'loginForm'])->name('login');
-Route::get('/register', [LoginController::class, 'registerForm'])->name('register');
+Route::get("/", [HomeController::class, "index"])->name("home");
+Route::get("login", [LoginController::class, "loginForm"])->name("login");
+Route::get("register", [LoginController::class, "registerForm"])->name("register");
+Route::resource("bookings", BookingController::class);
