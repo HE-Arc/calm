@@ -24,7 +24,8 @@ class BookingController extends Controller
     public function create()
     {
         return view("bookings.create", ["page" => "bookings",
-            "pageTitle" => "Nouvelles réservations", "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
+            "pageTitle" => "Nouvelles réservations",
+            "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée."]);
     }
 
