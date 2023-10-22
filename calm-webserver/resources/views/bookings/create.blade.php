@@ -1,13 +1,33 @@
 @extends('layout.app')
 @section('content')
-    <div>
-        <a class="btn btn-primary" href="{{ route('bookings.index') }}"> Retour</a>
+
+    <div class="text-center text-sm text-seaNymph font-bold transition-colors duration-200 bg-white border rounded-lg hover:bg-gray-100 sm:hidden">
+        <a class="block px-5 py-2 align-middle" href="{{ route('bookings.index') }}">
+            <svg class="w-2 h-2 text-seaNymph inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+            </svg>
+            Retour
+        </a>
     </div>
 
     <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelles réservations</h1>
     <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8">
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="#" method="POST">
+                <div>
+                    <label for="organisation" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner l'organisation</label>
+                    <select id="organisation" required name="organisation" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
+                        <option selected>-- Sélectionner une organisation --</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="organisation" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner la buandrie</label>
+                    <select id="organisation" required name="organisation" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
+                        <option selected>-- Sélectionner une buandrie --</option>
+                    </select>
+                </div>
+
                 <div>
                     <label for="date" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
                     <div class="mt-2">
@@ -33,26 +53,26 @@
 
                 <div class="text-center">
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input type="checkbox" value="washing-machine" class="sr-only peer">
+                        <input type="checkbox" value="wash" id="wash" class="sr-only peer">
                         <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-vividTangerine"></div>
                         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Laver</span>
                     </label>
 
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input type="checkbox" value="dryer" class="sr-only peer">
+                        <input type="checkbox" value="dry" id="dry" class="sr-only peer">
                         <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-vividTangerine"></div>
                         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sècher</span>
                     </label>
                 </div>
 
-                <div>
+                <div class="hidden" id="washing">
                     <label for="washing-machines" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner votre machine à laver</label>
                     <select id="washing-machines" name="washing-machines" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
                         <option selected>-- Sélectionner une machine --</option>
                     </select>
                 </div>
 
-                <div>
+                <div class="hidden" id="drying">
                     <label for="dryers" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner votre sèche linge</label>
                     <select id="dryers" name="dryers" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
                         <option selected>-- Sélectionner une machine --</option>
@@ -65,5 +85,4 @@
             </form>
         </div>
     </div>
-
 @endsection
