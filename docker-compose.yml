@@ -6,6 +6,7 @@ services:
     container_name: calm-webserver
     ports:
       - 8000:8000
+      - 5173:5173
     volumes:
       - ./calm-webserver/:/files
     working_dir: /files

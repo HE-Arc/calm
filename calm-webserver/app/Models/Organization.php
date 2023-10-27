@@ -18,9 +18,9 @@ class Organization extends Model
         return $this->belongsToMany(User::class, 'users_in_organizations', 'user', 'organization');
     }
 
-    public function machines()
+    public function laundries()
     {
-        return $this->hasMany(Machine::class);
+        return $this->hasMany(Laundry::class, 'organization');
     }
 
 
