@@ -16,11 +16,11 @@ class Reservation extends Model
 
     public function machine()
     {
-        return $this->belongsTo(Machine::class);
+        return $this->belongsTo(Machine::class, 'machine');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user');
     }
 }
