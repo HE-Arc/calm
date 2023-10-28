@@ -5,6 +5,11 @@ import 'flowbite';
 (function () {
     "use strict";
 
+    /**
+     * Get element in function of what identifiant or class pass
+     * @param element identifiant (#<name>) ou classname (.<classname>)
+     * @returns {*}
+     */
     function getElement(element)
     {
         const elementSearch = document.querySelector(element);
