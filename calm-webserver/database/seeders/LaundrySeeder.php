@@ -12,6 +12,6 @@ class LaundrySeeder extends Seeder
      */
     public function run(): void
     {
-        \App\Models\Laundry::factory(10)->create();
+        \App\Models\Laundry::factory(5)->create();
     }
 }

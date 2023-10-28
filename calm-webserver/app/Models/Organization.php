@@ -15,12 +15,13 @@ class Organization extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'users_in_organizations', 'user', 'organization');
+        return $this->belongsToMany(User::class, 'users_in_organizations');
+
     }
 
     public function laundries()
     {
-        return $this->hasMany(Laundry::class, 'organization');
+        return $this->hasMany(Laundry::class);
     }
 
 

@@ -20,10 +20,10 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            'user' => User::all()->random()->id,
-            'machine' => Machine::all()->random()->id,
+            'user_id' => User::all()->random()->id,
+            'machine_id' => Machine::all()->random()->id,
             'description' => $this->faker->paragraph(),
-            'acknowledged_at' => $this->faker->dateTime(),
+            'acknowledged_at' => null,
         ];
     }
 }

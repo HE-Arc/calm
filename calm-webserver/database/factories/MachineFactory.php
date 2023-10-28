@@ -20,7 +20,7 @@ class MachineFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
-            'laundry' => Laundry::all()->random()->id,
+            'laundry_id' => Laundry::all()->random()->id,
             'type' => $this->faker->randomElement(['wash', 'dry']),
         ];
     }

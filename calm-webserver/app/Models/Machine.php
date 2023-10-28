@@ -17,21 +17,25 @@ class Machine extends Model
 
     public function laundry()
     {
-        return $this->belongsTo(Laundry::class, 'laundry');
+        return $this->belongsTo(Laundry::class);
     }
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class, 'machine');
+        return $this->hasMany(Reservation::class);
     }
 
     public function reports()
     {
-        return $this->hasMany(Report::class, 'machine');
+        return $this->hasMany(Report::class);
     }
 
-    public function maintenance()
+    public function maintenances()
     {
         return $this->hasMany(Maintenance::class, 'machine');
+    }
+
+    public function organization(){
+        return $this->laundry->organization;
     }
 }

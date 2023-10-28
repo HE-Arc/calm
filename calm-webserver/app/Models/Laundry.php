@@ -16,10 +16,10 @@ class Laundry extends Model
 
     public function organization()
     {
-        return $this->belongsTo(Organization::class, 'organization');
+        return $this->belongsTo(Organization::class);
     }
 
     public function machines(){
-        return $this->hasMany(Machine::class, 'laundry');
+        return $this->hasMany(Machine::class);
     }
 }

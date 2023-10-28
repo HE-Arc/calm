@@ -17,10 +17,13 @@ class MaintenanceFactory extends Factory
      */
     public function definition(): array
     {
+        $start = $this->faker->dateTime();
+        $stop = $start->add(new \DateInterval('P2D'));
+
         return [
-            'start' => $this->faker->dateTime(),
-            'stop' => $this->faker->dateTime(),
-            'machine' => Machine::all()->random()->id,
+            'start' => $start,
+            'stop' => $stop,
+            'machine_id' => Machine::all()->random()->id,
             'description' => $this->faker->paragraph(),
         ];
     }

@@ -5,12 +5,23 @@
             <h1 class="text-center text-4xl font-title text-seaNymph font-bold">Connexion</h1>
         </div>
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="#" method="POST">
+            <form class="space-y-6" action="{{route('authenticate')}}" method="POST">
+                @csrf
                 <div>
-                    <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Nom d'utilisateur ou adresse e-mail</label>
+                    <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Adresse e-mail</label>
                     <div class="mt-2">
-                        <input id="name" name="name" type="text" autocomplete="name" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
+                        <input value="{{old('email')}}" id="email" name="email" type="text" autocomplete="email" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
