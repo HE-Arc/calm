@@ -37,7 +37,12 @@ class Reservation extends Model
 
     public function organization()
     {
-        return $this->machine;
+        return $this->machine->organization();
+    }
+
+    public function laundry()
+    {
+        return $this->machine->laundry();
     }
 
 }
