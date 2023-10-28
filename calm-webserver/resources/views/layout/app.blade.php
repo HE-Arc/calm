@@ -73,9 +73,9 @@
                             </li>
 
                             <!-- IF NOT IN ORGANISATION -->
-                            <li>
+                            <!--<li>
                                 <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Rejoindre une organisation</a>
-                            </li>
+                            </li>-->
 
                             <!-- IF CONNECTED -->
                             <li>
@@ -83,12 +83,12 @@
                             </li>
 
                             <!-- IF ADMIN -->
-                            <li>
+                            <!--<li>
                                 <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Gestion des organisations</a>
                             </li>
                             <li>
                                 <a href="#" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Gestion des buandries</a>
-                            </li>
+                            </li>-->
                         </ul>
                     </div>
                 </div>
