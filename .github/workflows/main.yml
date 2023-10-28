@@ -11,7 +11,7 @@ jobs:
         uses: shimataro/ssh-key-action@v2.6.1
         with:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          known_host: '*******'
+          known_hosts: '*******'
       - name: Add known host
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       - name: Deploy with SSH
