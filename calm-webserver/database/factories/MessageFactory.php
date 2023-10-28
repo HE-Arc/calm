@@ -18,10 +18,10 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'dest' => User::all()->random()->id,
+            'user_id' => User::all()->random()->id,
             'title' => $this->faker->sentence(5),
             'content' => $this->faker->paragraph(),
-            'read_at' => $this->faker->dateTime(),
+            'read_at' => null,
             'expires_at' => $this->faker->dateTime(),
             'created_at' => $this->faker->dateTime(),
             'updated_at' => $this->faker->dateTime(),

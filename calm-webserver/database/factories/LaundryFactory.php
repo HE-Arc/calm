@@ -20,7 +20,7 @@ class LaundryFactory extends Factory
         return [
             'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
-            'organization' => Organization::all()->random()->id,
+            'organization_id' => Organization::all()->random()->id,
         ];
     }
 }

@@ -45,21 +45,21 @@ class User extends Authenticatable
 
     public function organizations()
     {
-        return $this->belongsToMany(Organization::class, 'users_in_organizations', 'user', 'organization');
+        return $this->belongsToMany(Organization::class, 'users_in_organizations');
     }
 
     public function reservations()
     {
-        return $this->hasMany(Reservation::class, 'user');
+        return $this->hasMany(Reservation::class);
     }
 
     public function messages()
     {
-        return $this->hasMany(Message::class, 'user');
+        return $this->hasMany(Message::class);
     }
 
     public function reports()
     {
-        return $this->hasMany(Report::class, 'user');
+        return $this->hasMany(Report::class);
     }
 }

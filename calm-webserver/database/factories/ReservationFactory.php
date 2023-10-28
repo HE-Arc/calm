@@ -18,11 +18,17 @@ class ReservationFactory extends Factory
      */
     public function definition(): array
     {
+        $start = $this->faker->dateTime();
+        $stop = $start->add(new \DateInterval('PT1H'));
+        $user = User::all()->random();
+        $organization = $user->organizations->random();
+        $laundry = $organization->laundries->random();
+        $machine = $laundry->machines->random();
         return [
-            'start' => $this->faker->dateTime(),
-            'stop' => $this->faker->dateTime(),
-            'machine' => Machine::all()->random()->id,
-            'user' => User::all()->random()->id,
+            'start' => $start,
+            'stop' => $stop,
+            'machine_id' => $machine->id,
+            'user_id' => $user->id,
         ];
     }
 }
