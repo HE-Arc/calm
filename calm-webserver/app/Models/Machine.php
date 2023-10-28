@@ -36,6 +36,14 @@ class Machine extends Model
     }
 
     public function organization(){
-        return $this->laundry->organization;
+        return $this->laundry->organization();
+    }
+
+    public function typeName(){
+        switch ($this->type){
+            case 'wash': return 'Lavage';
+            case 'dry' : return 'Séchage';
+            default:     return 'Autre';
+        }
     }
 }
