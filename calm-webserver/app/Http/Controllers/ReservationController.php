@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reservation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -11,11 +13,35 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return view("reservations.index", ["page" => "reservations",
-            "pageTitle" => "Réservations", "pageDescription" => "Réservez une machine dans votre buanderie. Créez,
-            affichez et gérez vos réservations. Choisissez l'organisation, la buanderie, le type de machine, la date et
-            la durée. Consultez les disponibilités, affichez l'historique des réservations et supprimez les réservations
-            à venir."]);
+        $reservations = Auth::user()->reservations;
+        $data = [];
+
+        foreach($reservations as $r){
+            $data[] = [
+                'id' => $r->id,
+                'start' => $r->start,
+                'stop' => $r->stop,
+                'duration' => $r->duration(),
+                'organisation' => $r->organization->name,
+                'laundry' => $r->laundry->name,
+                'machine' => $r->machine->name,
+                'type' => [
+                    'id' => $r->machine->type,
+                    'name' => $r->machine->typeName()
+                ],
+            ];
+        }
+
+        return view("reservations.index",
+            [
+                "page" => "reservations",
+                "pageTitle" => "Réservations",
+                "pageDescription" => "Réservez une machine dans votre buanderie. Créez,
+                    affichez et gérez vos réservations. Choisissez l'organisation, la buanderie, le type de machine, la date et
+                    la durée. Consultez les disponibilités, affichez l'historique des réservations et supprimez les réservations
+                    à venir.",
+                "reservations" => $data
+            ]);
     }
 
     /**
