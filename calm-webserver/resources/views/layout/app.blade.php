@@ -52,7 +52,10 @@
                                     <a href="#" class="block px-4 py-2 text-sm hover:bg-berylGreen">Compte</a>
                                 </li>
                                 <li>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-berylGreen">Déconnexion</a>
+                                    <form action="{{route('logout')}}" method="post">
+                                        @csrf
+                                        <input type="submit" class="block px-4 py-2 text-sm hover:bg-berylGreen" value="Déconnexion">
+                                    </form>
                                 </li>
                             </ul>
                         </div>
