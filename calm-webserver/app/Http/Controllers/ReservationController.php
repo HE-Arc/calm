@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class BookingController extends Controller
+class ReservationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view("bookings.index", ["page" => "bookings",
+        return view("reservations.index", ["page" => "reservations",
             "pageTitle" => "Réservations", "pageDescription" => "Réservez une machine dans votre buanderie. Créez,
             affichez et gérez vos réservations. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée. Consultez les disponibilités, affichez l'historique des réservations et supprimez les réservations
@@ -23,7 +23,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view("bookings.create", ["page" => "bookings",
+        return view("reservations.create", ["page" => "reservations",
             "pageTitle" => "Nouvelles réservations",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée."]);
