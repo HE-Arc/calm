@@ -11,7 +11,7 @@
                 <div>
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Adresse e-mail</label>
                     <div class="mt-2">
-                        <input id="email" name="email" type="text" autocomplete="email" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
+                        <input value="{{old('email')}}" id="email" name="email" type="text" autocomplete="email" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
