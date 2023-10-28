@@ -19,14 +19,20 @@
                     <div>
                         <label for="organisations" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner l'organisation</label>
                         <select id="organisations" required name="organisations" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
-                            <option selected>-- Sélectionner une organisation --</option>
+                            <option value="" selected>-- Sélectionner une organisation --</option>
+                            @foreach($organisations as $organisation)
+                                <option value="{{$organisation->id}}">{{$organisation->name}}</option>
+                            @endforeach
                         </select>
                     </div>
 
-                    <div>
+                    <div class="hidden laundries-field">
                         <label for="laundries" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner la buandrie</label>
-                        <select id="laundries" required name="laundries" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
+                        <select id="laundries" required name="laundries" class="laundry-select border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
                             <option selected>-- Sélectionner une buandrie --</option>
+                            @foreach($laundries as $laundry)
+                                <option value="{{$laundry->id}}" data-organisation="{{$laundry->organization}}">{{$laundry->name}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -40,7 +46,7 @@
                     <div>
                         <label for="duration" class="block text-sm font-medium leading-6 text-gray-900">Durée</label>
                         <div class="mt-2">
-                            <input id="duration" name="duration" type="number" min="1" autocomplete="duration" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
+                            <input id="duration" name="duration" type="number" min="1" max="1440" autocomplete="duration" required class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                         </div>
                     </div>
 
@@ -127,7 +133,4 @@
             </div>
         </div>
     @endif
-
-
-
 @endsection
