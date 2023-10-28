@@ -8,4 +8,11 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+
+    // Add for npm run dev work
+    server: {
+        hmr: {
+            host: 'localhost',
+        },
+    }
 });

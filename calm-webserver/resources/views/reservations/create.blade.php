@@ -10,7 +10,7 @@
         </a>
     </div>
 
-    <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelles réservations</h1>
+    <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelle réservation</h1>
     <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8">
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="#" method="POST">
@@ -57,7 +57,7 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="flex shadow-gray-700 w-full justify-center rounded-md bg-rollingStone px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">Confirmer</button>
+                    <button type="submit" class="flex shadow-gray-700 w-full justify-center rounded-md bg-rollingStone px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">Rechercher une disponibilité</button>
                 </div>
             </form>
         </div>
