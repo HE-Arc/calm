@@ -28,12 +28,10 @@
                         <li>Nom de l'organisation : </li>
                         <li>Nom de la buandrie : {{$reservation->laundry}}</li>
                         <li>Date : {{$reservation->duration}}</li>
-                        <li>Machine :</li>
+                        <li>Durée : {{$reservation->duration}}</li>
+                        <li>Machine : {{$reservation->machine}}</li>
                     </ul>
                 </div>
-
-                <?php var_dump($reservation->machine); ?>
-
             </a>
         @endforeach
 
