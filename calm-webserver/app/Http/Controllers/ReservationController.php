@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Reservation;
+use App\Models\Laundry;
+use App\Models\Machine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -49,11 +51,13 @@ class ReservationController extends Controller
      */
     public function create()
     {
+        $laundries = Laundry::all();
+        $organisations = Organization::all();
         return view("reservations.create", ["page" => "reservations",
             "pageTitle" => "Nouvelles réservations",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
-            "reserving" => false]);
+            "reserving" => false], compact('laundries', 'organisations'));
     }
 
     /**
