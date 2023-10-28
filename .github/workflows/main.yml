@@ -1,0 +1,19 @@
+name: main-cicd
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v2.6.1
+        with:
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          known_host: '*******'
+      - name: Add known host
+        run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Deploy with SSH
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ SSH_USER }}@${{ SSH_HOST }} "./project/update.sh"
+          
