@@ -15,5 +15,5 @@ jobs:
       - name: Add known host
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
       - name: Deploy with SSH
-        run: ssh -p ${{ secrets.SSH_PORT }} ${{ SSH_USER }}@${{ SSH_HOST }} "./project/update.sh"
+        run: ssh -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "./project/update.sh"
           
