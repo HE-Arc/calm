@@ -20,7 +20,7 @@ class ReservationController extends Controller
         $reservations = Auth::user()->reservations;
         $data = [];
 
-        foreach($reservations as $r){
+        foreach ($reservations as $r) {
             $data[] = [
                 'id' => $r->id,
                 'start' => $r->start,
@@ -38,7 +38,8 @@ class ReservationController extends Controller
 
         $reservations = Paginate::paginate(collect($data)->sortBy('start')->reverse()->toArray(), 2);
 
-        return view("reservations.index",
+        return view(
+            "reservations.index",
             [
                 "page" => "reservations",
                 "pageTitle" => "Réservations",
@@ -46,7 +47,9 @@ class ReservationController extends Controller
                     affichez et gérez vos réservations. Choisissez l'organisation, la buanderie, le type de machine, la date et
                     la durée. Consultez les disponibilités, affichez l'historique des réservations et supprimez les réservations
                     à venir.",
-            ], compact('reservations'));
+            ],
+            compact('reservations')
+        );
     }
 
     /**
@@ -56,11 +59,13 @@ class ReservationController extends Controller
     {
         $laundries = Laundry::all();
         $organisations = Organization::all();
-        return view("reservations.create", ["page" => "reservations",
+        return view("reservations.create", [
+            "page" => "reservations",
             "pageTitle" => "Nouvelles réservations",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
-            "reserving" => false], compact('laundries', 'organisations'));
+            "reserving" => false
+        ], compact('laundries', 'organisations'));
     }
 
     /**
@@ -76,7 +81,17 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $reservation = Reservation::find($id);
+
+        return view(
+            "reservations.show",
+            [
+                "page" => "reservations",
+                "pageTitle" => "Details de la réservation",
+                "pageDescription" => "Affiche les details de la reservation",
+                "reservation" => $reservation
+            ],
+        );
     }
 
     /**
