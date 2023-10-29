@@ -8,6 +8,7 @@ use App\Models\Organization;
 use App\Models\Machine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Utils\Paginate;
 
 class ReservationController extends Controller
 {
@@ -35,6 +36,8 @@ class ReservationController extends Controller
             ];
         }
 
+        $reservations = Paginate::paginate($data, 2);
+
         return view("reservations.index",
             [
                 "page" => "reservations",
@@ -43,8 +46,7 @@ class ReservationController extends Controller
                     affichez et gérez vos réservations. Choisissez l'organisation, la buanderie, le type de machine, la date et
                     la durée. Consultez les disponibilités, affichez l'historique des réservations et supprimez les réservations
                     à venir.",
-                "reservations" => $data
-            ]);
+            ], compact('reservations'));
     }
 
     /**
