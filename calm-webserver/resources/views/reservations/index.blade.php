@@ -13,7 +13,7 @@
         </div>
     @else
         @foreach($reservations as $reservation)
-            <a class="w-full rounded-sm md:w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform" href="#">
+            <a href="{{ route('reservations.show', $reservation['id']) }}" class="w-full rounded-sm md:w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform">
                 <!-- Icon -->
                 <div class="col-span-12 md:col-span-1">
                     <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
