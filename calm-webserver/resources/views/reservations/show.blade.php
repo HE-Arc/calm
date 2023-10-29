@@ -39,6 +39,13 @@
                 <span class="material-symbols-rounded text-rollingStone">text_fields</span>
             </div>
         </div>
+        <div class="my-4">
+            <p>Type de machine</p>
+            <div class="flex border-2 border-rollingStone rounded-lg p-2">
+                <p class="w-full">{{ $reservation->machine->typeName() }}</p>
+                <span class="material-symbols-rounded text-rollingStone">text_fields</span>
+            </div>
+        </div>
         <div class="my-4 flex">
             <button onclick="deleteReservation()"
                 class="w-full text-center rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5">
