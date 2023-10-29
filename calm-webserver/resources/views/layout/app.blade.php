@@ -53,9 +53,9 @@
                                     <a href="#" class="block px-4 py-2 text-sm hover:bg-berylGreen">Compte</a>
                                 </li>
                                 <li>
-                                    <form action="{{route('logout')}}" method="post">
+                                    <form action="{{route('logout')}}" method="post" class="block cursor-pointer text-sm hover:bg-berylGreen">
                                         @csrf
-                                        <input type="submit" class="block px-4 py-2 text-sm hover:bg-berylGreen" value="Déconnexion">
+                                        <input type="submit" class="block cursor-pointer px-4 py-2 text-sm hover:bg-berylGreen" value="Déconnexion">
                                     </form>
                                 </li>
                             </ul>
