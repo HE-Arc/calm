@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use App\Models\Laundry;
+use App\Models\Organization;
 use App\Models\Machine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
