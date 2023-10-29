@@ -13,10 +13,10 @@
         </div>
     @else
         @foreach($reservations as $reservation)
-            <a class="rounded-sm w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform" href="#">
+            <a class="w-full rounded-sm md:w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform" href="#">
                 <!-- Icon -->
                 <div class="col-span-12 md:col-span-1">
-                    <svg class="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
+                    <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
                         <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M12 2h4a1 1 0 0 1 1 1v15a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h4m6 0v3H6V2m6 0a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1M5 5h8m-5 5h5m-8 0h.01M5 14h.01M8 14h5"/>
                     </svg>
                 </div>
@@ -31,12 +31,14 @@
                     <ul class="mt-1 text-sm font-normal">
                         <li>Organisation : {{$reservation["organisation"]}}</li>
                         <li>Buandrie : {{$reservation["laundry"]}}</li>
-                        <li>Date : {{$reservation["duration"]}}</li>
+                        <li>Date : {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $reservation["start"])->format('d.m.Y')}}</li>
                         <li>Durée : {{$reservation["duration"]}}</li>
                     </ul>
                 </div>
             </a>
         @endforeach
+
+        {{  $reservations->links() }}
     @endif
     </div>
 @endsection
