@@ -68,12 +68,14 @@
                             </li>
 
                             <!-- IF NOT CONNECTED -->
+                            @guest
                             <li>
                                 <a href="{{ route('login') }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'login' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Connexion</a>
                             </li>
                             <li>
                                 <a href="{{ route('register') }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'register' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Inscription</a>
                             </li>
+                            @endguest
 
                             <!-- IF NOT IN ORGANISATION -->
                             <!--<li>
@@ -81,9 +83,11 @@
                             </li>-->
 
                             <!-- IF CONNECTED -->
+                            @auth
                             <li>
                                 <a href="{{ route('reservations.index')  }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Réservation</a>
                             </li>
+                            @endauth
 
                             <!-- IF ADMIN -->
                             <!--<li>

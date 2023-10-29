@@ -14,8 +14,10 @@
         <li class="p-1">Miranda Fleury</li>
     </ul>
 
+    @guest
     <div class="flex flex-col my-5 mx-auto md:max-w-sm">
         <a href="{{ route('login') }}" class="text-center text-white font-bold bg-manhattan hover:bg-vividTangerine focus:ring-4 focus:ring-manhattan rounded-lg text-sm px-5 py-2.5 focus:outline-none my-2">Connexion</a>
         <a href="{{ route('register') }}" class="text-center text-white font-bold bg-manhattan hover:bg-vividTangerine focus:ring-4 focus:ring-manhattan rounded-lg text-sm px-5 py-2.5 focus:outline-none my-2">Inscription</a>
     </div>
+    @endguest
 @endsection

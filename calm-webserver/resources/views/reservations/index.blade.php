@@ -38,7 +38,7 @@
             </a>
         @endforeach
 
-        {{  $reservations->links() }}
+        {{ $reservations->links() }}
     @endif
     </div>
 @endsection
