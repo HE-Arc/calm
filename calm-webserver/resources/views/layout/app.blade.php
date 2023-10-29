@@ -32,6 +32,7 @@
                         <span class="self-center text-4xl font-title text-white">CALM</span>
                     </a>
 
+                    @auth
                     <div class="flex items-center md:order-2">
                         <button type="button" class="flex mr-3 text-sm bg-transparent text-white rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                             <span class="sr-only">Open user menu</span>
@@ -43,8 +44,8 @@
                         <!-- Dropdown menu -->
                         <div class="z-50 hidden text-white font-bold my-4 text-base bg-greyNurse divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown">
                             <div class="px-4 py-3 hover:bg-greyNurse">
-                                <span class="block text-sm">JohnDoe</span>
-                                <span class="block text-sm truncate">johndoe@example.com</span>
+                                <span class="block text-sm">{{auth()->user()->name}}</span>
+                                <span class="block text-sm truncate">{{auth()->user()->email}}</span>
                             </div>
 
                             <ul class="py-2" aria-labelledby="user-menu-button">
@@ -60,6 +61,7 @@
                             </ul>
                         </div>
                     </div>
+                    @endauth
 
                     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
                         <ul class="flex flex-col font-bold md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 md:mt-0 md:border-0 text-white">
