@@ -63,11 +63,11 @@ class ReservationController extends Controller
 
         foreach(Auth::user()->organizations as $org){
             $laundries = [];
-            foreach($org->laundries as $laudry) {
+            foreach($org->laundries as $laundry) {
                 $laundries[] = [
-                    'id' => $laudry->id,
-                    'name' => $laudry->name,
-                    'description' => $laudry->description
+                    'id' => $laundry->id,
+                    'name' => $laundry->name,
+                    'description' => $laundry->description
                 ];
             }
 
@@ -103,14 +103,17 @@ class ReservationController extends Controller
 
 
         $reservations = [];
+        $i = 0;
         foreach(Reservation::find_reservations($date, $duration, $user, $laundry, $param['type']) as $r){
             $reservations[] = [
-                'id' => -1,
+                'id' => $i,
                 'machine' => $r->machine->name,
                 'description' => $r->machine->description,
                 'start' => $r->start,
                 'stop' => $r->stop,
             ];
+            $request->session()->put($i, $r);
+            $i++;
         }
 
         $param = [
@@ -139,7 +142,26 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $param = $request->validate([
+            'id' => 'required'
+        ]);
+        $id = $param['id'];
+
+        if(!$request->session()->exists($id)){
+            return back()->withErrors(['Invalid ID. Please retry']);
+        }
+
+        $res_data = $request->session()->get($id);
+        $res = new Reservation();
+        $res->machine_id = $res_data->machine_id;
+        $res->user_id = Auth::user()->id;
+        $res->start = $res_data->start;
+        $res->stop = $res_data->stop;
+
+        $res->save();
+        $res->fresh();
+
+        return redirect('/reservations/' . $res->id);
     }
 
     /**
@@ -181,6 +203,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $res = Reservation::find($id);
+        $res->delete();
+        return redirect('/reservations');
     }
 }
