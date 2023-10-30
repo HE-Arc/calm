@@ -11,30 +11,64 @@
                 Retour
             </a>
         </div>
-
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelle réservation</h1>
         <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8">
             <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form class="space-y-6" action="#" method="POST">
+                    @csrf
                     <div>
                         <label for="organisations" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner l'organisation</label>
                         <select id="organisations" required name="organisations" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
-                            <option value="" selected>-- Sélectionner une organisation --</option>
-                            @foreach($organisations as $organisation)
-                                <option value="{{$organisation->id}}">{{$organisation->name}}</option>
+                            <option selected>-- Sélectionner une organisation --</option>
+                            @foreach($organizations as $org)
+                                <option value="{{$org['id']}}">{{$org['name']}}</option>
                             @endforeach
                         </select>
                     </div>
 
                     <div class="hidden laundries-field">
                         <label for="laundries" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner la buandrie</label>
-                        <select id="laundries" required name="laundries" class="laundry-select border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
-                            <option selected>-- Sélectionner une buandrie --</option>
-                            @foreach($laundries as $laundry)
-                                <option value="{{$laundry->id}}" data-organisation="{{$laundry->organization}}">{{$laundry->name}}</option>
+                        <select id="laundries" required name="laundry" class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
+                            @foreach($organizations as $org)
+                                @foreach($org['laundries'] as $laundry)
+                                    <option value="{{$laundry['id']}}" data-organisation="{{$org['id']}}">{{$laundry['name']}}</option>
+                                @endforeach
                             @endforeach
                         </select>
                     </div>
+
+                    <script>
+                        document.getElementById('organisations__').onchange = function(){
+                            let laundries = document.getElementById('laundries');
+                            let org_id = document.getElementById('organisations').value;
+
+                            for(let i = 0; i < laundries.length; i++){
+                                laundries.remove(i);
+                            }
+                            let opt;
+
+                            @foreach($organizations as $org)
+                                let org = {{$org['id']}};
+                                if (org == org_id){
+                                    @foreach($org['laundries'] as $laundry)
+                                        opt = document.createElement('option');
+                                        opt.value = {{$laundry['id']}};
+                                        opt.text = "{{$laundry['name']}}";
+                                        laundries.add(opt, null);
+                                    @endforeach
+                                }
+                            @endforeach
+                        }
+                    </script>
 
                     <div>
                         <label for="day" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
@@ -52,15 +86,15 @@
 
                     <div class="text-center">
                         <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                            <input type="checkbox" value="wash" id="wash" class="sr-only peer">
+                            <input type="checkbox" name="type" value="wash" id="wash" class="sr-only peer">
                             <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-vividTangerine"></div>
                             <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Laver</span>
                         </label>
 
                         <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                            <input type="checkbox" value="dry" id="dry" class="sr-only peer">
+                            <input type="checkbox" name="type" value="dry" id="dry" class="sr-only peer">
                             <div class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-vividTangerine"></div>
-                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sècher</span>
+                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sécher</span>
                         </label>
                     </div>
 
@@ -88,10 +122,10 @@
 
                         Détail de votre réservation
                         <ul class="mt-1 text-sm font-normal text-gray-500">
-                            <li>Nom de l'organisation</li>
-                            <li>Nom de la buandrie</li>
-                            <li>Date</li>
-                            <li>Type</li>
+                            <li>Organisation : {{$proposition['organization']}}</li>
+                            <li>Buanderie : {{$proposition['laundry']}}</li>
+                            <li>Date : {{\Illuminate\Support\Carbon::create($proposition['date'])->toDateString()}}</li>
+                            <li>Type : {{$proposition['type']['name']}}</li>
                         </ul>
                     </caption>
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -103,7 +137,7 @@
                             Description
                         </th>
                         <th scope="col" class="hidden px-6 py-3 sm:table-cell">
-                            Durée
+                            Heure
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Action
@@ -111,23 +145,26 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">
-                            Apple MacBook Pro 17"
-                        </td>
-                        <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
-                            Silver
-                        </td>
-                        <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
-                            Laptop
-                        </td>
-                        <td class="px-6 py-4 text-right">
-                            <form action="#">
-                                <input type="hidden" name="id">
-                                <button type="submit" class="flex shadow-gray-700 w-full justify-center rounded-md bg-rollingStone px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">Réserver</button>
-                            </form>
-                        </td>
-                    </tr>
+                    @foreach($proposition['reservations'] as $res)
+                        <tr class="bg-white border-b hover:bg-gray-50">
+                            <td class="px-6 py-4 font-medium text-gray-900">
+                                {{$res['machine']}}
+                            </td>
+                            <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
+                                {{$res['description']}}
+                            </td>
+                            <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
+                                {{\Illuminate\Support\Carbon::create($res['start'])->format('H:i')}}
+                            </td>
+                            <td class="px-6 py-4 text-right">
+                                <form action="#">
+                                    <input type="hidden" name="id">
+                                    <button type="submit" class="flex shadow-gray-700 w-full justify-center rounded-md bg-rollingStone px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">Réserver</button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>
