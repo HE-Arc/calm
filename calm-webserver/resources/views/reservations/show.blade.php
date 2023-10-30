@@ -7,7 +7,7 @@
             </a>
         </div>
         <div>
-            <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Réservations</h1>
+            <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Votre réservation</h1>
         </div>
         <div class="my-4">
             <p>Date</p>
@@ -47,16 +47,25 @@
             </div>
         </div>
         <div class="my-4 flex">
-            <button onclick="deleteReservation()"
-                class="w-full text-center rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5">
-                Supprimer
-            </button>
+            <form action="#" method="post" id="delete-reservation-form">
+                @csrf
+                @method('DELETE')
+                <input
+                    type="submit"
+                    class="w-full text-center rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5"
+                    value="Supprimer"
+                    onclick="deleteReservation()"
+                >
+            </form>
         </div>
     </article>
     <script>
         function deleteReservation() {
             event.preventDefault();
-            document.location.href = "{{ route('reservations.destroy', $reservation->id) }}";
+            if(confirm("Êtes-vous sûr de vouloir supprimer cette réservation ? Cette action est irréversible.")){
+                //document.location.href = "{{ route('reservations.destroy', $reservation->id) }}";
+                document.getElementById("delete-reservation-form").submit();
+            }
         }
     </script>
 @endsection

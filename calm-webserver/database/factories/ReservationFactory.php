@@ -18,8 +18,9 @@ class ReservationFactory extends Factory
      */
     public function definition(): array
     {
-        $start = $this->faker->dateTime();
-        $stop = $start->add(new \DateInterval('PT1H'));
+        $start = $this->faker->dateTimeInInterval('-1 week', '+1 week');
+        $stop = clone $start;
+        $stop->add(new \DateInterval('PT1H'));
         $user = User::all()->random();
         $organization = $user->organizations->random();
         $laundry = $organization->laundries->random();

@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reservation;
 use App\Models\Laundry;
+use App\Models\Reservation;
 use App\Models\Organization;
 use App\Models\Machine;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\Paginate;
 
+use Illuminate\Validation\Rules\Enum;
+use Illuminate\Support\Carbon;
 class ReservationController extends Controller
 {
     /**
@@ -57,23 +59,109 @@ class ReservationController extends Controller
      */
     public function create()
     {
-        $laundries = Laundry::all();
-        $organisations = Organization::all();
-        return view("reservations.create", [
-            "page" => "reservations",
+        $organizations = [];
+
+        foreach(Auth::user()->organizations as $org){
+            $laundries = [];
+            foreach($org->laundries as $laundry) {
+                $laundries[] = [
+                    'id' => $laundry->id,
+                    'name' => $laundry->name,
+                    'description' => $laundry->description
+                ];
+            }
+
+            $organizations[] = [
+                'id' => $org->id,
+                'name' => $org->name,
+                'laundries' => $laundries
+            ];
+        }
+
+
+        return view("reservations.create", ["page" => "reservations",
             "pageTitle" => "Nouvelles réservations",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
-            "reserving" => false
-        ], compact('laundries', 'organisations'));
+            "reserving" => false,
+            'organizations' => $organizations
+        ]);
     }
+
+    public function choose(Request $request){
+        $param = $request->validate([
+            'laundry' => ['required', 'integer'],
+            'day' => ['required', 'date'],
+            'duration' => ['required', 'integer', 'min:30', 'max:360'],
+            'type' => ['required', 'in:wash,dry'],
+            ]);
+
+        $laundry = Laundry::find($param['laundry']);
+        $user = Auth::user();
+        $date = new Carbon($param['day']);
+        $duration = intval($param['duration']);
+
+
+        $reservations = [];
+        $i = 0;
+        foreach(Reservation::find_reservations($date, $duration, $user, $laundry, $param['type']) as $r){
+            $reservations[] = [
+                'id' => $i,
+                'machine' => $r->machine->name,
+                'description' => $r->machine->description,
+                'start' => $r->start,
+                'stop' => $r->stop,
+            ];
+            $request->session()->put($i, $r);
+            $i++;
+        }
+
+        $param = [
+            'organization' => $laundry->organization->name,
+            'laundry' => $laundry->name,
+            'date' => $date,
+            'type' => [
+                'id' => $param['type'],
+                'name' => ($param['type'] == 'wash') ? 'Lavage' : 'Séchage'
+            ],
+            'reservations' => $reservations
+        ];
+
+        return view('reservations.create', [
+            "page" => "Reservation",
+            "pageTitle" => "Choix d'une réservation",
+            "pageDescription" => "Choisissez une réservation parmi les propositions.",
+            "reserving" => true,
+            "proposition" => $param
+        ]);
+    }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $param = $request->validate([
+            'id' => 'required'
+        ]);
+        $id = $param['id'];
+
+        if(!$request->session()->exists($id)){
+            return back()->withErrors(['Invalid ID. Please retry']);
+        }
+
+        $res_data = $request->session()->get($id);
+        $res = new Reservation();
+        $res->machine_id = $res_data->machine_id;
+        $res->user_id = Auth::user()->id;
+        $res->start = $res_data->start;
+        $res->stop = $res_data->stop;
+
+        $res->save();
+        $res->fresh();
+
+        return redirect('/reservations/' . $res->id);
     }
 
     /**
@@ -115,6 +203,8 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $res = Reservation::find($id);
+        $res->delete();
+        return redirect('/reservations');
     }
 }

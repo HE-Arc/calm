@@ -18,6 +18,7 @@ use \App\Http\Controllers\ReservationController;
 
 Route::get("/", [HomeController::class, "index"])->name("home");
 Route::resource("reservations", ReservationController::class)->middleware('auth');
+Route::post("reservations/create", [ReservationController::class, "choose"])->middleware('auth');
 Route::get("login", [LoginController::class, "loginForm"])->name("login")->middleware('guest');
 Route::post("login", [LoginController::class, "authenticate"])->name("authenticate")->middleware('guest');
 Route::get("register", [LoginController::class, "registerForm"])->name("register")->middleware('guest');
