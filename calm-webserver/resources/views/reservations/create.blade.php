@@ -46,30 +46,6 @@
                         </select>
                     </div>
 
-                    <script>
-                        document.getElementById('organisations__').onchange = function(){
-                            let laundries = document.getElementById('laundries');
-                            let org_id = document.getElementById('organisations').value;
-
-                            for(let i = 0; i < laundries.length; i++){
-                                laundries.remove(i);
-                            }
-                            let opt;
-
-                            @foreach($organizations as $org)
-                                let org = {{$org['id']}};
-                                if (org == org_id){
-                                    @foreach($org['laundries'] as $laundry)
-                                        opt = document.createElement('option');
-                                        opt.value = {{$laundry['id']}};
-                                        opt.text = "{{$laundry['name']}}";
-                                        laundries.add(opt, null);
-                                    @endforeach
-                                }
-                            @endforeach
-                        }
-                    </script>
-
                     <div>
                         <label for="day" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
                         <div class="mt-2">
