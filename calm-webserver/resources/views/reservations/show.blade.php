@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <article class="container flex flex-col items-gap-4">
+    <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
         <div class="flex flex-col items-end">
             <a href="{{ route('reservations.index') }}">
                 <span class="material-symbols-rounded text-rollingStone">close</span>
@@ -46,13 +46,13 @@
                 <span class="material-symbols-rounded text-rollingStone">text_fields</span>
             </div>
         </div>
-        <div class="my-4 flex">
+        <div class="text-center">
             <form action="#" method="post" id="delete-reservation-form">
                 @csrf
                 @method('DELETE')
                 <input
                     type="submit"
-                    class="w-full text-center rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5"
+                    class="w-full mx-auto rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5"
                     value="Supprimer"
                     onclick="deleteReservation()"
                 >
