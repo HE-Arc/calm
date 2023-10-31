@@ -7,6 +7,9 @@ use App\Models\Reservation;
 use App\Models\Organization;
 use App\Models\Machine;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\Paginate;
 
@@ -86,6 +89,21 @@ class ReservationController extends Controller
             "reserving" => false,
             'organizations' => $organizations
         ]);
+    }
+
+    /**
+     * Creates paginator for reservation choice
+     * Source : https://www.itsolutionstuff.com/post/how-to-create-pagination-from-array-in-laravelexample.html
+     * @param array $items
+     * @param int $item_per_page
+     * @param $page
+     * @param $options
+     * @return LengthAwarePaginator
+     */
+    private function choice_paginator(array $items, int $item_per_page, $page=null,$options=[]){
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        return new LengthAwarePaginator($items->forPage($page, $item_per_page), $items->count(), $item_per_page, $page, $options);
     }
 
     public function choose(Request $request){
