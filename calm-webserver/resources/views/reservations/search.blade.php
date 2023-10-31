@@ -11,15 +11,6 @@
             Retour
         </a>
     </div>
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelle réservation</h1>
     <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8">
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
