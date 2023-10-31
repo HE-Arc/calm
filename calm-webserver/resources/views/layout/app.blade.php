@@ -87,7 +87,7 @@
                             <!-- IF CONNECTED -->
                             @auth
                             <li>
-                                <a href="{{ route('reservations.index')  }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Réservation</a>
+                                <a href="{{ route('reservations.index')  }}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'reservations' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Réservations</a>
                             </li>
                             @endauth
 
