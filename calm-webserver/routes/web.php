@@ -17,8 +17,16 @@ use \App\Http\Controllers\ReservationController;
 */
 
 Route::get("/", [HomeController::class, "index"])->name("home");
-Route::resource("reservations", ReservationController::class)->middleware('auth');
-Route::post("reservations/create", [ReservationController::class, "choose"])->middleware('auth');
+
+Route::get("reservations", [ReservationController::class, 'index'])->middleware('auth')->name('reservations.index');
+Route::get("reservations/create", [ReservationController::class, 'create'])->middleware('auth')->name('reservations.create');
+Route::post("reservations/create", [ReservationController::class, "search_propositions"])->middleware('auth');
+Route::get("reservations/choose", [ReservationController::class, "show_propositions"])->middleware('auth');
+Route::post("reservations", [ReservationController::class, ""])->middleware('auth');
+Route::post("reservations", [ReservationController::class, "store"])->middleware('auth');
+Route::get("reservations/{id}", [ReservationController::class, "show"])->middleware('auth')->name('reservations.show');
+Route::delete("reservations/{id}", [ReservationController::class, "destroy"])->middleware('auth')->name('reservations.destroy');
+
 Route::get("login", [LoginController::class, "loginForm"])->name("login")->middleware('guest');
 Route::post("login", [LoginController::class, "authenticate"])->name("authenticate")->middleware('guest');
 Route::get("register", [LoginController::class, "registerForm"])->name("register")->middleware('guest');
