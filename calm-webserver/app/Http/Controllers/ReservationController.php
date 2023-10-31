@@ -41,7 +41,7 @@ class ReservationController extends Controller
             ];
         }
 
-        $reservations = Paginate::paginate(collect($data)->sortBy('start')->reverse()->toArray(), 2);
+        $reservations = Paginate::paginate(collect($data)->sortBy('start')->reverse()->toArray(), 5);
 
         return view(
             "reservations.index",
