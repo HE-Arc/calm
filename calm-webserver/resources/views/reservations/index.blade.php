@@ -23,7 +23,7 @@
 
                 <!-- Title -->
                 <div class="col-span-11 xl:-ml-5">
-                    <p class="font-semibold text-rollingStone">{{$reservation["type"]["name"]}} sur la machine {{$reservation["machine"]}}</p>
+                    <p class="font-semibold text-rollingStone">{{$reservation["type"]["name"]}} sur la machine {{$reservation["machine"]}} de {{ $reservation["start"]->format('H:i') }} à {{ $reservation["stop"]->format('H:i')}}</p>
                 </div>
 
                 <!-- Description -->
@@ -31,8 +31,9 @@
                     <ul class="mt-1 text-sm font-normal">
                         <li>Organisation : {{$reservation["organisation"]}}</li>
                         <li>Buandrie : {{$reservation["laundry"]}}</li>
-                        <li>Date : {{\Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $reservation["start"])->format('d.m.Y')}}</li>
-                        <li>Durée : {{$reservation["duration"]}}</li>
+                        <li>Horaire : {{ $reservation["start"]->format('H:i') }} à {{ $reservation["stop"]->format('H:i')}}</li>
+                        <li>Date : {{$reservation["start"]->format('d.m.Y')}}</li>
+                        <li>Durée : {{$reservation["duration"]}} min</li>
                     </ul>
                 </div>
             </a>
