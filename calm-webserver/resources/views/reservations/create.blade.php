@@ -112,7 +112,7 @@
                         <th scope="col" class="hidden px-6 py-3 sm:table-cell">
                             Description
                         </th>
-                        <th scope="col" class="hidden px-6 py-3 sm:table-cell">
+                        <th scope="col" class="px-6 py-3 sm:table-cell">
                             Heure
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -129,7 +129,7 @@
                             <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
                                 {{$res['description']}}
                             </td>
-                            <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
+                            <td class="px-6 py-4 px-6 py-3 sm:table-cell">
                                 {{\Illuminate\Support\Carbon::create($res['start'])->format('H:i')}}
                             </td>
                             <td class="px-6 py-4 text-right">
@@ -141,7 +141,6 @@
                             </td>
                         </tr>
                     @endforeach
-
                     </tbody>
                 </table>
             </div>
