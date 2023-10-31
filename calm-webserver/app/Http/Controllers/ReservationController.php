@@ -7,6 +7,9 @@ use App\Models\Reservation;
 use App\Models\Organization;
 use App\Models\Machine;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\Paginate;
 
@@ -38,7 +41,7 @@ class ReservationController extends Controller
             ];
         }
 
-        $reservations = Paginate::paginate(collect($data)->sortBy('start')->reverse()->toArray(), 2);
+        $reservations = Paginate::paginate(collect($data)->sortBy('start')->reverse()->toArray(), 5);
 
         return view(
             "reservations.index",
@@ -79,7 +82,7 @@ class ReservationController extends Controller
         }
 
 
-        return view("reservations.create", ["page" => "reservations",
+        return view("reservations.search", ["page" => "reservations",
             "pageTitle" => "Nouvelle réservation",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
@@ -88,7 +91,24 @@ class ReservationController extends Controller
         ]);
     }
 
-    public function choose(Request $request){
+    /**
+     * Creates paginator for reservation choice
+     * Source : https://www.itsolutionstuff.com/post/how-to-create-pagination-from-array-in-laravelexample.html
+     * @param array $items
+     * @param int $item_per_page
+     * @param $page
+     * @param $options
+     * @return LengthAwarePaginator
+     */
+    private function choice_paginator(array $items, int $item_per_page, $page=null,$options=[]){
+        $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+        $items = $items instanceof Collection ? $items : Collection::make($items);
+        $paginator = new LengthAwarePaginator($items->forPage($page, $item_per_page), $items->count(), $item_per_page, $page, $options);
+        $paginator->setPath("/reservations/choose");
+        return $paginator;
+    }
+
+    public function search_propositions(Request $request){
         $param = $request->validate([
             'laundry' => ['required', 'integer'],
             'day' => ['required', 'date'],
@@ -101,37 +121,41 @@ class ReservationController extends Controller
         $date = new Carbon($param['day']);
         $duration = intval($param['duration']);
 
+        $request->session()->put('laundry', $laundry);
+        $request->session()->put('date', $date);
+        $request->session()->put('type', $param['type']);
 
         $reservations = [];
         $i = 0;
         foreach(Reservation::find_reservations($date, $duration, $user, $laundry, $param['type']) as $r){
-            $reservations[] = [
-                'id' => $i,
-                'machine' => $r->machine->name,
-                'description' => $r->machine->description,
-                'start' => $r->start,
-                'stop' => $r->stop,
-            ];
-            $request->session()->put($i, $r);
+            $reservations[$i] = $r;
             $i++;
         }
+        $request->session()->put('reservations', $reservations);
+
+        return redirect('/reservations/choose');
+    }
+
+    public function show_propositions(Request $request){
+        $reservations = $request->session()->get('reservations');
+        $laundry = $request->session()->get('laundry');
+        $type = $request->session()->get('type');
+        $date = $request->session()->get('date');
 
         $param = [
             'organization' => $laundry->organization->name,
             'laundry' => $laundry->name,
             'date' => $date,
             'type' => [
-                'id' => $param['type'],
-                'name' => ($param['type'] == 'wash') ? 'Lavage' : 'Séchage'
+                'id' => $type,
+                'name' => ($type == 'wash') ? 'Lavage' : 'Séchage'
             ],
-            'reservations' => $reservations
+            'reservations' => $this->choice_paginator($reservations, 10, $request['page']),
         ];
-
         return view('reservations.create', [
             "page" => "reservations",
             "pageTitle" => "Choix d'une réservation",
             "pageDescription" => "Choisissez une réservation parmi les propositions.",
-            "reserving" => true,
             "proposition" => $param
         ]);
     }
@@ -146,12 +170,15 @@ class ReservationController extends Controller
             'id' => 'required'
         ]);
         $id = $param['id'];
-
-        if(!$request->session()->exists($id)){
+        if(!$request->session()->exists('reservations')){
+            return back()->withErrors(['Invalid request. Please retry']);
+        }
+        $reservations = $request->session()->get('reservations');
+        if(!array_key_exists($id, $reservations)){
             return back()->withErrors(['Invalid ID. Please retry']);
         }
 
-        $res_data = $request->session()->get($id);
+        $res_data = $reservations[$id];
         $res = new Reservation();
         $res->machine_id = $res_data->machine_id;
         $res->user_id = Auth::user()->id;
