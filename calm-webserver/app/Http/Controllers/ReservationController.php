@@ -80,7 +80,7 @@ class ReservationController extends Controller
 
 
         return view("reservations.create", ["page" => "reservations",
-            "pageTitle" => "Nouvelles réservations",
+            "pageTitle" => "Nouvelle réservation",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
             "reserving" => false,
@@ -128,7 +128,7 @@ class ReservationController extends Controller
         ];
 
         return view('reservations.create', [
-            "page" => "Reservation",
+            "page" => "reservations",
             "pageTitle" => "Choix d'une réservation",
             "pageDescription" => "Choisissez une réservation parmi les propositions.",
             "reserving" => true,
