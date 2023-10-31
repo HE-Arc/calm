@@ -149,7 +149,6 @@ class ReservationController extends Controller
             "page" => "reservations",
             "pageTitle" => "Choix d'une réservation",
             "pageDescription" => "Choisissez une réservation parmi les propositions.",
-            "reserving" => true,
             "proposition" => $param
         ]);
     }
