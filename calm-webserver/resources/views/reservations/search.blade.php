@@ -21,7 +21,7 @@
                         l'organisation</label>
                     <select id="organisations" required name="organisations"
                             class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
-                        <option selected>-- Sélectionner une organisation --</option>
+                            <option selected disabled hidden value="">-- Sélectionner une organisation --</option>
                         @foreach($organizations as $org)
                             <option value="{{$org['id']}}">{{$org['name']}}</option>
                         @endforeach

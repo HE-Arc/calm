@@ -50,22 +50,23 @@
             <form action="#" method="post" id="delete-reservation-form">
                 @csrf
                 @method('DELETE')
-                <input
-                    type="submit"
-                    class="w-full mx-auto rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5"
-                    value="Supprimer"
-                    onclick="deleteReservation()"
-                >
+                <input onclick="event.preventDefault()" data-modal-target="reservation-delete-confirm-modal"
+                    data-modal-show="reservation-delete-confirm-modal" type="submit"
+                    class="w-full mx-auto rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5 cursor-pointer"
+                    value="Supprimer">
             </form>
         </div>
     </article>
-    <script>
-        function deleteReservation() {
-            event.preventDefault();
-            if(confirm("Êtes-vous sûr de vouloir supprimer cette réservation ? Cette action est irréversible.")){
-                //document.location.href = "{{ route('reservations.destroy', $reservation->id) }}";
-                document.getElementById("delete-reservation-form").submit();
-            }
-        }
-    </script>
+
+    <x-modal>
+        @slot('id', 'reservation-delete-confirm-modal')
+        @slot('form', 'delete-reservation-form')
+        @slot('icon', 'warning')
+        @slot('confirm', 'Supprimer')
+        @slot('close', 'Annuler')
+        @slot('header', 'Supprimer la reservation')
+        <x-slot name="body">
+            <p class="text-gray-500">Etes-vous sur de vouloir supprimer cette reservation ?</p>
+        </x-slot>
+    </x-modal>
 @endsection

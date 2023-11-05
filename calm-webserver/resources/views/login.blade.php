@@ -4,17 +4,6 @@
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h1 class="text-center text-4xl font-title text-seaNymph font-bold">Connexion</h1>
         </div>
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="{{route('authenticate')}}" method="POST">
                 @csrf
