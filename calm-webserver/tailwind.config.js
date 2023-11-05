@@ -15,7 +15,11 @@ export default {
           'greyNurse': '#D5D7CC',
           'seaNymph': '#8DAAA6',
           'rollingStone': '#637673',
-          'berylGreen': '#BBBDB5'
+          'berylGreen': '#BBBDB5',
+          'error': '#AF0000',
+          'success': '#00AF00',
+          'warning': '#FFAF00',
+          'info': '#00AFD5',
       },
       fontFamily:{
           'title': ['Itim', 'sans-serif'],
