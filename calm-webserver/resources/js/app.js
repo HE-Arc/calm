@@ -20,6 +20,15 @@ import 'flowbite';
         }
     }
 
+    function getElements(elements)
+    {
+        const elementsSearch = document.querySelectorAll(elements);
+        if(elementsSearch)
+        {
+            return elementsSearch;
+        }
+    }
+
     /**
      * Add an event on the element specified
      * @param element : Element to add event
@@ -63,6 +72,27 @@ import 'flowbite';
     }
 
     /**
+     * Make checkboxes mutually exclusive, allowing only one option to be selected at a time.
+     * @param checkboxes - List of checkbox-type input elements.
+     */
+    function exclusivesCheckbox(checkboxes)
+    {
+        if(checkboxes) {
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener("change", function(){
+                    if(this.checked) {
+                        checkboxes.forEach(function(otherCheckbox) {
+                            if (otherCheckbox !== checkbox) {
+                                otherCheckbox.checked = false;
+                            }
+                        });
+                    }
+                });
+            })
+        }
+    }
+
+    /**
      * Main program
      */
     (function mainProgram() {
@@ -71,5 +101,9 @@ import 'flowbite';
         addEvent(selectedOrganisation, "change", () => {
             filterLaundries(selectedOrganisation.value)
         });
+
+        // Exclusives checkbox between wash and dry in new reservation
+        const chooseWashDryCheckboxes = getElements(".choose-wash-dry");
+        exclusivesCheckbox(chooseWashDryCheckboxes);
     }()); //mainProgram
 }()); //Main IIFE
