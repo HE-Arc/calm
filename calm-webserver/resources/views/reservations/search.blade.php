@@ -21,12 +21,14 @@
                         l'organisation</label>
                     <select id="organisations" required name="organisations"
                             class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
-                            <option selected disabled hidden value="">-- Sélectionner une organisation --</option>
+                        <option selected disabled hidden value="">-- Sélectionner une organisation --</option>
                         @foreach($organizations as $org)
-                            <option value="{{$org['id']}}">{{$org['name']}}</option>
+                            <option {{ old('organisations') == $org['id'] ? "selected" : "" }} value="{{$org['id']}}">{{$org['name']}}</option>
                         @endforeach
                     </select>
                 </div>
+
+                <?php var_dump(old('laundry')); ?>
 
                 <div class="hidden laundries-field">
                     <label for="laundries" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner la
@@ -46,29 +48,32 @@
                     <label for="day" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
                     <div class="mt-2">
                         <input id="day" name="day" type="date" autocomplete="date" required
+
+                               value="{{ old('day', date('Y-m-d')) }}"
                                class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div>
-                    <label for="duration" class="block text-sm font-medium leading-6 text-gray-900">Durée</label>
+                    <label for="duration" class="block text-sm font-medium leading-6 text-gray-900">Durée (en minutes)</label>
                     <div class="mt-2">
-                        <input id="duration" name="duration" type="number" min="1" max="1440" autocomplete="duration"
+                        <input id="duration" name="duration" type="number" min="30" max="360" step="15" autocomplete="duration"
                                required
+                               value="{{ old('duration', 30) }}"
                                class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div class="text-center">
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input type="checkbox" name="type" value="wash" id="wash" class="sr-only peer">
+                        <input type="checkbox" name="type" value="wash" id="wash" class="sr-only peer" @if(old("type") === "wash") checked @endif>
                         <div
                             class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-vividTangerine"></div>
                         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Laver</span>
                     </label>
 
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input type="checkbox" name="type" value="dry" id="dry" class="sr-only peer">
+                        <input type="checkbox" name="type" value="dry" id="dry" class="sr-only peer" @if(old("type") === "dry") checked @endif>
                         <div
                             class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-vividTangerine"></div>
                         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sécher</span>
