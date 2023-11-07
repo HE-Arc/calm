@@ -28,16 +28,14 @@
                     </select>
                 </div>
 
-                <?php var_dump(old('laundry')); ?>
-
-                <div class="hidden laundries-field">
+                <div class="@if(!old('laundry')) hidden @endif laundries-field">
                     <label for="laundries">Sélectionner la
                         buandrie</label>
                     <select id="laundries" required name="laundry"
                             class="input input-sobre block w-full">
                         @foreach($organizations as $org)
                             @foreach($org['laundries'] as $laundry)
-                                <option value="{{$laundry['id']}}"
+                                <option {{ old('laundry') == $laundry['id'] ? "selected" : "" }} value="{{$laundry['id']}}"
                                         data-organisation="{{$org['id']}}">{{$laundry['name']}}</option>
                             @endforeach
                         @endforeach
