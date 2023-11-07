@@ -20,10 +20,9 @@ Route::get("/", [HomeController::class, "index"])->name("home");
 
 Route::get("reservations", [ReservationController::class, 'index'])->middleware('auth')->name('reservations.index');
 Route::get("reservations/create", [ReservationController::class, 'create'])->middleware('auth')->name('reservations.create');
-Route::post("reservations/create", [ReservationController::class, "search_propositions"])->middleware('auth');
-Route::get("reservations/choose", [ReservationController::class, "show_propositions"])->middleware('auth');
-Route::post("reservations", [ReservationController::class, ""])->middleware('auth');
-Route::post("reservations", [ReservationController::class, "store"])->middleware('auth');
+Route::post("reservations/create", [ReservationController::class, "search_propositions"])->name('reservations.search_prop')->middleware('auth');
+Route::get("reservations/choose", [ReservationController::class, "show_propositions"])->name('reservations.show_prop')->middleware('auth');
+Route::post("reservations", [ReservationController::class, "store"])->name("reservations.store")->middleware('auth');
 Route::get("reservations/{id}", [ReservationController::class, "show"])->middleware('auth')->name('reservations.show');
 Route::delete("reservations/{id}", [ReservationController::class, "destroy"])->middleware('auth')->name('reservations.destroy');
 
