@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Laundry;
 use App\Models\Reservation;
-use App\Models\Organization;
-use App\Models\Machine;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
@@ -13,7 +11,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\Paginate;
 
-use Illuminate\Validation\Rules\Enum;
 use Illuminate\Support\Carbon;
 class ReservationController extends Controller
 {
@@ -104,7 +101,7 @@ class ReservationController extends Controller
         $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
         $items = $items instanceof Collection ? $items : Collection::make($items);
         $paginator = new LengthAwarePaginator($items->forPage($page, $item_per_page), $items->count(), $item_per_page, $page, $options);
-        $paginator->setPath("/reservations/choose");
+        $paginator->setPath(route('reservations.show_prop'));
         return $paginator;
     }
 
@@ -133,7 +130,7 @@ class ReservationController extends Controller
         }
         $request->session()->put('reservations', $reservations);
 
-        return redirect('/reservations/choose');
+        return redirect()->route('reservations.show_prop');
     }
 
     public function show_propositions(Request $request){
@@ -188,7 +185,7 @@ class ReservationController extends Controller
         $res->save();
         $res->fresh();
 
-        return redirect('/reservations/' . $res->id);
+        return redirect()->route('reservations.show', ['id' => $res->id]);
     }
 
     /**
@@ -232,6 +229,6 @@ class ReservationController extends Controller
     {
         $res = Reservation::find($id);
         $res->delete();
-        return redirect('/reservations');
+        return redirect()->route('reservations.index');
     }
 }

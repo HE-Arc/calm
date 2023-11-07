@@ -57,7 +57,7 @@
                             {{\Illuminate\Support\Carbon::create($res->start)->format('H:i')}}
                         </td>
                         <td class="px-6 py-4 text-right">
-                            <form action="/reservations" method="post">
+                            <form action="{{route('reservations.store')}}" method="post">
                                 @csrf
                                 <input type="hidden" name="id" value="{{$id}}">
                                 <button type="submit"
