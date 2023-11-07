@@ -45,7 +45,7 @@
                 <div>
                     <label for="day" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
                     <div class="mt-2">
-                        <input id="day" name="day" type="date" autocomplete="date" required
+                        <input id="day" min="{{date('Y-m-d')}}" name="day" type="date" autocomplete="date" required
 
                                value="{{ old('day', date('Y-m-d')) }}"
                                class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
