@@ -14,7 +14,7 @@
     <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelle réservation</h1>
     <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8">
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-            <form class="space-y-6" action="/reservations/create" method="POST">
+            <form class="space-y-6" action="{{route('reservations.search_prop')}}" method="POST">
                 @csrf
                 <div>
                     <label for="organisations">Sélectionner
