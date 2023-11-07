@@ -21,7 +21,7 @@
         <header>
             <nav class="bg-seaNymph shadow-lg">
                 <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-                    <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 justify-center rounded-lg md:hidden focus:outline-none" aria-controls="navbar-user" aria-expanded="false">
+                    <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 justify-center md:hidden focus:outline-none" aria-controls="navbar-user" aria-expanded="false">
                         <span class="sr-only">Open main menu</span>
                         <svg class="w-7 h-7 text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>

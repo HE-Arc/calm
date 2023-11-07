@@ -2,31 +2,78 @@
 @tailwind components;
 @tailwind utilities;
 
-body
-{
-    font-family: 'Montserrat', sans-serif;
+@layer base {
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    * {
+        @apply transition-all duration-300 ease-in-out;
+    }
+
+    label {
+        @apply block text-sm font-medium leading-6 text-gray-900;
+    }
 }
 
-.material-icons {
-    font-family: 'Material Symbols Rounded';
-    font-weight: normal;
-    font-style: normal;
-    display: inline-block;
-    line-height: 1;
-    text-transform: none;
-    letter-spacing: normal;
-    word-wrap: normal;
-    white-space: nowrap;
-    direction: ltr;
+@layer components {
+    .btn {
+        @apply rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm shadow-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    }
 
-    /* Support for all WebKit browsers. */
-    -webkit-font-smoothing: antialiased;
-    /* Support for Safari and Chrome. */
-    text-rendering: optimizeLegibility;
+    .btn-sobre {
+        @apply bg-rollingStone hover:bg-seaNymph focus-visible:outline-rollingStone;
+    }
 
-    /* Support for Firefox. */
-    -moz-osx-font-smoothing: grayscale;
+    .btn-forte {
+        @apply bg-vividTangerine hover:bg-manhattan focus-visible:outline-vividTangerine;
+    }
 
-    /* Support for IE. */
-    font-feature-settings: 'liga';
+    .input {
+        @apply border-2 rounded-lg p-1.5 sm:text-sm sm:leading-6 text-gray-900 shadow-sm placeholder:text-gray-400;
+    }
+
+    .input-sobre {
+        @apply border-rollingStone focus:ring-rollingStone focus:border-rollingStone;
+    }
+    .input-forte {
+        @apply border-vividTangerine;
+    }
+
+    .toggle-switch {
+        @apply w-11 h-6 bg-gray-200 rounded-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600;
+    }
+
+    .icons {
+        @apply text-2xl px-2;
+
+        font-family: 'Material Symbols Rounded';
+        font-weight: normal;
+        font-style: normal;
+        display: inline-block;
+        text-transform: none;
+        letter-spacing: normal;
+        word-wrap: normal;
+        white-space: nowrap;
+        direction: ltr;
+
+        /* Support for all WebKit browsers. */
+        -webkit-font-smoothing: antialiased;
+        /* Support for Safari and Chrome. */
+        text-rendering: optimizeLegibility;
+
+        /* Support for Firefox. */
+        -moz-osx-font-smoothing: grayscale;
+
+        /* Support for IE. */
+        font-feature-settings: 'liga';
+    }
+
+    .icons-sobre {
+        @apply text-rollingStone;
+    }
+
+    .icons-forte {
+        @apply text-rollingStone;
+    }
 }

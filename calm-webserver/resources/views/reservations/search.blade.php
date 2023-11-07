@@ -43,7 +43,7 @@
                 </div>
 
                 <div>
-                    <label for="day" class="block text-sm font-medium leading-6 text-gray-900">Date</label>
+                    <label for="day" >Date</label>
                     <div class="mt-2">
                         <input id="day" name="day" type="date" autocomplete="date" required
                                class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
@@ -51,7 +51,7 @@
                 </div>
 
                 <div>
-                    <label for="duration" class="block text-sm font-medium leading-6 text-gray-900">Durée</label>
+                    <label for="duration" >Durée</label>
                     <div class="mt-2">
                         <input id="duration" name="duration" type="number" min="1" max="1440" autocomplete="duration"
                                required
@@ -63,21 +63,20 @@
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
                         <input type="checkbox" name="type" value="wash" id="wash" class="sr-only peer">
                         <div
-                            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-vividTangerine"></div>
+                            class="toggle-switch peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:bg-vividTangerine"></div>
                         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Laver</span>
                     </label>
 
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
                         <input type="checkbox" name="type" value="dry" id="dry" class="sr-only peer">
-                        <div
-                            class="w-11 h-6 bg-gray-200 rounded-full peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-vividTangerine"></div>
+                        <div class="toggle-switch peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:bg-vividTangerine"></div>
                         <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sécher</span>
                     </label>
                 </div>
 
                 <div>
                     <button type="submit"
-                            class="flex shadow-gray-700 w-full justify-center rounded-md bg-rollingStone px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">
+                            class="btn btn-sobre flex w-full justify-center">
                         Rechercher une disponibilité
                     </button>
                 </div>

@@ -61,7 +61,7 @@
                                 @csrf
                                 <input type="hidden" name="id" value="{{$id}}">
                                 <button type="submit"
-                                        class="flex shadow-gray-700 w-full justify-center rounded-md bg-rollingStone px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">
+                                        class="btn btn-sobre flex w-full justify-center">
                                     Réserver
                                 </button>
                             </form>

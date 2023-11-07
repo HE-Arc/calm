@@ -30,5 +30,13 @@ export default {
   plugins: [
       require('flowbite/plugin')
   ],
+  safelist: [
+      'bg-error',
+      'bg-success',
+      'bg-warning',
+      'bg-info',
+      'bg-rollingStone',
+      'bg-vividTangerine',
+  ]
 }
 
