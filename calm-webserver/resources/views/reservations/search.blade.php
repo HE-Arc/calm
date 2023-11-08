@@ -53,6 +53,7 @@
 
                 <div>
                     <label for="duration" >Durée (en minutes)</label>
+
                     <div class="mt-2">
                         <input id="duration" name="duration" type="number" min="30" max="360" step="15" autocomplete="duration"
                                required
