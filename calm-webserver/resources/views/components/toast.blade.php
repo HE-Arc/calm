@@ -4,7 +4,7 @@
         @if (isset($icon))
             <div class="sr-only">{{ $icon }}</div>
             <div class="flex p-2.5 text-2xl">
-                <span class="material-icons">{{ $icon }}</span>
+                <span class="icons">{{ $icon }}</span>
             </div>
         @endif
 
@@ -17,9 +17,9 @@
             @endif
         </section>
         <button type="button"
-            class="h-8 w-8 items-center justify-center flex p-2 rounded-lg hover:bg-{{ $background }} hover:bg-opacity-10 hover:shadow transition text-2xl"
+            class="h-8 w-8 items-center justify-center flex p-2 rounded-lg bg-{{ $background }} hover:bg-{{ $background }} bg-opacity-5 hover:bg-opacity-10 hover:shadow text-2xl"
             data-dismiss-target="#{{ $id }}" aria-label="Close">
-            <span class="material-icons">Close</span>
+            <span class="icons">Close</span>
         </button>
     </article>
 @endisset

@@ -5,8 +5,8 @@
         <div class="relative w-full md:max-w-2xl max-h-full">
             <div class="relative flex flex-col bg-white rounded-lg shadow gap-2 p-4">
                 @if (isset($closable))
-                    <button class="flex self-end shadow rounded-lg bg-seaNymph bg-opacity-10 hover:bg-seaNymph hover:bg-opacity-30 font-medium p-2.5 transition">
-                        <span class="text-2xl text-rollingStone material-icons"
+                    <button class="btn btn-transparent flex self-end ">
+                        <span class="text-2xl icons icons-sobre"
                             data-modal-hide="{{ $id }}">close</span>
                     </button>
                 @endif
@@ -15,19 +15,19 @@
                         @switch($icon)
                             @case('success')
                                 <h1 class=" text-success">
-                                    <span class="material-icons">check_circle</span>
+                                    <span class="icons">check_circle</span>
                                 </h1>
                             @break
 
                             @case('warning')
                                 <h1 class=" text-warning">
-                                    <span class="material-icons">warning</span>
+                                    <span class="icons">warning</span>
                                 </h1>
                             @break
 
                             @case('error')
                                 <h1 class=" text-error">
-                                    <span class="material-icons">error</span>
+                                    <span class="icons">error</span>
                                 </h1>
                             @break
 
@@ -47,14 +47,14 @@
                 <section class="flex flex-row gap-2">
                     @if (isset($confirm))
                         <button
-                            class="w-full mx-auto rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5 transition"
+                            class="btn btn-forte w-full mx-auto"
                             @if (isset($form)) onclick="document.getElementById('{{ $form }}').submit();" @endif>
                             {{ $confirm }}
                         </button>
                     @endif
                     @if (isset($close))
                         <button
-                            class="w-full mx-auto rounded-lg bg-vividTangerine hover:bg-manhattan text-white font-medium px-5 py-2.5 transition"
+                            class="btn btn-less-forte w-full mx-auto"
                             data-modal-hide="{{ $id }}">
                             {{ $close }}
                         </button>
