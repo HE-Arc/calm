@@ -46,7 +46,6 @@
                     <label for="day" >Date</label>
                     <div class="mt-2">
                         <input id="day" min="{{date('Y-m-d')}}" name="day" type="date" autocomplete="date" required
-
                                value="{{ old('day', date('Y-m-d')) }}"
                                class="block w-full input input-sobre">
                     </div>

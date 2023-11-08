@@ -4,7 +4,6 @@
         <div class="flex flex-col items-end">
             <a href="{{ route('reservations.index') }}">
                 <span class="icons icons-sobre">close</span>
-                <span class="icons icons-sobre">close</span>
             </a>
         </div>
         <div>

@@ -5,8 +5,8 @@
         <div class="relative w-full md:max-w-2xl max-h-full">
             <div class="relative flex flex-col bg-white rounded-lg shadow gap-2 p-4">
                 @if (isset($closable))
-                    <button class="btn btn-sobre bg-opacity-10 flex self-end ">
-                        <span class="text-2xl text-rollingStone icons"
+                    <button class="btn btn-transparent flex self-end ">
+                        <span class="text-2xl icons icons-sobre"
                             data-modal-hide="{{ $id }}">close</span>
                     </button>
                 @endif
@@ -54,7 +54,7 @@
                     @endif
                     @if (isset($close))
                         <button
-                            class="btn btn-forte w-full mx-auto"
+                            class="btn btn-less-forte w-full mx-auto"
                             data-modal-hide="{{ $id }}">
                             {{ $close }}
                         </button>
