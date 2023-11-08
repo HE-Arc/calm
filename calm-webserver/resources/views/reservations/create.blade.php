@@ -10,7 +10,7 @@
                     class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                     <div class="mb-2">
                         <a href="{{ route('reservations.create')  }}"
-                           class="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white bg-rollingStone rounded-lg shadow-sm hover:bg-seaNymph focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rollingStone">
+                           class="inline-flex items-center btn btn-sobre">
                             <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                  fill="none" viewBox="0 0 14 10">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

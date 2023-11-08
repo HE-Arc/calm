@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
     body {
         font-family: 'Montserrat', sans-serif;
@@ -18,19 +19,27 @@
 
 @layer components {
     .btn {
-        @apply rounded-md px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm shadow-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+        @apply cursor-pointer rounded-md px-3 py-1.5 text-center text-sm font-semibold leading-6 shadow-sm shadow-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2;
+    }
+
+    .btn-transparent {
+        @apply text-sm text-seaNymph font-bold transition-colors duration-200 bg-white shadow-none border rounded-lg hover:bg-gray-100;
     }
 
     .btn-sobre {
-        @apply bg-rollingStone hover:bg-seaNymph focus-visible:outline-rollingStone;
+        @apply text-white bg-rollingStone hover:bg-seaNymph focus-visible:outline-rollingStone;
     }
 
     .btn-forte {
-        @apply bg-vividTangerine hover:bg-manhattan focus-visible:outline-vividTangerine;
+        @apply text-white bg-vividTangerine hover:bg-manhattan focus-visible:outline-vividTangerine;
     }
 
     .input {
         @apply border-2 rounded-lg p-1.5 sm:text-sm sm:leading-6 text-gray-900 shadow-sm placeholder:text-gray-400;
+    }
+    
+    .input > label {
+        @apply self-center;
     }
 
     .input-sobre {

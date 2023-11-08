@@ -42,7 +42,7 @@
                         </button>
 
                         <!-- Dropdown menu -->
-                        <div class="z-50 hidden text-white font-bold my-4 text-base bg-greyNurse divide-y divide-gray-100 rounded-lg shadow" id="user-dropdown">
+                        <div class="z-50 hidden text-white font-bold my-4 text-base bg-greyNurse divide-y divide-gray-100 rounded-lg shadow transition-none " id="user-dropdown">
                             <div class="px-4 py-3 hover:bg-greyNurse">
                                 <span class="block text-sm">{{auth()->user()->name}}</span>
                                 <span class="block text-sm truncate">{{auth()->user()->email}}</span>

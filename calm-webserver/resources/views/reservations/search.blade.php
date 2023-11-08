@@ -1,8 +1,8 @@
 @extends('layout.app')
 @section('content')
     <div
-        class="text-center text-sm text-seaNymph font-bold transition-colors duration-200 bg-white border rounded-lg hover:bg-gray-100 sm:hidden">
-        <a class="block px-5 py-2 align-middle" href="{{ route('reservations.index') }}">
+        class="btn btn-transparent sm:hidden">
+        <a class="block align-middle" href="{{ route('reservations.index') }}">
             <svg class="w-2 h-2 text-seaNymph inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                  viewBox="0 0 8 14">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -17,10 +17,10 @@
             <form class="space-y-6" action="/reservations/create" method="POST">
                 @csrf
                 <div>
-                    <label for="organisations" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner
+                    <label for="organisations">Sélectionner
                         l'organisation</label>
                     <select id="organisations" required name="organisations"
-                            class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
+                            class="input input-sobre block w-full">
                             <option selected disabled hidden value="">-- Sélectionner une organisation --</option>
                         @foreach($organizations as $org)
                             <option value="{{$org['id']}}">{{$org['name']}}</option>
@@ -29,10 +29,10 @@
                 </div>
 
                 <div class="hidden laundries-field">
-                    <label for="laundries" class="block mb-2 text-sm font-medium text-gray-900">Sélectionner la
+                    <label for="laundries">Sélectionner la
                         buandrie</label>
                     <select id="laundries" required name="laundry"
-                            class="border-2 border-rollingStone text-sm rounded-lg focus:ring-rollingStone focus:border-rollingStone block w-full p-2.5">
+                            class="input input-sobre block w-full">
                         @foreach($organizations as $org)
                             @foreach($org['laundries'] as $laundry)
                                 <option value="{{$laundry['id']}}"
@@ -46,7 +46,7 @@
                     <label for="day" >Date</label>
                     <div class="mt-2">
                         <input id="day" name="day" type="date" autocomplete="date" required
-                               class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
+                               class="block w-full input input-sobre">
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
                     <div class="mt-2">
                         <input id="duration" name="duration" type="number" min="1" max="1440" autocomplete="duration"
                                required
-                               class="block w-full rounded-md border-2 border-rollingStone py-1.5 text-gray-900 shadow-sm placeholder:text-gray-400 focus:ring-rollingStone focus:border-rollingStone sm:text-sm sm:leading-6">
+                               class="block w-full input input-sobre">
                     </div>
                 </div>
 

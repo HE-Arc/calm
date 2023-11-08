@@ -12,7 +12,7 @@
         <div class="my-4">
             <p>Date</p>
             <div class="flex input input-sobre">
-                <p class="grow w-full">{{ $reservation->start->format('d F Y') }}</p>
+                <label class="flex-grow w-full">{{ $reservation->start->format('d F Y') }}</label>
                 <span class="icons icons-sobre">calendar_month</span>
             </div>
         </div>
@@ -20,14 +20,14 @@
             <div class="flex-grow w-full pr-4">
                 <p>Heure de début</p>
                 <div class="flex input input-sobre">
-                    <p class="w-full">{{ $reservation->start->format('H:i') }}</p>
+                    <label class="w-full">{{ $reservation->start->format('H:i') }}</label>
                     <span class="icons icons-sobre">schedule</span>
                 </div>
             </div>
             <div class="flex-grow w-full pl-4">
                 <p>Heure de fin</p>
                 <div class="flex input input-sobre">
-                    <p class="w-full">{{ $reservation->stop->format('H:i') }}</p>
+                    <label class="w-full">{{ $reservation->stop->format('H:i') }}</label>
                     <span class="icons icons-sobre">schedule</span>
                 </div>
             </div>
@@ -35,14 +35,14 @@
         <div class="my-4">
             <p>Machine selectionée</p>
             <div class="flex input input-sobre">
-                <p class="w-full">{{ $reservation->machine->name }}</p>
+                <label class="w-full">{{ $reservation->machine->name }}</label>
                 <span class="icons icons-sobre">text_fields</span>
             </div>
         </div>
         <div class="my-4">
             <p>Type de machine</p>
             <div class="flex input input-sobre">
-                <p class="w-full">{{ $reservation->machine->typeName() }}</p>
+                <label class="w-full">{{ $reservation->machine->typeName() }}</label>
                 <span class="icons icons-sobre">text_fields</span>
             </div>
         </div>
