@@ -37,6 +37,10 @@
     .input {
         @apply border-2 rounded-lg p-1.5 sm:text-sm sm:leading-6 text-gray-900 shadow-sm placeholder:text-gray-400;
     }
+    
+    .input > label {
+        @apply self-center;
+    }
 
     .input > label {
         @apply self-center;
