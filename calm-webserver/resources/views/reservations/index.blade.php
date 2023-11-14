@@ -13,7 +13,7 @@
         </div>
     @else
         @foreach($reservations as $reservation)
-            <a href="{{ route('reservations.show', $reservation['id']) }}" class="w-full rounded-sm md:w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform">
+            <a href="{{ route('reservations.show', $reservation->id) }}" class="w-full rounded-sm md:w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg transition delay-150 duration-300 ease-in-out hover:scale-105 transform">
                 <!-- Icon -->
                 <div class="col-span-12 md:col-span-1">
                     <svg class="w-4 h-4 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="18" height="20" fill="none" viewBox="0 0 18 20">
@@ -23,17 +23,17 @@
 
                 <!-- Title -->
                 <div class="col-span-11 xl:-ml-5">
-                    <p class="font-semibold text-rollingStone">{{$reservation["type"]["name"]}} sur la machine {{$reservation["machine"]}} de {{ $reservation["start"]->format('H:i') }} à {{ $reservation["stop"]->format('H:i')}}</p>
+                    <p class="font-semibold text-rollingStone">{{$reservation->machine->typeName()}} sur la machine {{$reservation->machine->name}} de {{ $reservation->start->format('H:i') }} à {{ $reservation->stop->format('H:i')}}</p>
                 </div>
 
                 <!-- Description -->
                 <div class="md:col-start-2 col-span-11 xl:-ml-5">
                     <ul class="mt-1 text-sm font-normal">
-                        <li>Organisation : {{$reservation["organisation"]}}</li>
-                        <li>Buandrie : {{$reservation["laundry"]}}</li>
-                        <li>Horaire : {{ $reservation["start"]->format('H:i') }} à {{ $reservation["stop"]->format('H:i')}}</li>
-                        <li>Date : {{$reservation["start"]->format('d.m.Y')}}</li>
-                        <li>Durée : {{$reservation["duration"]}} min</li>
+                        <li>Organisation : {{$reservation->organization->name}}</li>
+                        <li>Buandrie : {{$reservation->laundry->name}}</li>
+                        <li>Horaire : {{ $reservation->start->format('H:i') }} à {{ $reservation->stop->format('H:i')}}</li>
+                        <li>Date : {{$reservation->start->format('d.m.Y')}}</li>
+                        <li>Durée : {{$reservation->start->diffAsCarbonInterval($reservation->stop)}}</li>
                     </ul>
                 </div>
             </a>
