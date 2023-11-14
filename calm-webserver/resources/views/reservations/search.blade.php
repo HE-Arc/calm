@@ -23,7 +23,7 @@
                             class="input input-sobre block w-full">
                         <option selected disabled hidden value="">-- Sélectionner une organisation --</option>
                         @foreach($organizations as $org)
-                            <option {{ old('organisations') == $org['id'] ? "selected" : "" }} value="{{$org['id']}}">{{$org['name']}}</option>
+                            <option {{ old('organisations') == $org->id ? "selected" : "" }} value="{{$org->id}}">{{$org->name}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -34,9 +34,9 @@
                     <select id="laundries" required name="laundry"
                             class="input input-sobre block w-full">
                         @foreach($organizations as $org)
-                            @foreach($org['laundries'] as $laundry)
-                                <option {{ old('laundry') == $laundry['id'] ? "selected" : "" }} value="{{$laundry['id']}}"
-                                        data-organisation="{{$org['id']}}">{{$laundry['name']}}</option>
+                            @foreach($org->laundries as $laundry)
+                                <option {{ old('laundry') == $laundry->id ? "selected" : "" }} value="{{$laundry->id}}"
+                                        data-organisation="{{$org->id}}">{{$laundry->name}}</option>
                             @endforeach
                         @endforeach
                     </select>

@@ -38,7 +38,7 @@ class ReservationController extends Controller
             ];
         }
 
-        $reservations = Paginate::paginate(collect($data)->sortBy('start')->reverse()->toArray(), 5);
+        $reservations = Paginate::paginate(collect($reservations)->sortBy('start')->reverse(), 5);
 
         return view(
             "reservations.index",
@@ -84,7 +84,7 @@ class ReservationController extends Controller
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
             "reserving" => false,
-            'organizations' => $organizations
+            'organizations' => Auth::user()->organizations
         ]);
     }
 
