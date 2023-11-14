@@ -90,4 +90,12 @@
     .icons-less-forte{
         @apply text-manhattan text-2xl px-2;
     }
+
+    .flowbite-icon-div {
+        @apply absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none;
+    }
+
+    .flowbite-icon-svg {
+        @apply w-4 h-4 text-gray-500;
+    }
 }
