@@ -39,22 +39,38 @@
     }
 
     .input {
-        @apply border-2 rounded-lg p-1.5 sm:text-sm sm:leading-6 text-gray-900 shadow-sm placeholder:text-gray-400;
+        @apply flex duration-100 border-2 rounded-lg p-1.5 sm:text-sm sm:leading-6 text-gray-900 shadow-sm placeholder:text-gray-400;
     }
 
-    .input > label {
+    .input:focus-within
+    {
+        @apply border-4;
+    }
+
+    .input > label,
+    .input > input {
+        @apply flex-grow w-full self-center;
+    }
+    .input > span{
         @apply self-center;
+    }
+    .input > input {
+        @apply border-none outline-none focus:ring-0 p-0;
     }
 
     .input-sobre {
         @apply border-rollingStone focus:ring-rollingStone focus:border-rollingStone;
     }
     .input-forte {
-        @apply border-vividTangerine;
+        @apply border-vividTangerine focus:ring-vividTangerine focus:border-vividTangerine;
     }
 
     .toggle-switch {
         @apply w-11 h-6 bg-gray-200 rounded-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600;
+    }
+
+    .items {
+        @apply w-full rounded-sm md:w-1/2 grid grid-cols-12 bg-white shadow p-3 gap-2 items-center hover:shadow-lg delay-150 hover:scale-105 transform;
     }
 
     .icons {

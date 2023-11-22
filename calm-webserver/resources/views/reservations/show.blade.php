@@ -53,7 +53,7 @@
                 <input onclick="event.preventDefault()" data-modal-target="reservation-delete-confirm-modal"
                     data-modal-show="reservation-delete-confirm-modal" type="submit"
                     class="btn btn-forte w-full mx-auto"
-                    value="Supprimer">
+                    value="Supprimer...">
             </form>
         </div>
     </article>
