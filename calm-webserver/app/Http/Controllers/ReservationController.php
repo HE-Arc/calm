@@ -193,6 +193,10 @@ class ReservationController extends Controller
      */
     public function show(string $id)
     {
+        if(!Auth::user()->reservations->contains($id)){
+            return back()->withErrors(["Permission denied for this reservation."])->withInput();
+        }
+
         $reservation = Reservation::find($id);
 
         return view(
