@@ -5,6 +5,8 @@ use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\ReservationController;
 use \App\Http\Controllers\UserController;
+use \App\Http\Controllers\Management\UserController;
+use \App\Http\Controllers\Management\OrganizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,13 +36,13 @@ Route::post("register", [LoginController::class, "register"])->middleware('guest
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // ORGANIZATIONS MANAGEMENT
-Route::get("management/organizations", [\App\Http\Controllers\Management\OrganizationController::class, 'index'])->middleware('auth')->can('admin')->name('management.organizations.index');
-Route::get("management/organizations/create", [\App\Http\Controllers\Management\OrganizationController::class, 'create'])->middleware('auth')->can('admin')->name('management.organizations.create');
-Route::post("management/organizations", [\App\Http\Controllers\Management\OrganizationController::class, 'store'])->middleware('auth')->can('admin')->name('management.organizations.store');
-Route::get("management/organizations/{id}", [\App\Http\Controllers\Management\OrganizationController::class, 'show'])->middleware('auth')->can('admin')->name('management.organizations.show');
-Route::get("management/organizations/{id}/edit", [\App\Http\Controllers\Management\OrganizationController::class, 'edit'])->middleware('auth')->can('admin')->name('management.organizations.edit');
-Route::put("management/organizations/{id}", [\App\Http\Controllers\Management\OrganizationController::class, 'update'])->middleware('auth')->can('admin')->name('management.organizations.update');
-Route::delete("management/organizations/{id}", [\App\Http\Controllers\Management\OrganizationController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.organizations.destroy');
+Route::get("management/organizations", [OrganizationController::class, 'index'])->middleware('auth')->can('admin')->name('management.organizations.index');
+Route::get("management/organizations/create", [OrganizationController::class, 'create'])->middleware('auth')->can('admin')->name('management.organizations.create');
+Route::post("management/organizations", [OrganizationController::class, 'store'])->middleware('auth')->can('admin')->name('management.organizations.store');
+Route::get("management/organizations/{id}", [OrganizationController::class, 'show'])->middleware('auth')->can('admin')->name('management.organizations.show');
+Route::get("management/organizations/{id}/edit", [OrganizationController::class, 'edit'])->middleware('auth')->can('admin')->name('management.organizations.edit');
+Route::put("management/organizations/{id}", [OrganizationController::class, 'update'])->middleware('auth')->can('admin')->name('management.organizations.update');
+Route::delete("management/organizations/{id}", [OrganizationController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.organizations.destroy');
 
 // USERS MANAGEMENT
 Route::get("management/users", [\App\Http\Controllers\Management\UserController::class, 'index'])->middleware('auth')->can('admin')->name('management.users.index');
