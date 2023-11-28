@@ -147,7 +147,7 @@
         @slot('closable', true)
         @slot('header', 'Modification du nom d\'utilisateur')
         <x-slot name="body">
-            <form action="#TODO" id="user-account-edit-name-form" method="POST">
+            <form action="#" id="user-account-edit-name-form" method="POST">
                 @csrf
                 @method("PUT")
                 <div class="mb-5">
@@ -198,5 +198,4 @@
             </form>
         </x-slot>
     </x-modal>
-
 @endsection
