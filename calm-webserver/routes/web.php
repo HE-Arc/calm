@@ -45,13 +45,10 @@ Route::put("management/organizations/{id}", [OrganizationController::class, 'upd
 Route::delete("management/organizations/{id}", [OrganizationController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.organizations.destroy');
 
 // USERS MANAGEMENT
-Route::get("management/users", [\App\Http\Controllers\Management\UserController::class, 'index'])->middleware('auth')->can('admin')->name('management.users.index');
-Route::get("management/users/create", [\App\Http\Controllers\Management\UserController::class, 'create'])->middleware('auth')->can('admin')->name('management.users.create');
-Route::post("management/users", [\App\Http\Controllers\Management\UserController::class, 'store'])->middleware('auth')->can('admin')->name('management.users.store');
-Route::get("management/users/{id}", [\App\Http\Controllers\Management\UserController::class, 'show'])->middleware('auth')->can('admin')->name('management.users.show');
-Route::get("management/users/{id}/edit", [\App\Http\Controllers\Management\UserController::class, 'edit'])->middleware('auth')->can('admin')->name('management.users.edit');
-Route::put("management/users/{id}", [\App\Http\Controllers\Management\UserController::class, 'update'])->middleware('auth')->can('admin')->name('management.users.update');
-Route::delete("management/users/{id}", [\App\Http\Controllers\Management\UserController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.users.destroy');
+Route::get("management/{org}/users", [UserController::class, 'index'])->middleware('auth')->can('admin')->name('management.users.index');
+Route::delete('management/{org}/users/{id}', [UserController::class, 'expel'])->middleware('auth')->can('admin')->name('management.users.expel');
+Route::post("management/{org}/users", [UserController::class, 'store'])->middleware('auth')->can('admin')->name('management.users.store');
+Route::get("management/{org}/users/add", [UserController::class, 'add'])->middleware('auth')->can('admin')->name('management.users.add');
 
 // LAUNDRIES MANAGEMENT
 Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');
