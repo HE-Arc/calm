@@ -72,7 +72,7 @@ class OrganizationController extends Controller
         ]);
 
         return redirect()->route('management.organizations.index')->with([
-            'success' => 'Organisation crée avec succes',
+            'success' => 'Organisation créée avec succès',
         ]);
     }
 
