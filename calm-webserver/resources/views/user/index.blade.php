@@ -151,7 +151,7 @@
                 @csrf
                 @method("PUT")
                 <div class="mb-5">
-                    <label>Ancienne nom d'utilisateur</label>
+                    <label>Ancien nom d'utilisateur</label>
 
                     <div class="relative mt-2 opacity-80">
                         <div class="flowbite-icon-div">
