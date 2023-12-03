@@ -39,15 +39,15 @@ class LaundryController extends Controller
     public function show(string $orgId, string $id)
     {
         $organization = Auth::user()->organizations->find($orgId);
-        $laundry = $organization->laundries->find($id);
-        $machines = $laundry->machines;
-
         if (empty($organization)) {
             return back()->withErrors(["Permission denied for this organization."])->withInput();
         }
+        $laundry = $organization->laundries->find($id);
         if (empty($laundry)) {
             return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
         }
+        $machines = $laundry->machines;
+
 
 
         return view(
@@ -109,15 +109,14 @@ class LaundryController extends Controller
     public function edit(string $orgId, string $id)
     {
         $organization = Auth::user()->organizations->find($orgId);
-        $laundry = $organization->laundries->find($id);
-        $machines = $laundry->machines;
-
         if (empty($organization)) {
             return back()->withErrors(["Permission denied for this organization."])->withInput();
         }
+        $laundry = $organization->laundries->find($id);
         if (empty($laundry)) {
             return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
         }
+        $machines = $laundry->machines;
 
         return view(
             'management.laundries.edit',
@@ -156,7 +155,11 @@ class LaundryController extends Controller
 
     public function destroy(string $orgId, string $id)
     {
-        $organization = Auth::user()->organizations->find($_SESSION['orgId']);
+        if (!Auth::user()->organizations->contains($orgId)) {
+            return back()->withErrors(["Permission denied for this organization."])->withInput();
+        }
+
+        $organization = Auth::user()->organizations->find($orgId);
 
         if (!$organization->laundries->contains($id)) {
             return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
@@ -164,7 +167,7 @@ class LaundryController extends Controller
 
         Laundry::find($id)->delete();
 
-        return redirect()->route('management.laundries.index')->with([
+        return redirect()->route('management.laundries.index',$orgId)->with([
             'success' => 'Buandrie supprimé avec succes',
         ]);
     }

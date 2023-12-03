@@ -44,11 +44,11 @@
 
             </section>
             @endif
-            
+
             <a class="btn btn-sobre"
                 href="{{ route('management.laundries.edit', [$laundry['organization_id'], $laundry['id']]) }}">Modifier</a>
             <div class="text-center">
-                <form action="#" method="post" id="delete-laundry-form">
+                <form action="{{ route('management.laundries.destroy', [$laundry['organization_id'], $laundry['id']]) }}" method="post" id="delete-laundry-form">
                     @csrf
                     @method('DELETE')
                     <input onclick="event.preventDefault()" data-modal-target="laundry-delete-confirm-modal"
