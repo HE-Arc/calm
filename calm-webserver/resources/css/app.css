@@ -48,13 +48,15 @@
     }
 
     .input > label,
+    .input > textarea,
     .input > input {
         @apply flex-grow w-full self-center;
     }
     .input > span{
         @apply self-center;
     }
-    .input > input {
+    .input > input,
+    .input > textarea {
         @apply border-none outline-none focus:ring-0 p-0;
     }
 

@@ -50,10 +50,10 @@ Route::put("management/users/{id}", [\App\Http\Controllers\Management\UserContro
 Route::delete("management/users/{id}", [\App\Http\Controllers\Management\UserController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.users.destroy');
 
 // LAUNDRIES MANAGEMENT
-Route::get("management/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');
-Route::get("management/laundries/create", [\App\Http\Controllers\Management\LaundryController::class, 'create'])->middleware('auth')->can('admin')->name('management.laundries.create');
-Route::post("management/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'store'])->middleware('auth')->can('admin')->name('management.laundries.store');
-Route::get("management/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'show'])->middleware('auth')->can('admin')->name('management.laundries.show');
-Route::get("management/laundries/{id}/edit", [\App\Http\Controllers\Management\LaundryController::class, 'edit'])->middleware('auth')->can('admin')->name('management.laundries.edit');
-Route::put("management/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'update'])->middleware('auth')->can('admin')->name('management.laundries.update');
-Route::delete("management/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.laundries.destroy');
+Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');
+Route::get("management/{orgId}/laundries/create", [\App\Http\Controllers\Management\LaundryController::class, 'create'])->middleware('auth')->can('admin')->name('management.laundries.create');
+Route::post("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'store'])->middleware('auth')->can('admin')->name('management.laundries.store');
+Route::get("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'show'])->middleware('auth')->can('admin')->name('management.laundries.show');
+Route::get("management/{orgId}/laundries/{id}/edit", [\App\Http\Controllers\Management\LaundryController::class, 'edit'])->middleware('auth')->can('admin')->name('management.laundries.edit');
+Route::put("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'update'])->middleware('auth')->can('admin')->name('management.laundries.update');
+Route::delete("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.laundries.destroy');
