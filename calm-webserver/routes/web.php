@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\ReservationController;
+use \App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,3 +58,8 @@ Route::get("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Managemen
 Route::get("management/{orgId}/laundries/{id}/edit", [\App\Http\Controllers\Management\LaundryController::class, 'edit'])->middleware('auth')->can('admin')->name('management.laundries.edit');
 Route::put("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'update'])->middleware('auth')->can('admin')->name('management.laundries.update');
 Route::delete("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.laundries.destroy');
+
+// USER
+Route::get("user", [UserController::class, 'index'])->middleware('auth')->name('user.index');
+
+

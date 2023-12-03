@@ -63,7 +63,7 @@
 
                             <ul class="py-2" aria-labelledby="user-menu-button">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 text-sm hover:bg-berylGreen">Compte</a>
+                                    <a href="{{ route('user.index') }}" class="block px-4 py-2 text-sm hover:bg-berylGreen">Compte</a>
                                 </li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="post"
