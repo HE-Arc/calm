@@ -2,22 +2,22 @@
 
 @section('content')
     <section class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
-        <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Détails de l'buandrie</h1>
+        <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Détails de la buanderie</h1>
 
         <article class="flex flex-col gap-2">
-            <label for="name">Nom de la buandrie</label>
+            <label for="name">Nom de la buanderie</label>
             <div id="name" class="input input-sobre">
                 <label>{{ $laundry['name'] }}</label>
                 <span class="icons icons-sobre">text_fields</span>
             </div>
-            <label for="description">Description de la buandrie</label>
+            <label for="description">Description de la buanderie</label>
             <div id="description" class="input input-sobre">
                 <label>{{ $laundry['description'] }}</label>
                 <span class="icons icons-sobre">text_fields</span>
             </div>
             @if ($machines->count() > 0)
             <section class="">
-                <label for="machines">Machines de la buandrie</label>
+                <label for="machines">Machines de la buanderie</label>
                     <!-- Grid Container -->
                     <div class="grid grid-cols-1 border-2 border-rollingStone rounded-lg p-0 ">
                         <div class="grid grid-cols-2 rounded-t bg-rollingStone text-white">
@@ -66,9 +66,9 @@
         @slot('confirm', 'Supprimer')
         @slot('close', 'Annuler')
         @slot('closable', true)
-        @slot('header', 'Supprimer l\'buandrie')
+        @slot('header', 'Supprimer l\'buanderie')
         <x-slot name="body">
-            <p class="text-gray-500">Etes-vous sur de vouloir supprimer cette buandrie ?</p>
+            <p class="text-gray-500">Êtes-vous sûr de vouloir supprimer cette buanderie ?</p>
         </x-slot>
     </x-modal>
 @endsection

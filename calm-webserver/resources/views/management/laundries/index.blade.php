@@ -3,16 +3,16 @@
 
     {{$laundries}}
 
-    <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des buandries</h1>
+    <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des buanderies</h1>
 
     <section class="flex flex-col gap-4 items-center justify-center">
         <div class="mx-auto text-center my-6">
-            <a href="{{ route('management.laundries.create', $orgId) }}" class="btn btn-forte">Créer une nouvelle buandries</a>
+            <a href="{{ route('management.laundries.create', $orgId) }}" class="btn btn-forte">Créer une nouvelle buanderie</a>
         </div>
 
         @if (count($laundries) === 0)
             <article class="flex items-center justify-center">
-                <p class="mt-10">Aucune buandries n'est créer.</p>
+                <p class="mt-10">Aucune buanderie n'a été créée</p>
             </article>
         @else
             @foreach ($laundries as $laundry)

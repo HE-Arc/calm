@@ -16,7 +16,7 @@
                 <div class="flex gap-2">
                     <a href="{{ route('management.organizations.show', $organization['id']) }}"
                         class="flex-grow btn btn-sobre">Annuler</a>
-                    <button type="submit" class="btn btn-forte">Mettre a jour</button>
+                    <button type="submit" class="btn btn-forte">Mettre à jour</button>
                 </div>
             </article>
         </section>

@@ -8,14 +8,14 @@
             <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Créer une buandrie</h1>
 
             <article class="flex flex-col gap-2">
-                <label for="name">Nom de la buandrie</label>
+                <label for="name">Nom de la buanderie</label>
                 <div id="name" class="input input-sobre">
-                    <input type="text" name="name" placeholder="Nom de la buandrie" value="{{ old('name') }}">
+                    <input type="text" name="name" placeholder="Nom de la buanderie" value="{{ old('name') }}">
                     <span class="icons icons-sobre">text_fields</span>
                 </div>
-                <label for="description">Description de la buandrie</label>
+                <label for="description">Description de la buanderie</label>
                 <div id="description" class="input input-sobre">
-                    <textarea rows="5" type="text" name="description" placeholder="Description de la buandrie"> {{ old('description') }}</textarea>
+                    <textarea rows="5" type="text" name="description" placeholder="Description de la buanderie"> {{ old('description') }}</textarea>
                     <span class="icons icons-sobre">text_fields</span>
                 </div>
 
