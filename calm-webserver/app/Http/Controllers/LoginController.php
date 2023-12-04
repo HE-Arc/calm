@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'Invalid e-mail and/or password'
+            'email' => 'E-mail ou mot de passe incorrect'
         ])->onlyInput('email');
     }
 
@@ -33,6 +35,29 @@ class LoginController extends Controller
     {
         return view("register", ["page" => "register", "pageTitle" => "Inscription",
             "pageDescription" => "Formulaire d'inscription à CALM"]);
+    }
+
+    public function register(Request $request){
+        $request->validate([
+            "name" => "required|ascii|min:2|max:32",
+            "email" => "required|email:rfc,dns|unique:users,email",
+            "password" => "required|ascii|min:8|max:32|same:passwordConfirmation",
+            "passwordConfirmation" => "required"
+        ]);
+
+        User::create([
+            "name" => $request->name,
+            "email" => $request->email,
+            "password" => Hash::make($request->password),
+            "is_activated" => false
+        ]);
+
+        $id = User::where('email', $request->email)->first()->id;
+        Auth::loginUsingId($id);
+
+        return redirect()->route('home')->with([
+            "success" => "Votre compte a été créé"
+        ]);
     }
 
     public function logout(Request $request){

@@ -30,6 +30,7 @@ Route::delete("reservations/{id}", [ReservationController::class, "destroy"])->m
 Route::get("login", [LoginController::class, "loginForm"])->name("login")->middleware('guest');
 Route::post("login", [LoginController::class, "authenticate"])->name("authenticate")->middleware('guest');
 Route::get("register", [LoginController::class, "registerForm"])->name("register")->middleware('guest');
+Route::post("register", [LoginController::class, "register"])->middleware('guest')->name('register');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // ORGANIZATIONS MANAGEMENT
@@ -61,5 +62,7 @@ Route::delete("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Manage
 
 // USER
 Route::get("user", [UserController::class, 'index'])->middleware('auth')->name('user.index');
-
-
+Route::put("user/name", [UserController::class, 'updateName'])->middleware('auth')->name('user.name');
+Route::put("user/password", [UserController::class, 'updatePassword'])->middleware('auth')->name('user.password');
+Route::put("user/email", [UserController::class, 'updateEmail'])->middleware('auth')->name('user.email');
+Route::delete("user", [UserController::class, 'destroy'])->middleware('auth')->name('user.index');
