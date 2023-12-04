@@ -196,16 +196,36 @@
         @slot('id', 'user-account-delete-confirm-modal')
         @slot('form', 'delete-account-form')
         @slot('icon', 'warning')
-        @slot('confirm', 'Supprimer')
+        @slot('confirm', 'SUPPRIMER')
         @slot('close', 'Annuler')
         @slot('closable', true)
         @slot('header', 'Supprimer votre compte')
         <x-slot name="body">
-            <form action="#" method="POST" id="delete-account-form">
+            <form action="{{route('user.index')}}" method="POST" id="delete-account-form">
                 @csrf
                 @method("DELETE")
-                <p class="text-gray-500">Etes-vous sur de vouloir supprimer votre compte ? <br>
-                    Cette action est irréversible !
+
+                <div>
+                    <label for="current_password">Mot de passe actuel</label>
+                    <div class="relative mt-2 mb-5">
+                        <div class="flowbite-icon-div">
+                            <svg class="flowbite-icon-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                                <path d="M14 7h-1.5V4.5a4.5 4.5 0 1 0-9 0V7H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-5 8a1 1 0 1 1-2 0v-3a1 1 0 1 1 2 0v3Zm1.5-8h-5V4.5a2.5 2.5 0 1 1 5 0V7Z"/>
+                            </svg>
+                        </div>
+                        <input id="current_password" name="current_password" type="password" required class="block w-full pl-10 input input-sobre">
+                    </div>
+                </div>
+
+                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
+                    <strong>DÉFINITIVEMENT</strong> supprimer votre compte ! <br>
+                    Cette action est <strong>IRRÉVERSIBLE</strong> ! Toutes vos réservations seront définitivement supprimées !
+                    Vous ne pourrez plus rejoindre votre organisation à moins d'y être à nouveau invité !
+                    <br>
+                    <br>
+                    <strong>
+                        Êtes-vous sûr de vouloir continuer ?
+                    </strong>
                 </p>
             </form>
         </x-slot>

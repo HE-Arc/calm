@@ -62,5 +62,7 @@ Route::delete("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Manage
 
 // USER
 Route::get("user", [UserController::class, 'index'])->middleware('auth')->name('user.index');
-
-
+Route::put("user/name", [UserController::class, 'updateName'])->middleware('auth')->name('user.name');
+Route::put("user/password", [UserController::class, 'updatePassword'])->middleware('auth')->name('user.password');
+Route::put("user/email", [UserController::class, 'updateEmail'])->middleware('auth')->name('user.email');
+Route::delete("user", [UserController::class, 'destroy'])->middleware('auth')->name('user.index');
