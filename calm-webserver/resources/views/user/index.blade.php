@@ -63,7 +63,7 @@
         @slot('closable', true)
         @slot('header', 'Modification de l\'adresse e-mail')
         <x-slot name="body">
-            <form action="#" method="POST" id="user-account-edit-email-form">
+            <form action="{{route('user.email')}}" method="POST" id="user-account-edit-email-form">
                 @csrf
                 @method("PUT")
                 <div class="mb-5">
@@ -106,12 +106,24 @@
         @slot('closable', true)
         @slot('header', 'Modification du mot de passe')
         <x-slot name="body">
-            <form action="#" method="POST" id="user-account-edit-password-form">
+            <form action="{{route('user.password')}}" method="POST" id="user-account-edit-password-form">
                 @csrf
                 @method("PUT")
-                <div><input type="hidden" name="current_password" value="{{auth()->user()->getAuthPassword()}}"></div>
+
                 <div>
-                    <label for="new_password" >Mot de passe</label>
+                    <label for="current_password">Mot de passe actuel</label>
+                    <div class="relative mt-2 mb-5">
+                        <div class="flowbite-icon-div">
+                            <svg class="flowbite-icon-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
+                                <path d="M14 7h-1.5V4.5a4.5 4.5 0 1 0-9 0V7H2a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-5 8a1 1 0 1 1-2 0v-3a1 1 0 1 1 2 0v3Zm1.5-8h-5V4.5a2.5 2.5 0 1 1 5 0V7Z"/>
+                            </svg>
+                        </div>
+                        <input id="current_password" name="current_password" type="password" required class="block w-full pl-10 input input-sobre">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="new_password" >Nouveau mot de passe</label>
                     <div class="relative mt-2 mb-5">
                         <div class="flowbite-icon-div">
                             <svg class="flowbite-icon-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
@@ -147,7 +159,7 @@
         @slot('closable', true)
         @slot('header', 'Modification du nom d\'utilisateur')
         <x-slot name="body">
-            <form action="#" id="user-account-edit-name-form" method="POST">
+            <form action="{{route('user.name')}}" id="user-account-edit-name-form" method="POST">
                 @csrf
                 @method("PUT")
                 <div class="mb-5">
