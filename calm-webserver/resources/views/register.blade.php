@@ -7,6 +7,8 @@
 
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <form class="space-y-6" action="#" method="POST">
+                @csrf
+                @method('POST')
                 <div>
                     <label for="name">Nom d'utilisateur</label>
                     <div class="relative mt-2">

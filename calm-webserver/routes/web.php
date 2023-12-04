@@ -30,6 +30,7 @@ Route::delete("reservations/{id}", [ReservationController::class, "destroy"])->m
 Route::get("login", [LoginController::class, "loginForm"])->name("login")->middleware('guest');
 Route::post("login", [LoginController::class, "authenticate"])->name("authenticate")->middleware('guest');
 Route::get("register", [LoginController::class, "registerForm"])->name("register")->middleware('guest');
+Route::post("register", [LoginController::class, "register"])->middleware('guest')->name('register');
 Route::post('logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
 
 // ORGANIZATIONS MANAGEMENT
