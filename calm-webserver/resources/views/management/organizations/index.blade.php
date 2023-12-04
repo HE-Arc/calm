@@ -10,7 +10,7 @@
 
         @if (count($organizations) === 0)
             <article class="flex items-center justify-center">
-                <p class="mt-10">Aucune organisation n'est créer.</p>
+                <p class="mt-10">Vous ne possédez aucune organisation</p>
             </article>
         @else
             @foreach ($organizations as $organization)
@@ -32,7 +32,7 @@
                         </a>
 
                         <a href="{{ route('management.laundries.index', $organization['id']) }}" class="btn btn-sobre">
-                            Gestions des buandries
+                            Gestions des buanderies
                         </a>
                     </div>
                 </article>
