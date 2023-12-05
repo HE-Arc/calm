@@ -117,3 +117,50 @@
         @apply w-4 h-4 text-gray-500;
     }
 }
+
+
+/*
+    Users management
+ */
+@media only screen and (max-width: 1023px) {
+    .flex,
+    .relative,
+    .overflow-x-auto {
+        width: 100%;
+    }
+
+    thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    td:first-child {
+        border-top: 1px solid #ccc;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #eee;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: right;
+    }
+
+    td:before {
+        position: absolute;
+        top: 25%;
+        left: 5%;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+        content: attr(data-title);
+    }
+}
