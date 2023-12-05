@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\Organization;
 use App\Models\User;
+use App\Utils\Paginate;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,13 @@ class UserManagementController extends Controller
         $organization = $this->getOrganization($orgID);
         $users = $organization->nonAdminUsers();
 
-        //TODO call view
+        return view('management.users.index', [
+            "page" => "user management",
+            "pageTitle" => "Gestion des utilisateurs",
+            "pageDescription" => "Gérez les utilisateurs de votre organisation",
+            "orgID" => $orgID,
+            "users" => Paginate::paginate($users, 15)
+        ]);
     }
 
     public function expel(string $orgID, string $userID){
