@@ -24,5 +24,14 @@ class Organization extends Model
         return $this->hasMany(Laundry::class);
     }
 
+    public function nonAdminUsers()
+    {
+        return $this->users->where('is_admin', 0);
+    }
+
+    public function adminUsers()
+    {
+        return $this->users->where('is_admin', 1);
+    }
 
 }

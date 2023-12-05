@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<div>
+<div class="flex flex-col gap-4 items-center justify-center">
     <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm">
         <div class="flex flex-col gap-4 items-center justify-center">
             <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Gestion des utilisateurs de l'organisation ...</h1>
@@ -45,18 +45,20 @@
                     </thead>
 
                     <tbody>
+
+                        @foreach($users as $user)
                         <tr class="bg-white border-b hover:bg-gray-50">
                             <td data-title="Nom d'utilisateur" class="px-6 py-4 text-center font-medium text-gray-900">
-                                User1
+                                {{$user->name}}
                             </td>
                             <td data-title="Adresse e-mail" class="px-6 py-4 text-center">
-                                user1@example.com
+                                {{$user->email}}
                             </td>
                             <td data-title="Rejoint le" class="px-6 py-4 text-center">
-                                21.02.2023
+                                XX.XX.20XX
                             </td>
                             <td data-title="Code d'activation utilisé" class="px-6 py-4 text-center">
-                                fmkdskfld
+                                ----------
                             </td>
                             <td data-title="Détail" class="px-6 py-4 text-center">
                                 <form action="#" method="post">
@@ -70,8 +72,9 @@
                                 </form>
                             </td>
                             <td data-title="Supprimer" class="px-6 py-4 text-center">
-                                <form action="#" method="post">
+                                <form action="{{ route('management.users.expel', ['org' => $orgID, 'id' => $user->id]) }}" method="post">
                                     @csrf
+                                    @method('DELETE')
                                     <input type="hidden" name="id" value="">
                                     <button type="submit">
                                         <svg class="w-4 h-4 text-rollingStone font-bold dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
@@ -81,10 +84,12 @@
                                 </form>
                             </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </article>
+    {{$users->links()}}
 </div>
 @endsection
