@@ -5,7 +5,7 @@ use \App\Http\Controllers\HomeController;
 use \App\Http\Controllers\LoginController;
 use \App\Http\Controllers\ReservationController;
 use \App\Http\Controllers\UserController;
-use \App\Http\Controllers\Management\UserController;
+use \App\Http\Controllers\Management\UserManagementController;
 use \App\Http\Controllers\Management\OrganizationController;
 
 /*
@@ -45,10 +45,10 @@ Route::put("management/organizations/{id}", [OrganizationController::class, 'upd
 Route::delete("management/organizations/{id}", [OrganizationController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.organizations.destroy');
 
 // USERS MANAGEMENT
-Route::get("management/{org}/users", [UserController::class, 'index'])->middleware('auth')->can('admin')->name('management.users.index');
-Route::delete('management/{org}/users/{id}', [UserController::class, 'expel'])->middleware('auth')->can('admin')->name('management.users.expel');
-Route::post("management/{org}/users", [UserController::class, 'store'])->middleware('auth')->can('admin')->name('management.users.store');
-Route::get("management/{org}/users/add", [UserController::class, 'add'])->middleware('auth')->can('admin')->name('management.users.add');
+Route::get("management/{org}/users", [UserManagementController::class, 'index'])->middleware('auth')->can('admin')->name('management.users.index');
+Route::delete('management/{org}/users/{id}', [UserManagementController::class, 'expel'])->middleware('auth')->can('admin')->name('management.users.expel');
+Route::post("management/{org}/users", [UserManagementController::class, 'store'])->middleware('auth')->can('admin')->name('management.users.store');
+Route::get("management/{org}/users/add", [UserManagementController::class, 'add'])->middleware('auth')->can('admin')->name('management.users.add');
 
 // LAUNDRIES MANAGEMENT
 Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');
