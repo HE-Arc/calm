@@ -16,10 +16,10 @@
                 <span class="icons icons-sobre">text_fields</span>
             </div>
             @if ($machines->count() > 0)
-            <section class="">
-                <label for="machines">Machines de la buanderie</label>
+                <section class="">
+                    <label for="machines">Machines de la buanderie</label>
                     <!-- Grid Container -->
-                    <div class="grid grid-cols-1 border-2 border-rollingStone rounded-lg p-0 ">
+                    <a href="{{ route('management.machines.index', [$laundry['organization_id'], $laundry['id']]) }}" class="grid grid-cols-1 border-2 border-rollingStone rounded-lg p-0 btn btn-transparent">
                         <div class="grid grid-cols-2 rounded-t bg-rollingStone text-white">
                             <div class="p-2">
                                 <h2 class="text-lg font-semibold">Nom</h2>
@@ -28,6 +28,7 @@
                                 <h2 class="text-lg font-semibold">Type</h2>
                             </div>
                         </div>
+
                         <div class="grid grid-cols-2 ">
                             @foreach ($machines as $machine)
                                 <div class ="border-r-2 p-2 border-rollingStone">
@@ -39,16 +40,17 @@
                             @endforeach
                         </div>
 
-                    </div><!-- End Grid Container -->
+                    </a><!-- End Grid Container -->
 
 
-            </section>
+                </section>
             @endif
 
             <a class="btn btn-sobre"
                 href="{{ route('management.laundries.edit', [$laundry['organization_id'], $laundry['id']]) }}">Modifier</a>
             <div class="text-center">
-                <form action="{{ route('management.laundries.destroy', [$laundry['organization_id'], $laundry['id']]) }}" method="post" id="delete-laundry-form">
+                <form action="{{ route('management.laundries.destroy', [$laundry['organization_id'], $laundry['id']]) }}"
+                    method="post" id="delete-laundry-form">
                     @csrf
                     @method('DELETE')
                     <input onclick="event.preventDefault()" data-modal-target="laundry-delete-confirm-modal"

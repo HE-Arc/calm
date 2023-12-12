@@ -49,6 +49,7 @@
 
     .input > label,
     .input > textarea,
+    .input > select,
     .input > input {
         @apply flex-grow w-full self-center;
     }
@@ -56,6 +57,7 @@
         @apply self-center;
     }
     .input > input,
+    .input > select,
     .input > textarea {
         @apply border-none outline-none focus:ring-0 p-0;
     }

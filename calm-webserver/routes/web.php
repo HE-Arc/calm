@@ -59,6 +59,16 @@ Route::get("management/{orgId}/laundries/{id}/edit", [\App\Http\Controllers\Mana
 Route::put("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'update'])->middleware('auth')->can('admin')->name('management.laundries.update');
 Route::delete("management/{orgId}/laundries/{id}", [\App\Http\Controllers\Management\LaundryController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.laundries.destroy');
 
+
+// MACHINES MANAGEMENT
+Route::get("management/{orgId}/laundries/{laundryId}/machines", [\App\Http\Controllers\Management\MachineController::class, 'index'])->middleware('auth')->can('admin')->name('management.machines.index');
+Route::get("management/{orgId}/laundries/{laundryId}/machines/create", [\App\Http\Controllers\Management\MachineController::class, 'create'])->middleware('auth')->can('admin')->name('management.machines.create');
+Route::post("management/{orgId}/laundries/{laundryId}/machines", [\App\Http\Controllers\Management\MachineController::class, 'store'])->middleware('auth')->can('admin')->name('management.machines.store');
+Route::get("management/{orgId}/laundries/{laundryId}/machines/{id}", [\App\Http\Controllers\Management\MachineController::class, 'show'])->middleware('auth')->can('admin')->name('management.machines.show');
+Route::get("management/{orgId}/laundries/{laundryId}/machines/{id}/edit", [\App\Http\Controllers\Management\MachineController::class, 'edit'])->middleware('auth')->can('admin')->name('management.machines.edit');
+Route::put("management/{orgId}/laundries/{laundryId}/machines/{id}", [\App\Http\Controllers\Management\MachineController::class, 'update'])->middleware('auth')->can('admin')->name('management.machines.update');
+Route::delete("management/{orgId}/laundries/{laundryId}/machines/{id}", [\App\Http\Controllers\Management\MachineController::class, 'destroy'])->middleware('auth')->can('admin')->name('management.machines.destroy');
+
 // USER
 Route::get("user", [UserController::class, 'index'])->middleware('auth')->name('user.index');
 Route::put("user/name", [UserController::class, 'updateName'])->middleware('auth')->name('user.name');
