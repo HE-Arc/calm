@@ -15,7 +15,7 @@ import 'flowbite';
         const elementSearch = document.querySelector(element);
         if(elementSearch)
         {
-            console.log(elementSearch)
+            //console.log(elementSearch)
             return elementSearch;
         }
     }
@@ -92,6 +92,11 @@ import 'flowbite';
         }
     }
 
+    function deleteUser(button, form)
+    {
+        form.action = "/management/" + button.dataset.orgId + "/users/"+ button.dataset.userId;
+    }
+
     /**
      * Main program
      */
@@ -105,5 +110,14 @@ import 'flowbite';
         // Exclusives checkbox between wash and dry in new reservation
         const chooseWashDryCheckboxes = getElements(".choose-wash-dry");
         exclusivesCheckbox(chooseWashDryCheckboxes);
+
+        const adminDeleteUserButton = getElements(".btn-admin-delete-user-account");
+        adminDeleteUserButton.forEach((button) => {
+            addEvent(button, "click", () => {
+                deleteUser(button, getElement("#delete-user-account-form"))
+            });
+        });
+
+        //
     }()); //mainProgram
 }()); //Main IIFE
