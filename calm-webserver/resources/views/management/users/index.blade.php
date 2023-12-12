@@ -3,7 +3,7 @@
 <div class="flex flex-col gap-4 items-center justify-center">
     <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm">
         <div class="flex flex-col gap-4 items-center justify-center">
-            <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Gestion des utilisateurs de l'organisation ...</h1>
+            <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Gestion des utilisateurs de l'organisation</h1>
 
             <div class="relative overflow-x-auto w-full shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -72,16 +72,12 @@
                                 </form>
                             </td>
                             <td data-title="Supprimer" class="px-6 py-4 text-center">
-                                <form action="{{ route('management.users.expel', ['org' => $orgID, 'id' => $user->id]) }}" method="post">
-                                    @csrf
-                                    @method('DELETE')
-                                    <input type="hidden" name="id" value="">
-                                    <button type="submit">
-                                        <svg class="w-4 h-4 text-rollingStone font-bold dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                            <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z"/>
-                                        </svg>
-                                    </button>
-                                </form>
+                                <button type="submit" class="btn-admin-delete-user-account" data-modal-target="user-account-delete-confirm-modal"
+                                        data-modal-show="user-account-delete-confirm-modal" data-org-id="{{$orgID}}" data-user-id="{{$user->id}}">
+                                    <svg class="w-4 h-4 text-rollingStone font-bold dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+                                        <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z"/>
+                                    </svg>
+                                </button>
                             </td>
                         </tr>
                         @endforeach
@@ -92,4 +88,35 @@
     </article>
     {{$users->links()}}
 </div>
+
+<x-modal>
+    @slot('id', 'user-account-delete-confirm-modal')
+    @slot('form', 'delete-user-account-form')
+    @slot('icon', 'warning')
+    @slot('confirm', 'Supprimer')
+    @slot('close', 'Annuler')
+    @slot('closable', true)
+    @slot('header', 'Supprimer le compte utilisateur')
+    <x-slot name="body">
+        <form id="delete-user-account-form" action="" method="post">
+            @csrf
+            @method('DELETE')
+
+            <input type="hidden" name="id" value="{{$user->id}}">
+
+            <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
+                <strong>DÉFINITIVEMENT</strong> supprimer ce compte utilisateur ! <br>
+                Cette action est <strong>IRRÉVERSIBLE</strong> ! Toutes les informations relatives au compte ainsi
+                que toutes les réservations seront définitivement supprimées !
+                L'utilisateur ne pourra plus rejoindre votre organisation à moins d'y être à nouveau invité !
+                <br>
+                <br>
+                <strong>
+                    Êtes-vous sûr de vouloir continuer ?
+                </strong>
+            </p>
+        </form>
+    </x-slot>
+</x-modal>
+
 @endsection
