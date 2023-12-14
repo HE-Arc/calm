@@ -2,6 +2,19 @@
 @section('content')
 
     <section class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
+
+        <div
+            class="btn btn-transparent">
+            <a class="block align-middle" href="{{ route('management.users.index', $orgID) }}">
+                <svg class="w-2 h-2 text-seaNymph inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 8 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                </svg>
+                Retour
+            </a>
+        </div>
+
         <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Ajouter un nouvel utilisateur</h1>
 
         <p class="p-5 text-justify dark:text-white dark:bg-gray-800">
@@ -34,6 +47,15 @@
 
                         <input id="email" name="email" type="email" autocomplete="email" required class="block w-full pl-10 input input-sobre">
                     </div>
+                </div>
+
+                <div class="text-center">
+                    <label class="relative inline-flex items-center mr-5 cursor-pointer">
+                        <input type="checkbox" name="isAdmin" value="isAdmin" id="isAdmin" class="sr-only peer choose-wash-dry" @if(old("isAdmin") === "isAdmin") checked @endif>
+                        <div
+                            class="toggle-switch peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:bg-vividTangerine"></div>
+                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Compte administrateur</span>
+                    </label>
                 </div>
 
                 <div>
