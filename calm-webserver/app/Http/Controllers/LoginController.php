@@ -48,12 +48,20 @@ class LoginController extends Controller
             "passwordConfirmation" => "required"
         ]);
 
-        User::create([
+        $userData = [
             "name" => $request->name,
             "email" => $request->email,
             "password" => Hash::make($request->password),
-            "is_activated" => false
-        ]);
+            "is_activated" => false,
+            "is_admin" => false,
+        ];
+
+        // Check if admin field is check
+        if ($request->has('isAdmin')) {
+            $userData['is_admin'] = true;
+        }
+
+        User::create($userData);
 
         $id = User::where('email', $request->email)->first()->id;
         Auth::loginUsingId($id);

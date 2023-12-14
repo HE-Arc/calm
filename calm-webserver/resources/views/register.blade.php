@@ -19,7 +19,7 @@
                             </svg>
                         </div>
 
-                        <input id="name" name="name" type="text" autocomplete="name" required class="block w-full pl-10 input input-sobre">
+                        <input id="name" value="{{old('name')}}" name="name" type="text" autocomplete="name" required class="block w-full pl-10 input input-sobre">
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                             </svg>
                         </div>
 
-                        <input id="email" name="email" type="email" autocomplete="email" required class="block w-full pl-10 input input-sobre">
+                        <input id="email" value="{{old('email')}}" name="email" type="email" autocomplete="email" required class="block w-full pl-10 input input-sobre">
                     </div>
                 </div>
 
@@ -61,6 +61,17 @@
                         </div>
 
                         <input id="passwordConfirmation" name="passwordConfirmation" type="password" autocomplete="current-password" required class="block w-full pl-10 input input-sobre">
+                    </div>
+                </div>
+
+                <div>
+                    <div class="text-center">
+                        <label class="relative inline-flex items-center mr-5 cursor-pointer">
+                            <input type="checkbox" name="isAdmin" value="isAdmin" id="isAdmin" class="sr-only peer choose-wash-dry" {{ old('isAdmin') ? 'checked' : '' }}>
+                            <div
+                                class="toggle-switch peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:bg-vividTangerine"></div>
+                            <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Compte administrateur</span>
+                        </label>
                     </div>
                 </div>
 
