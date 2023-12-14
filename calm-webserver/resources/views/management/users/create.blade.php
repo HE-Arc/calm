@@ -2,9 +2,7 @@
 @section('content')
 
     <section class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
-
-        <div
-            class="btn btn-transparent">
+        <div class="btn btn-transparent">
             <a class="block align-middle" href="{{ route('management.users.index', $orgID) }}">
                 <svg class="w-2 h-2 text-seaNymph inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                      viewBox="0 0 8 14">
