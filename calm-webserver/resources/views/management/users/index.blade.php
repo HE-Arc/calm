@@ -18,7 +18,7 @@
                         Et vous avez la possibilité de retirer des membres de l'organisation. <br>
 
                         <div class="mx-auto mt-2 text-right">
-                            <a href="#" class="btn block lg:inline-block btn-forte">Ajouter un nouvel utilisateur</a>
+                            <a href="{{ route('management.users.add', $orgID) }}" class="btn block lg:inline-block btn-forte">Ajouter un nouvel utilisateur</a>
                         </div>
                     </caption>
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -102,7 +102,7 @@
             @csrf
             @method('DELETE')
 
-            <input type="hidden" name="id" value="{{$user->id}}">
+            <input type="hidden" name="id" value="">
 
             <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
                 <strong>DÉFINITIVEMENT</strong> supprimer ce compte utilisateur ! <br>
