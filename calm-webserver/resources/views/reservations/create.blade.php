@@ -4,7 +4,7 @@
     <div class="flex flex-col gap-4 items-center justify-center">
         <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Liste des disponibilités</h1>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative overflow-x-auto w-full shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <caption
                     class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
@@ -47,13 +47,13 @@
                 <tbody>
                 @foreach($proposition['reservations'] as $id => $res)
                     <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-6 py-4 font-medium text-gray-900">
+                        <td data-title="Équipement" class="px-6 lg:py-4 font-medium text-gray-900">
                             {{$res->machine->name}}
                         </td>
-                        <td class="px-6 py-4 hidden px-6 py-3 sm:table-cell">
+                        <td class="px-6 py-4 hidden sm:table-cell">
                             {{$res->machine->description}}
                         </td>
-                        <td class="px-6 py-4 px-6 py-3 sm:table-cell">
+                        <td data-title="Heure" class="px-6 lg:py-4">
                             {{\Illuminate\Support\Carbon::create($res->start)->format('H:i')}}
                         </td>
                         <td class="px-6 py-4 text-right">
@@ -68,7 +68,6 @@
                         </td>
                     </tr>
                 @endforeach
-
                 </tbody>
             </table>
         </div>

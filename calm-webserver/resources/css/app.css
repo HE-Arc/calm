@@ -123,13 +123,12 @@
     Users management
  */
 @media only screen and (max-width: 1023px) {
-    .flex,
-    .relative,
-    .overflow-x-auto {
-        width: 100%;
-    }
 
-    thead, tbody, th, td, tr {
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
         display: block;
     }
 
@@ -147,7 +146,7 @@
         border: none;
         border-bottom: 1px solid #eee;
         position: relative;
-        padding-left: 50%;
+        padding: 3rem 0 1rem;
         white-space: normal;
         text-align: right;
     }
@@ -157,10 +156,10 @@
         top: 25%;
         left: 5%;
         width: 45%;
-        padding-right: 10px;
         white-space: nowrap;
         text-align: left;
         font-weight: bold;
+        color: rgb(107 114 128 / var(--tw-text-opacity));
         content: attr(data-title);
     }
 }
