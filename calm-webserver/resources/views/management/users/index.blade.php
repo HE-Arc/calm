@@ -3,7 +3,7 @@
 <div class="flex flex-col gap-4 items-center justify-center">
     <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm">
         <div class="flex flex-col gap-4 items-center justify-center">
-            <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Gestion des utilisateurs de l'organisation</h1>
+            <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Gestion des utilisateurs de l'organisation {{$org->name}}</h1>
 
             <div class="relative overflow-x-auto w-full shadow-md sm:rounded-lg">
                 <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -55,10 +55,10 @@
                                 {{$user->email}}
                             </td>
                             <td data-title="Rejoint le" class="px-6 lg:py-4 text-center">
-                                XX.XX.20XX
+                                {{$user->joined_at($org->id)?->format('d.m.Y')}}
                             </td>
                             <td data-title="Code d'activation utilisé" class="px-6 lg:py-4 text-center">
-                                ----------
+                                {{$user->invitation($org->id)?->code}}
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <a class="btn btn-sobre flex w-full justify-center" href="{{ route('management.users.userDetails', [$orgID, $user->id]) }}">Détails</a>
