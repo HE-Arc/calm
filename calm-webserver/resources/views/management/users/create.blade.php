@@ -2,12 +2,23 @@
 @section('content')
 
     <section class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
-        <div class="btn btn-transparent">
-            <a class="block align-middle" href="{{ route('management.users.index', $orgID) }}">
+        <!--<div class="btn btn-transparent">
+            <a class="align-middle" href="{{ route('management.users.index', $orgID) }}">
                 <svg class="w-2 h-2 text-seaNymph inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                      viewBox="0 0 8 14">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                </svg>
+                Retour
+            </a>
+        </div>-->
+        <div class="mb-2">
+            <a href="{{ route('management.users.index', $orgID)  }}"
+               class="w-full justify-center inline-flex md:w-auto items-center btn btn-sobre">
+                <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                     fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                          stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                 </svg>
                 Retour
             </a>
