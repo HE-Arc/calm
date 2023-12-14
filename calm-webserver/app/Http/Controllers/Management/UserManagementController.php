@@ -54,7 +54,7 @@ class UserManagementController extends Controller
     }
 
     public function add(string $orgID){
-        return view('management.users.create', [
+        return view('management.users.show', [
             "page" => "user management",
             "pageTitle" => "Gestion des utilisateurs",
             "pageDescription" => "Gérez les utilisateurs de votre organisation",

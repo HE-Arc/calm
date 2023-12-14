@@ -48,35 +48,31 @@
 
                         @foreach($users as $user)
                         <tr class="bg-white border-b hover:bg-gray-50">
-                            <td data-title="Nom d'utilisateur" class="px-6 py-4 text-center font-medium text-gray-900">
+                            <td data-title="Nom d'utilisateur" class="px-6 lg:py-4 text-center font-medium text-gray-900">
                                 {{$user->name}}
                             </td>
-                            <td data-title="Adresse e-mail" class="px-6 py-4 text-center">
+                            <td data-title="Adresse e-mail" class="px-6 lg:py-4 text-center">
                                 {{$user->email}}
                             </td>
-                            <td data-title="Rejoint le" class="px-6 py-4 text-center">
+                            <td data-title="Rejoint le" class="px-6 lg:py-4 text-center">
                                 XX.XX.20XX
                             </td>
-                            <td data-title="Code d'activation utilisé" class="px-6 py-4 text-center">
+                            <td data-title="Code d'activation utilisé" class="px-6 lg:py-4 text-center">
                                 ----------
                             </td>
-                            <td data-title="Détail" class="px-6 py-4 text-center">
+                            <td class="px-6 py-4 text-center">
                                 <form action="#" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="">
-                                    <button type="submit">
-                                        <svg class="w-4 h-4 text-rollingStone font-bold dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                                        </svg>
+                                    <button type="submit" class="btn btn-sobre flex w-full justify-center">
+                                        Détail
                                     </button>
                                 </form>
                             </td>
-                            <td data-title="Supprimer" class="px-6 py-4 text-center">
-                                <button type="submit" class="btn-admin-delete-user-account" data-modal-target="user-account-delete-confirm-modal"
+                            <td class="px-6 py-4 text-center">
+                                <button type="submit" class="btn btn-sobre flex w-full justify-center btn-admin-delete-user-account" data-modal-target="user-account-delete-confirm-modal"
                                         data-modal-show="user-account-delete-confirm-modal" data-org-id="{{$orgID}}" data-user-id="{{$user->id}}">
-                                    <svg class="w-4 h-4 text-rollingStone font-bold dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                                        <path d="M17 4h-4V2a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v2H1a1 1 0 0 0 0 2h1v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6h1a1 1 0 1 0 0-2ZM7 2h4v2H7V2Zm1 14a1 1 0 1 1-2 0V8a1 1 0 0 1 2 0v8Zm4 0a1 1 0 0 1-2 0V8a1 1 0 0 1 2 0v8Z"/>
-                                    </svg>
+                                    Supprimer
                                 </button>
                             </td>
                         </tr>
