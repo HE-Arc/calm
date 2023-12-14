@@ -172,8 +172,8 @@
     <footer class="bg-white rounded-lg m-4 text-center mt-auto mx-auto">
         <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
             <span class="text-sm text-gray-500 sm:text-center">
-                &copy; 2023 <a href="https://he-arc.ch" target="_blank" class="hover:underline">Haute École Arc</a>.
-                All Rights Reserved.
+                &copy; 2023 <a href="https://he-arc.ch" target="_blank" class="hover:underline">Haute Ecole Arc</a>.
+                Tous droits réservés.
             </span>
         </div>
     </footer>
