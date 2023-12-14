@@ -34,4 +34,9 @@ class Organization extends Model
         return $this->users->where('is_admin', 1);
     }
 
+    public function invitations()
+    {
+        return $this->hasMany(Invitation::class);
+    }
+
 }
