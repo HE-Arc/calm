@@ -97,6 +97,13 @@ import 'flowbite';
         form.action = "/management/" + button.dataset.orgId + "/users/"+ button.dataset.userId;
     }
 
+    function deleteUserReservation(button, form)
+    {
+        // TODO adding the right route
+        // button.dataset.reservationId
+        form.action = "/management/" + button.dataset.orgId + "/users/"+ button.dataset.userId;
+    }
+
     /**
      * Main program
      */
@@ -111,13 +118,18 @@ import 'flowbite';
         const chooseWashDryCheckboxes = getElements(".choose-wash-dry");
         exclusivesCheckbox(chooseWashDryCheckboxes);
 
-        const adminDeleteUserButton = getElements(".btn-admin-delete-user-account");
-        adminDeleteUserButton.forEach((button) => {
+        const adminDeleteUserButtons = getElements(".btn-admin-delete-user-account");
+        adminDeleteUserButtons.forEach((button) => {
             addEvent(button, "click", () => {
                 deleteUser(button, getElement("#delete-user-account-form"))
             });
         });
 
-        //
+        const adminDeleteUserReservationButtons = getElements(".btn-admin-delete-user-reservation");
+        adminDeleteUserReservationButtons.forEach((button) => {
+            addEvent(button, "click", () => {
+                deleteUserReservation(button, getElement("#delete-user-reservation-form"))
+            });
+        });
     }()); //mainProgram
 }()); //Main IIFE

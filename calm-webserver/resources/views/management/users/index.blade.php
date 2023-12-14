@@ -61,17 +61,13 @@
                                 ----------
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <form action="#" method="post">
-                                    @csrf
-                                    <input type="hidden" name="id" value="">
-                                    <button type="submit" class="btn btn-sobre flex w-full justify-center">
-                                        Détail
-                                    </button>
-                                </form>
+                                <a class="btn btn-sobre flex w-full justify-center" href="{{ route('management.users.userDetails', [$orgID, $user->id]) }}">Détails</a>
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <button type="submit" class="btn btn-sobre flex w-full justify-center btn-admin-delete-user-account" data-modal-target="user-account-delete-confirm-modal"
-                                        data-modal-show="user-account-delete-confirm-modal" data-org-id="{{$orgID}}" data-user-id="{{$user->id}}">
+                                <button type="submit" class="btn btn-sobre flex w-full justify-center btn-admin-delete-user-account"
+                                        data-modal-target="user-account-delete-confirm-modal"
+                                        data-modal-show="user-account-delete-confirm-modal"
+                                        data-org-id="{{$orgID}}" data-user-id="{{$user->id}}">
                                     Supprimer
                                 </button>
                             </td>
@@ -114,5 +110,4 @@
         </form>
     </x-slot>
 </x-modal>
-
 @endsection

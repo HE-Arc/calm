@@ -49,6 +49,7 @@ Route::get("management/{org}/users", [UserManagementController::class, 'index'])
 Route::delete('management/{org}/users/{id}', [UserManagementController::class, 'expel'])->middleware('auth')->can('admin')->name('management.users.expel');
 Route::post("management/{org}/users", [UserManagementController::class, 'store'])->middleware('auth')->can('admin')->name('management.users.store');
 Route::get("management/{org}/users/add", [UserManagementController::class, 'add'])->middleware('auth')->can('admin')->name('management.users.add');
+Route::get('management/{org}/users/{id}', [UserManagementController::class, 'userDetails'])->middleware('auth')->can('admin')->name('management.users.userDetails');
 
 // LAUNDRIES MANAGEMENT
 Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');

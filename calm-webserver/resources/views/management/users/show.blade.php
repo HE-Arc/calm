@@ -53,13 +53,13 @@
                         </td>
                         <td class="px-6 py-4 text-center">
                             <!-- Route to delete user reservation -->
-                            <form action="#" method="post">
-                                @csrf
-                                <input type="hidden" name="id" value="">
-                                <button type="submit" class="btn btn-sobre flex w-full justify-center">
-                                    Supprimer
-                                </button>
-                            </form>
+                            <button type="submit" class="btn btn-sobre flex w-full justify-center btn-admin-delete-user-reservation"
+                                    data-modal-target="delete-user-reservation-modal"
+                                    data-modal-show="delete-user-reservation-modal"
+                                    data-org-id="#TODO" data-user-id="#TODO" data-reservation-id="#TODO">
+                                <!-- TODO Changer the route inside the app.js function deleteUserReservation -->
+                                Supprimer
+                            </button>
                         </td>
                     </tr>
                     <!-- endforeach-->
@@ -67,4 +67,31 @@
             </table>
         </div>
     </section>
+
+    <x-modal>
+        @slot('id', 'delete-user-reservation-modal')
+        @slot('form', 'delete-user-reservation-form')
+        @slot('icon', 'warning')
+        @slot('confirm', 'Supprimer')
+        @slot('close', 'Annuler')
+        @slot('closable', true)
+        @slot('header', 'Supprimer la réservation de l\'utilisateur')
+        <x-slot name="body">
+            <form id="delete-user-reservation-form" action="" method="post">
+                @csrf
+                @method('DELETE')
+
+                <input type="hidden" name="id" value="">
+
+                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
+                    <strong>DÉFINITIVEMENT</strong> supprimer la réservation de cet utilisateur ! <br>
+                    Cette action est <strong>IRRÉVERSIBLE</strong> ! La réservation sera définitivement supprimée !
+                    <br>
+                    <strong>
+                        Êtes-vous sûr de vouloir continuer ?
+                    </strong>
+                </p>
+            </form>
+        </x-slot>
+    </x-modal>
 @endsection

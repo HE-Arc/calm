@@ -54,7 +54,7 @@ class UserManagementController extends Controller
     }
 
     public function add(string $orgID){
-        return view('management.users.show', [
+        return view('management.users.create', [
             "page" => "user management",
             "pageTitle" => "Gestion des utilisateurs",
             "pageDescription" => "Gérez les utilisateurs de votre organisation",
@@ -96,6 +96,17 @@ class UserManagementController extends Controller
 
         return redirect()->route('management.users.index', $organization->id)->with([
             "success" => "Utilisateur $email a été ajouté à l'organisation $organization->name"
+        ]);
+    }
+
+    public function userDetails(string $orgID, string $userID)
+    {
+
+        return view('management.users.show', [
+            "page" => "user management",
+            "pageTitle" => "Détail de l'utilisateur",
+            "pageDescription" => "Visualiser le détail de votre utilisateur",
+            "orgID" => $orgID,
         ]);
     }
 }
