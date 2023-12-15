@@ -24,7 +24,7 @@
 
 
                     <!-- Grid Container -->
-                    <div class="grid grid-cols-1 border-2 border-rollingStone rounded-lg p-0 ">
+                    <a href="{{ route('management.machines.index', [$laundry['organization_id'], $laundry['id']]) }}" class="grid grid-cols-1 border-2 border-rollingStone rounded-lg p-0 btn btn-transparent">
                         <div class="grid grid-cols-2 rounded-t bg-rollingStone text-white">
                             <div>
                                 <h2 class="p-2 text-lg font-semibold">Nom</h2>
@@ -43,7 +43,7 @@
                                 </div>
                             @endforeach
                         </div>
-                    </div><!-- End Grid Container -->
+                    </a><!-- End Grid Container -->
 
 
                 </section>
