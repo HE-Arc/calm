@@ -1,8 +1,5 @@
 @extends('layout.app')
 @section('content')
-
-    {{$laundries}}
-
     <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des buanderies</h1>
 
     <section class="flex flex-col gap-4 items-center justify-center">
