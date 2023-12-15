@@ -18,7 +18,7 @@
                         Et vous avez la possibilité de retirer des membres de l'organisation. <br>
 
                         <div class="mx-auto mt-2 text-right">
-                            <a href="{{ route('management.users.add', $orgID) }}" class="btn block lg:inline-block btn-forte">Ajouter un nouvel utilisateur</a>
+                            <a href="{{ route('management.users.add', $org->id) }}" class="btn block lg:inline-block btn-forte">Ajouter un nouvel utilisateur</a>
                         </div>
                     </caption>
                     <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,13 +61,13 @@
                                 {{$user->invitation($org->id)?->code}}
                             </td>
                             <td class="px-6 py-4 text-center">
-                                <a class="btn btn-sobre flex w-full justify-center" href="{{ route('management.users.userDetails', [$orgID, $user->id]) }}">Détails</a>
+                                <a class="btn btn-sobre flex w-full justify-center" href="{{ route('management.users.userDetails', [$org->id, $user->id]) }}">Détails</a>
                             </td>
                             <td class="px-6 py-4 text-center">
                                 <button type="submit" class="btn btn-sobre flex w-full justify-center btn-admin-delete-user-account"
                                         data-modal-target="user-account-delete-confirm-modal"
                                         data-modal-show="user-account-delete-confirm-modal"
-                                        data-org-id="{{$orgID}}" data-user-id="{{$user->id}}">
+                                        data-org-id="{{$org->id}}" data-user-id="{{$user->id}}">
                                     Supprimer
                                 </button>
                             </td>
