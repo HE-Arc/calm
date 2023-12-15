@@ -43,6 +43,13 @@ class UserManagementController extends Controller
             abort(404);
         }
 
+        // remove all of their reservations in this organization
+        foreach($user->reservations as $r){
+            if($r->organization->id == $organization->id){
+                $r->delete();
+            }
+        }
+
         // remove the user from the organization
         $organization->users()->detach($userID);
 
