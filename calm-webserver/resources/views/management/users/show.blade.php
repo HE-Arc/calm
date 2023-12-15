@@ -41,28 +41,33 @@
 
                 <tbody>
                     <!-- foreach()-->
+                    @foreach($reservations as $reservation)
                     <tr class="bg-white border-b hover:bg-gray-50">
                         <td data-title="Buanderie" class="px-6 lg:py-4 text-center font-medium text-gray-900">
                             <!-- Name buandrie -->
+                            {{$reservation->laundry->name}}
                         </td>
                         <td data-title="Date" class="px-6 lg:py-4 text-center">
                             <!-- Date reservation -->
+                            {{$reservation->start}}
                         </td>
                         <td data-title="Type" class="px-6 lg:py-4 text-center">
                             <!-- Type of machine -->
+                            {{$reservation->machine->typeName()}}
                         </td>
                         <td class="px-6 py-4 text-center">
                             <!-- Route to delete user reservation -->
                             <button type="submit" class="btn btn-sobre flex w-full justify-center btn-admin-delete-user-reservation"
                                     data-modal-target="delete-user-reservation-modal"
                                     data-modal-show="delete-user-reservation-modal"
-                                    data-org-id="#TODO" data-user-id="#TODO" data-reservation-id="#TODO">
+                                    data-reservation-id="{{$reservation->id}}">
                                 <!-- TODO Changer the route inside the app.js function deleteUserReservation -->
                                 Supprimer
                             </button>
                         </td>
                     </tr>
                     <!-- endforeach-->
+                    @endforeach
                 </tbody>
             </table>
         </div>

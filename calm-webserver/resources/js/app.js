@@ -103,9 +103,7 @@ import 'flowbite';
 
     function deleteUserReservation(button, form)
     {
-        // TODO adding the right route
-        // button.dataset.reservationId
-        form.action = "/management/" + button.dataset.orgId + "/users/"+ button.dataset.userId;
+        form.action = "/management/reservations/" + button.dataset.reservationId;
     }
 
     /**
