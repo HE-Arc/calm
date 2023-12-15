@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\ReservationController;
 use App\Models\Organization;
+use App\Models\Reservation;
 use App\Models\User;
 use App\Utils\Paginate;
 use Illuminate\Support\Facades\Auth;
@@ -43,6 +45,13 @@ class UserManagementController extends Controller
             abort(404);
         }
 
+        // remove all of their reservations in this organization
+        foreach($user->reservations as $r){
+            if($r->organization->id == $organization->id){
+                $r->delete();
+            }
+        }
+
         // remove the user from the organization
         $organization->users()->detach($userID);
 
@@ -80,13 +89,17 @@ class UserManagementController extends Controller
             ]);
         }
 
-        if($user->is_admin){
+        if($user->is_admin and !$request->has('isAdmin')){
             return back()->withErrors([
                 "L'utilisateur $email ne peut pas être ajouté à cette organisation car c'est un administrateur"
             ]);
+        } else if (!$user->is_admin and $request->has('isAdmin')){
+            return back()->withErrors([
+                "L'utilisateur $email ne peut pas être ajouté en tant que gérant car ce n'est pas un administrateur"
+            ]);
         }
 
-        if($organization->nonAdminUsers()->contains($user)){
+        if($organization->users->contains($user)){
             return back()->withErrors([
                 "L'utilisateur $email fait déjà partie de l'organisation $organization->name"
             ]);
@@ -101,12 +114,42 @@ class UserManagementController extends Controller
 
     public function userDetails(string $orgID, string $userID)
     {
+        $user = User::findOrFail($userID);
+        $organization = Organization::findOrFail($orgID);
+
+        if(!$organization->users->contains($user)){
+            return back()->withErrors(["L'utilisateur n'existe pas"]);
+        }
+
+        if(!$organization->users->contains(Auth::user())){
+            return back()->withErrors(["L'organisation n'existe pas"]);
+        }
+
+        $reservations = $user->reservations->filter(function (Reservation $reservation){
+            return Auth::user()->organizations->contains($reservation->organization);
+        });
 
         return view('management.users.show', [
             "page" => "user management",
             "pageTitle" => "Détail de l'utilisateur",
             "pageDescription" => "Visualiser le détail de votre utilisateur",
+            "reservations" => $reservations,
             "orgID" => $orgID,
         ]);
+    }
+
+    public function deleteReservation(string $reservationId){
+        $reservation = Reservation::findOrFail($reservationId);
+
+        if(!Auth::user()->organizations->contains($reservation->organization)){
+            return back()->withErrors(["La réservation n'existe pas"]);
+        }
+
+        $reservation->delete();
+
+        return back()->with([
+            "success" => "La réservation a bien été supprimée"
+        ]);
+
     }
 }

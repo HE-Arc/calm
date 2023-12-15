@@ -231,7 +231,14 @@ class ReservationController extends Controller
      */
     public function destroy(string $id)
     {
-        $res = Reservation::find($id);
+        $res = Reservation::findOrFail($id);
+
+        if($res->user->id != Auth::user()->id){
+            return back()->withErrors([
+                "La réservation n'existe pas"
+            ]);
+        }
+
         $res->delete();
         return redirect()->route('reservations.index');
     }

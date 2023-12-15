@@ -48,6 +48,7 @@ import 'flowbite';
      * @param selectedOrganisation id of the organisation selected
      */
     function filterLaundries(selectedOrganisation) {
+        console.log("org = " + selectedOrganisation);
         let organisationId = selectedOrganisation;
         let laundrySelect = document.querySelector(".laundries-field");
 
@@ -66,6 +67,9 @@ import 'flowbite';
 
                 if (option.dataset.organisation === organisationId) {
                     option.style.display = 'block';
+
+                    // change the selection for a laundry in org
+                    document.getElementById("laundries").value = option.value;
                 }
             }
         }
@@ -99,9 +103,7 @@ import 'flowbite';
 
     function deleteUserReservation(button, form)
     {
-        // TODO adding the right route
-        // button.dataset.reservationId
-        form.action = "/management/" + button.dataset.orgId + "/users/"+ button.dataset.userId;
+        form.action = "/management/reservations/" + button.dataset.reservationId;
     }
 
     /**
