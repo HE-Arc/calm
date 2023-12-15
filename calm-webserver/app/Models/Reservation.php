@@ -50,8 +50,8 @@ class Reservation extends Model
 
     private function has_conflict(Reservation $other): bool
     {
-        return ($this->start > $other->start && $this->start < $other->stop)
-            || ($other->start > $this->start && $other->start < $this->stop);
+        return ($this->start >= $other->start && $this->start <= $other->stop)
+            || ($other->start >= $this->start && $other->start <= $this->stop);
     }
 
     private static function get_all_reservation_times(Carbon $date, int $duration){
@@ -65,10 +65,14 @@ class Reservation extends Model
 
         while($current->day == $day){
             $r = new Reservation();
+
             $r->start = $current;
-            $current->addMinutes($duration);
             $r->stop = $current;
+            $r->stop = $r->stop->addMinutes($duration);
+
             $reservations[] = $r;
+
+            $current->addMinutes(60);
         }
 
         return $reservations;
@@ -94,7 +98,6 @@ class Reservation extends Model
                 $ok = true;
                 foreach($machine->reservations()->get() as $machine_res){
                     if($machine_res->has_conflict($res)){
-                        //dump("conflict", $machine, $machine_res, $res);
                         $ok = false;
                         break;
                     }
