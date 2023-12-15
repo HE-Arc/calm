@@ -19,14 +19,15 @@
                     <span class="icons icons-sobre">text_fields</span>
                 </div>
 
-                <label for="type_id">Type de la machine</label>
-                <div id="type_id" class="input input-sobre">
+                <label for="type">Type de la machine</label>
+                <div id="type" class="input input-sobre">
                     <select name="type">
+                        <option selected disabled hidden>-- Choisir un type --</option>
                         @foreach ($types as $type => $name)
-                            <option value="{{ $type }}">{{ $name }}</option>
+                            <option {{ old('type') == $type ? "selected" : "" }} value="{{ $type }}">{{ $name }}</option>
                         @endforeach
                     </select>
-                    <span class="icons icons-sobre">text_fields</span>
+                    <span class="icons icons-sobre">list</span>
                 </div>
 
                 <input type="hidden" name="organization_id" value="{{ $orgId }}">

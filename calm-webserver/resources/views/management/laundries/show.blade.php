@@ -44,6 +44,9 @@
 
 
                 </section>
+            @else
+                <label for="machines">Aucune machine dans cette buanderie</label>
+                <a href="{{ route('management.machines.index', [$laundry['organization_id'], $laundry['id']]) }}" class="btn btn-transparent">Gérérer les machines de la buanderie</a>
             @endif
 
             <a class="btn btn-sobre"
