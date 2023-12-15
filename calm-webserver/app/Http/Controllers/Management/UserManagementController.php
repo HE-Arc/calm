@@ -80,13 +80,17 @@ class UserManagementController extends Controller
             ]);
         }
 
-        if($user->is_admin){
+        if($user->is_admin and !$request->has('isAdmin')){
             return back()->withErrors([
                 "L'utilisateur $email ne peut pas être ajouté à cette organisation car c'est un administrateur"
             ]);
+        } else if (!$user->is_admin and $request->has('isAdmin')){
+            return back()->withErrors([
+                "L'utilisateur $email ne peut pas être ajouté en tant que gérant car ce n'est pas un administrateur"
+            ]);
         }
 
-        if($organization->nonAdminUsers()->contains($user)){
+        if($organization->users->contains($user)){
             return back()->withErrors([
                 "L'utilisateur $email fait déjà partie de l'organisation $organization->name"
             ]);
