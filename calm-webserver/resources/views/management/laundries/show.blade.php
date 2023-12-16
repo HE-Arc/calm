@@ -15,40 +15,6 @@
                 <label>{{ $laundry['description'] }}</label>
                 <span class="icons icons-sobre">text_fields</span>
             </div>
-            @if ($machines->count() > 0)
-                <section class="">
-                    <label for="machines">Machines de la buanderie</label>
-                    <!-- Grid Container -->
-                    <a href="{{ route('management.machines.index', [$laundry['organization_id'], $laundry['id']]) }}" class="grid grid-cols-1 border-2 border-rollingStone rounded-lg p-0 btn btn-transparent">
-                        <div class="grid grid-cols-2 rounded-t bg-rollingStone text-white">
-                            <div class="p-2">
-                                <h2 class="text-lg font-semibold">Nom</h2>
-                            </div>
-                            <div class="p-2">
-                                <h2 class="text-lg font-semibold">Type</h2>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 ">
-                            @foreach ($machines as $machine)
-                                <div class ="border-r-2 p-2 border-rollingStone">
-                                    {{ $machine['name'] }}
-                                </div>
-                                <div class = "p-2">
-                                    {{ $machine->typeName() }}
-                                </div>
-                            @endforeach
-                        </div>
-
-                    </a><!-- End Grid Container -->
-
-
-                </section>
-            @else
-                <label for="machines">Aucune machine dans cette buanderie</label>
-                <a href="{{ route('management.machines.index', [$laundry['organization_id'], $laundry['id']]) }}" class="btn btn-transparent">Gérérer les machines de la buanderie</a>
-            @endif
-
             <a class="btn btn-sobre"
                 href="{{ route('management.laundries.edit', [$laundry['organization_id'], $laundry['id']]) }}">Modifier</a>
             <div class="text-center">

@@ -8,18 +8,6 @@
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                 <caption
                     class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                    <div class="mb-2">
-                        <a href="{{ route('reservations.create')  }}"
-                           class="inline-flex items-center btn btn-sobre">
-                            <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                 fill="none" viewBox="0 0 14 10">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                      stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                            </svg>
-                            Retour
-                        </a>
-                    </div>
-
                     Détail de votre réservation
                     <ul class="mt-1 text-sm font-normal text-gray-500">
                         <li>Organisation : {{$proposition['organization']}}</li>

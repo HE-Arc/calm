@@ -43,6 +43,7 @@ class OrganizationController extends Controller
             "page" => "organizations",
             "pageTitle" => "Organizations",
             "pageDescription" => "Gérez vos Organisations",
+            "pageParent" => ["management.organizations.index"=>[]],
         ],
         compact('organization'));
     }
@@ -54,6 +55,7 @@ class OrganizationController extends Controller
             "page" => "organizations create",
             "pageTitle" => "Organizations Creation",
             "pageDescription" => "Créez votre organisation",
+            "pageParent" => ["management.organizations.index"=>[]],
         ]);
     }
     public function store(Request $request)
@@ -67,9 +69,9 @@ class OrganizationController extends Controller
             return back()->withErrors(["Organization already exists."])->withInput();
         }
 
-        Auth::user()->organizations()->create([
+        Organization::create([
             'name' => $request->name,
-        ]);
+        ])->users()->attach(Auth::user()->id);
 
         return redirect()->route('management.organizations.index')->with([
             'success' => 'Organisation créée avec succès',
@@ -89,6 +91,7 @@ class OrganizationController extends Controller
             "page" => "organizations edit",
             "pageTitle" => "Edit organizations",
             "pageDescription" => "Modifier vos Organisations",
+            "pageParent" => ["management.organizations.index"=>[]],
         ],
 
         compact('organization'));

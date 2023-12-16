@@ -15,6 +15,16 @@
     label {
         @apply block text-sm font-medium leading-6 text-gray-900;
     }
+
+    thead {
+        @apply text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400
+     }
+     tr {
+        @apply border-b hover:bg-gray-50 text-center;
+     }
+     tr:last-child {
+        @apply border-b-0;
+     }
 }
 
 @layer components {
@@ -133,6 +143,9 @@
 /*
     Users management
  */
+
+
+
 @media only screen and (max-width: 1023px) {
 
     thead,
@@ -140,37 +153,21 @@
     th,
     td,
     tr {
-        display: block;
+        @apply block;
     }
 
     thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+        @apply hidden;
     }
+
 
     td:first-child {
-        border-top: 1px solid #ccc;
+        @apply border-t-2 ;
     }
 
-    td {
-        border: none;
-        border-bottom: 1px solid #eee;
-        position: relative;
-        padding: 3rem 0 1rem;
-        white-space: normal;
-        text-align: right;
-    }
 
     td:before {
-        position: absolute;
-        top: 25%;
-        left: 5%;
-        width: 45%;
-        white-space: nowrap;
-        text-align: left;
-        font-weight: bold;
-        color: rgb(107 114 128 / var(--tw-text-opacity));
+        @apply flex p-2 font-bold items-center text-gray-500;
         content: attr(data-title);
     }
 }

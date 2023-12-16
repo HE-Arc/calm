@@ -106,6 +106,21 @@ import 'flowbite';
         form.action = "/management/reservations/" + button.dataset.reservationId;
     }
 
+    function deleteOrganization(button, form)
+    {
+        form.action = "/management/" + button.dataset.organizationId;
+    }
+
+    function deleteLaundry(button, form)
+    {
+        form.action = "/management/" + button.dataset.organizationId + "/laundries/" + button.dataset.laundryId;
+    }
+
+    function deleteMachine(button, form)
+    {
+        form.action = "/management/" + button.dataset.organizationId + "/laundries/" + button.dataset.laundryId + "/machines/" + button.dataset.machineId;
+    }
+
     /**
      * Toggle the display of invitation lines based on the checkbox state.
      */
@@ -161,6 +176,28 @@ import 'flowbite';
                 deleteUserReservation(button, getElement("#delete-user-reservation-form"))
             });
         });
+
+        const adminDeleteOrganizationButtons = getElements(".btn-admin-delete-organization");
+        adminDeleteOrganizationButtons.forEach((button) => {
+            addEvent(button, "click", () => {
+                deleteOrganization(button, getElement("#delete-organization-form"))
+            });
+        })
+
+        const adminDeleteLaundryButtons = getElements(".btn-admin-delete-laundry");
+        adminDeleteLaundryButtons.forEach((button) => {
+            addEvent(button, "click", () => {
+                deleteLaundry(button, getElement("#delete-laundry-form"))
+            });
+        })
+
+        const adminDeleteMachineButtons = getElements(".btn-admin-delete-machine");
+        adminDeleteMachineButtons.forEach((button) => {
+            addEvent(button, "click", () => {
+                deleteMachine(button, getElement("#delete-machine-form"))
+            });
+        })
+
 
         const toggleInvitationShow = getElement("#showOnlyActivateInvitations");
         addEvent(toggleInvitationShow, "change", toggleInvitaionDisplay);

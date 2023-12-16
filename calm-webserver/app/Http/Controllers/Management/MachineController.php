@@ -43,6 +43,7 @@ class MachineController extends Controller
                 "page" => "machines management index",
                 "pageTitle" => "Machines Management",
                 "pageDescription" => "Gérez vos machines",
+                "pageParent" => ["management.laundries.index" => ["orgId" => $orgId]],
             ],
             compact('machines', 'orgId', 'laundryId')
         );
@@ -73,7 +74,7 @@ class MachineController extends Controller
                 "page" => "machines management show",
                 "pageTitle" => "Machines Management",
                 "pageDescription" => "Gérez vos machines",
-
+                "pageParent" => ["management.machines.index" => ["orgId" => $orgId, "laundryId" => $laundryId]],
             ],
             compact('machine', 'orgId', 'laundryId')
         );
@@ -81,15 +82,16 @@ class MachineController extends Controller
 
     public function create(string $orgId, string $laundryId)
     {
-
+        $types = MachineType::all();
         return view(
             'management.machines.create',
             [
                 "page" => "machine create",
                 "pageTitle" => "Machine Creation",
                 "pageDescription" => "Créez votre machine",
+                "pageParent" => ["management.machines.index" => ["orgId" => $orgId, "laundryId" => $laundryId]],
             ],
-            compact(MachineType::cases(), 'orgId', 'laundryId')
+            compact('types', 'orgId', 'laundryId')
         );
     }
 
@@ -163,7 +165,7 @@ class MachineController extends Controller
                 "page" => "machines management show",
                 "pageTitle" => "Machines Management",
                 "pageDescription" => "Gérez vos machines",
-
+                "pageParent" => ["management.machines.index" => ["orgId" => $orgId, "laundryId" => $laundryId]],
             ],
             compact('laundries', 'machine', 'types', 'orgId', 'laundryId')
         );
@@ -232,7 +234,7 @@ class MachineController extends Controller
 
         Machine::find($id)->delete();
 
-        return redirect()->route('management.laundries.show', [$orgId, $laundryId])->with([
+        return redirect()->route('management.machines.index', [$orgId, $laundryId])->with([
             'success' => 'Machine supprimé avec succes',
         ]);
     }

@@ -63,7 +63,8 @@
 
                             <ul class="py-2" aria-labelledby="user-menu-button">
                                 <li>
-                                    <a href="{{ route('user.index') }}" class="block px-4 py-2 text-sm hover:bg-berylGreen">Compte</a>
+                                    <a href="{{ route('user.index') }}"
+                                        class="block px-4 py-2 text-sm hover:bg-berylGreen">Compte</a>
                                 </li>
                                 <li>
                                     <form action="{{ route('logout') }}" method="post"
@@ -161,7 +162,20 @@
             </x-toast>
         @endif
 
+        @if (isset($pageParent))
+            @foreach ($pageParent as $page => $args)
+                <a href="{{ route($page, $args) }}"
+                    class="sticky top-2 btn btn-transparent flex lg:ml-2 lg:inline-flex justify-center">
+                    <span class="icons">arrow_back</span>
+                    Retour
+                </a>
+            @endforeach
+        @endif
+
         @yield('content')
+
+
+
     </main>
 
     <footer class="bg-white rounded-lg m-4 text-center mt-auto mx-auto">
