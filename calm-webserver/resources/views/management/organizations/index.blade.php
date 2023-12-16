@@ -34,6 +34,11 @@
                         <a href="{{ route('management.laundries.index', $organization['id']) }}" class="btn btn-sobre">
                             Gestions des buanderies
                         </a>
+
+                        <!-- TODO Link to right route (web.php) -->
+                        <!--<a href="{#{ route('management.invitation.index', $organization['id']) }}" class="btn btn-sobre">
+                            Gestions des invitations
+                        </a>-->
                     </div>
                 </article>
             @endforeach

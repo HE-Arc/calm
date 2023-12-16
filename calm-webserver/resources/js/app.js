@@ -107,6 +107,34 @@ import 'flowbite';
     }
 
     /**
+     * Toggle the display of invitation lines based on the checkbox state.
+     */
+    function toggleInvitaionDisplay()
+    {
+        const getAllDisabledLines = getElements(".disable-line td");
+        if(this.checked)
+        {
+            // Hide all table cells in disabled rows
+            getAllDisabledLines.forEach((element) => {
+                element.style.display = "none";
+            });
+        }
+        else
+        {
+            getAllDisabledLines.forEach((element) => {
+
+                // Determine the display type based on screen width
+                let typeDisplay = "block";
+                if(window.matchMedia('(min-width: 1024px)').matches)
+                {
+                    typeDisplay = "table-cell";
+                }
+                element.style.display = typeDisplay;
+            });
+        }
+    }
+
+    /**
      * Main program
      */
     (function mainProgram() {
@@ -133,5 +161,8 @@ import 'flowbite';
                 deleteUserReservation(button, getElement("#delete-user-reservation-form"))
             });
         });
+
+        const toggleInvitationShow = getElement("#showOnlyActivateInvitations");
+        addEvent(toggleInvitationShow, "change", toggleInvitaionDisplay);
     }()); //mainProgram
 }()); //Main IIFE
