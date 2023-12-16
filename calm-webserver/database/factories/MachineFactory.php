@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Laundry;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Utils\MachineType;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Machine>
@@ -21,7 +22,7 @@ class MachineFactory extends Factory
             'name' => $this->faker->word(),
             'description' => $this->faker->paragraph(),
             'laundry_id' => Laundry::all()->random()->id,
-            'type' => $this->faker->randomElement(['wash', 'dry']),
+            'type' => $this->faker->randomElement(MachineType::names()),
         ];
     }
 }

@@ -6,11 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Laundry;
 use App\Models\Machine;
-use App\Models\Reservation;
 use App\Utils\Paginate;
 use Illuminate\Support\Facades\Auth;
-
-use function PHPSTORM_META\map;
 
 class LaundryController extends Controller
 {

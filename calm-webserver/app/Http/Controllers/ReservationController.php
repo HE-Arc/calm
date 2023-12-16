@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Laundry;
+use App\Models\Machine;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
@@ -10,8 +11,12 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\Paginate;
+use App\Utils\MachineType;
 
 use Illuminate\Support\Carbon;
+use Illuminate\Validation\Rule;
+use SebastianBergmann\Type\TypeName;
+
 class ReservationController extends Controller
 {
     /**
@@ -84,7 +89,8 @@ class ReservationController extends Controller
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
             "reserving" => false,
-            'organizations' => Auth::user()->organizations
+            'organizations' => Auth::user()->organizations,
+            "machinesTypes" => MachineType::all(),
         ]);
     }
 
@@ -106,11 +112,12 @@ class ReservationController extends Controller
     }
 
     public function search_propositions(Request $request){
+
         $param = $request->validate([
             'laundry' => ['required', 'integer'],
             'day' => ['required', 'date'],
             'duration' => ['required', 'integer', 'min:30', 'max:360'],
-            'type' => ['required', 'in:wash,dry'],
+            'type' => ['required', Rule::in(MachineType::names())],
             ]);
 
         $laundry = Laundry::find($param['laundry']);
@@ -145,7 +152,7 @@ class ReservationController extends Controller
             'date' => $date,
             'type' => [
                 'id' => $type,
-                'name' => ($type == 'wash') ? 'Lavage' : 'Séchage'
+                'name' => MachineType::fromName($type)
             ],
             'reservations' => $this->choice_paginator($reservations, 10, $request['page']),
         ];
@@ -153,7 +160,7 @@ class ReservationController extends Controller
             "page" => "reservations",
             "pageTitle" => "Choix d'une réservation",
             "pageDescription" => "Choisissez une réservation parmi les propositions.",
-            "proposition" => $param
+            "proposition" => $param,
         ]);
     }
 

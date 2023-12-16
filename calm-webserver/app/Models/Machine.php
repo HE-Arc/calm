@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Utils\MachineType;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -40,10 +41,6 @@ class Machine extends Model
     }
 
     public function typeName(){
-        switch ($this->type){
-            case 'wash': return 'Lavage';
-            case 'dry' : return 'Séchage';
-            default:     return 'Autre';
-        }
+        return MachineType::fromName($this->type);
     }
 }
