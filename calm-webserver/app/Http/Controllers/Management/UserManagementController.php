@@ -31,7 +31,7 @@ class UserManagementController extends Controller
             "page" => "user management",
             "pageTitle" => "Gestion des utilisateurs",
             "pageDescription" => "Gérez les utilisateurs de votre organisation",
-            "orgID" => $orgID,
+            "org" => $organization,
             "users" => Paginate::paginate($users, 15)
         ]);
     }

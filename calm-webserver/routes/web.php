@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Management\InvitationController;
+use App\Http\Controllers\Management\OrganizationController;
+use App\Http\Controllers\Management\UserManagementController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\HomeController;
-use \App\Http\Controllers\LoginController;
-use \App\Http\Controllers\ReservationController;
-use \App\Http\Controllers\UserController;
-use \App\Http\Controllers\Management\UserManagementController;
-use \App\Http\Controllers\Management\OrganizationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,12 @@ Route::post("management/{org}/users", [UserManagementController::class, 'store']
 Route::get("management/{org}/users/add", [UserManagementController::class, 'add'])->middleware('auth')->can('admin')->name('management.users.add');
 Route::get('management/{org}/users/{id}', [UserManagementController::class, 'userDetails'])->middleware('auth')->can('admin')->name('management.users.userDetails');
 Route::delete("management/reservations/{id}", [UserManagementController::class, 'deleteReservation'])->middleware('auth')->can('admin')->name('management.users.reservation.delete');
+
+// INVITATION MANAGEMENT
+Route::get("management/{org}/invite", [InvitationController::class, 'index'])->middleware('auth')->can('admin')->name('invitation.index');
+Route::put("management/invite/{id}/enable", [InvitationController::class, 'enable'])->middleware('auth')->can('admin')->name('invitation.enable');
+Route::put("management/invite/{id}/disable", [InvitationController::class, 'disable'])->middleware('auth')->can('admin')->name('invitation.disable');
+Route::post("management/{org}/invite", [InvitationController::class, 'create'])->middleware('auth')->can('admin')->name('invitation.create');
 
 // LAUNDRIES MANAGEMENT
 Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');
