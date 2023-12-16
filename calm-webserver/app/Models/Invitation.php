@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class Invitation extends Model
@@ -32,7 +33,12 @@ class Invitation extends Model
 
         $invitation->code = $code;
         $invitation->organization_id = $orgId;
+        $invitation->user_id = Auth::user()->id;
         return $invitation;
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 
 }

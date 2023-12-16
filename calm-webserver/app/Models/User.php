@@ -97,4 +97,8 @@ class User extends Authenticatable
 
         return !$ts ? null : new Carbon($ts);
     }
+
+    public function invitations(){
+        return $this->hasMany(Invitation::class);
+    }
 }

@@ -62,7 +62,7 @@
                                     {{$invitation->code}}
                                 </td>
                                 <td data-title="Crée par" class="px-6 lg:py-4 text-center">
-                                    ??????????????
+                                    {{ $invitation->user?->email }}
                                 </td>
                                 <td data-title="Nombre d'inscriptions via ce code" class="px-6 lg:py-4 text-center">
                                     {{$invitation->userCount()}}
