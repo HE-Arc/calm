@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Management;
 
+use App\Http\Controllers\Controller;
 use App\Models\Invitation;
-use App\Models\Organization;
 use App\Utils\Paginate;
 use Illuminate\Support\Facades\Auth;
 

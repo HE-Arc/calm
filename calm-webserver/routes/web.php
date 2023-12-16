@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\InvitationController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Management\InvitationController;
+use App\Http\Controllers\Management\OrganizationController;
+use App\Http\Controllers\Management\UserManagementController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\HomeController;
-use \App\Http\Controllers\LoginController;
-use \App\Http\Controllers\ReservationController;
-use \App\Http\Controllers\UserController;
-use \App\Http\Controllers\Management\UserManagementController;
-use \App\Http\Controllers\Management\OrganizationController;
 
 /*
 |--------------------------------------------------------------------------
