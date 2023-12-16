@@ -98,7 +98,7 @@
         @slot('confirm', 'Supprimer')
         @slot('close', 'Annuler')
         @slot('closable', true)
-        @slot('header', 'Supprimer la buanderie de l\'utilisateur')
+        @slot('header', 'Supprimer la buanderie')
         <x-slot name="body">
             <form id="delete-laundry-form" action="" method="post">
                 @csrf
