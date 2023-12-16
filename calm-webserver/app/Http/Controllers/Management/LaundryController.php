@@ -16,7 +16,7 @@ class LaundryController extends Controller
         $organization = Auth::user()->organizations->find($orgId);
 
         if (empty($organization)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["Cette organisation n'existe pas"])->withInput();
         }
 
         $laundries = $organization->laundries;
