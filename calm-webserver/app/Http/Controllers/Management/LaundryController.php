@@ -5,7 +5,6 @@ namespace App\Http\Controllers\management;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Laundry;
-use App\Models\Machine;
 use App\Utils\Paginate;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,6 +27,7 @@ class LaundryController extends Controller
                 "page" => "laundries management index",
                 "pageTitle" => "Laundries Management",
                 "pageDescription" => "Gérez vos buandries",
+                "pageParent" => ["management.organizations.index" => []],
             ],
             compact('laundries','orgId')
         );
@@ -53,6 +53,7 @@ class LaundryController extends Controller
                 "page" => "laundries",
                 "pageTitle" => "Laundries",
                 "pageDescription" => "Gérez vos buandries",
+                "pageParent" => ["management.laundries.index" => [$orgId]],
             ],
             compact('laundry','machines')
         );
@@ -66,6 +67,7 @@ class LaundryController extends Controller
                 "page" => "laundries create",
                 "pageTitle" => "Laundries Creation",
                 "pageDescription" => "Créez votre buandrie",
+                "pageParent" => ["management.organizations.index" => []],
             ],
             compact('orgId')
         );
@@ -121,6 +123,7 @@ class LaundryController extends Controller
                 "page" => "laundries edit",
                 "pageTitle" => "Edit laundries",
                 "pageDescription" => "Modifier vos buandries",
+                "pageParent" => ["management.laundries.index" => [$orgId]],
             ],
             compact('laundry','machines')
         );

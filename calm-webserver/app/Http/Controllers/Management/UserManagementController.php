@@ -31,6 +31,7 @@ class UserManagementController extends Controller
             "page" => "user management",
             "pageTitle" => "Gestion des utilisateurs",
             "pageDescription" => "Gérez les utilisateurs de votre organisation",
+            "pageParent" => ["management.organizations.index"=>[]],
             "org" => $organization,
             "users" => Paginate::paginate($users, 15)
         ]);
@@ -67,6 +68,7 @@ class UserManagementController extends Controller
             "page" => "user management",
             "pageTitle" => "Gestion des utilisateurs",
             "pageDescription" => "Gérez les utilisateurs de votre organisation",
+            "pageParent" => ['management.users.index' => [$orgID]],
             "orgID" => $orgID,
         ]);
     }
@@ -129,10 +131,19 @@ class UserManagementController extends Controller
             return Auth::user()->organizations->contains($reservation->organization);
         });
 
+        // change machine type to machine name for each reservation
+        $reservations = $reservations->map(function (Reservation $reservation){
+            $reservation->machine->typeName = $reservation->machine->typeName();
+            return $reservation;
+        });
+
+        $reservations = Paginate::paginate(collect($reservations)->sortBy('start')->reverse()->toArray(), 15);
+
         return view('management.users.show', [
             "page" => "user management",
             "pageTitle" => "Détail de l'utilisateur",
             "pageDescription" => "Visualiser le détail de votre utilisateur",
+            "pageParent" => ['management.users.index' => [$orgID]],
             "reservations" => $reservations,
             "orgID" => $orgID,
         ]);

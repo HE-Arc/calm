@@ -88,6 +88,7 @@ class ReservationController extends Controller
             "pageTitle" => "Nouvelle réservation",
             "pageDescription" => "Créez,une réservation. Choisissez l'organisation, la buanderie, le type de machine, la date et
             la durée.",
+            "pageParent" => ["reservations.index"=>[]],
             "reserving" => false,
             'organizations' => Auth::user()->organizations,
             "machinesTypes" => MachineType::all(),
@@ -160,6 +161,7 @@ class ReservationController extends Controller
             "page" => "reservations",
             "pageTitle" => "Choix d'une réservation",
             "pageDescription" => "Choisissez une réservation parmi les propositions.",
+            "pageParent" => ["reservations.create"=>[]],
             "proposition" => $param,
         ]);
     }
@@ -212,6 +214,7 @@ class ReservationController extends Controller
                 "page" => "reservations",
                 "pageTitle" => "Details de la réservation",
                 "pageDescription" => "Affiche les details de la reservation",
+                "pageParent" => ["reservations.index"=>[]],
                 "reservation" => $reservation
             ],
         );

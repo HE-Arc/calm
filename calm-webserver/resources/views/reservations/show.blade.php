@@ -1,11 +1,6 @@
 @extends('layout.app')
 @section('content')
     <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
-        <div class="flex flex-col items-end">
-            <a href="{{ route('reservations.index') }}">
-                <span class="icons icons-sobre">close</span>
-            </a>
-        </div>
         <div>
             <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Votre réservation</h1>
         </div>

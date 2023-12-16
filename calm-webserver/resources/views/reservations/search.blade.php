@@ -1,16 +1,5 @@
 @extends('layout.app')
 @section('content')
-    <div
-        class="btn btn-transparent sm:hidden">
-        <a class="block align-middle" href="{{ route('reservations.index') }}">
-            <svg class="w-2 h-2 text-seaNymph inline" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                 viewBox="0 0 8 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
-            </svg>
-            Retour
-        </a>
-    </div>
     <h1 class="font-title text-4xl text-center mt-3 text-seaNymph">Nouvelle réservation</h1>
     <div class="flex min-h-full flex-col justify-center px-6 py-1 lg:px-8">
         <div class="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">

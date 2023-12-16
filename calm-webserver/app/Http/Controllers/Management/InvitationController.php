@@ -22,6 +22,7 @@ class InvitationController extends Controller
             "page" => "Invitations index",
             "pageTitle" => "Invitations",
             "pageDescription" => "Gérer les invitations de l'organisation $organization->name",
+            "pageParent" => ["management.organizations.index"=>[]],
             "invitations" => Paginate::paginate($invitations),
             "org" => $organization
         ]);

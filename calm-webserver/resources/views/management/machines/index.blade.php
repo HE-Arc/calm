@@ -2,43 +2,116 @@
 @section('content')
     <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des Machines</h1>
 
-    <section class="flex flex-col gap-4 items-center justify-center">
-        <div class="mx-auto text-center my-6">
-            <a href="{{ route('management.machines.create',[ $orgId,$laundryId]) }}" class="btn btn-forte">Créer une nouvelle Machine</a>
-        </div>
+    <article class="overflow-x-auto w-full shadow-md sm:rounded-lg">
+        <table class="table-auto w-full">
+            <caption class="p-5 text-justify dark:text-white dark:bg-gray-800">
+                <div class="mx-auto mt-2 text-right">
+                    <a href="{{ route('management.machines.create', [$orgId, $laundryId]) }}" class="btn btn-forte">Créer une
+                        nouvelle Machine</a>
+                </div>
+            </caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nom
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Description
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Type
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Modifier
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Détails
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Supprimer
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if ($machines->isEmpty())
+                    <tr>
+                        <td colspan="5" class="px-6 lg:py-4 text-center font-medium text-gray-900">Aucune buanderie n'a
+                            été créée</td>
+                    </tr>
+                @else
+                    @foreach ($machines as $machine)
+                        <tr>
+                            <td data-title="Nom" class="px-6 lg:py-4 text-center font-medium text-gray-900">
+                                {{ $machine['name'] }}
+                            </td>
+                            <td data-title="Description" class="px-6 py-4 text-center">
+                                {{ $machine['description'] }}
+                            </td>
+                            <td data-title="Type" class="px-6 py-4 text-center">
+                                <span class="icons icons-less-forte">
+                                    {{ $machine['type'] }}
+                                </span>
+                            </td>
+                            <td data-title="Modifier" class="px-6 py-4 text-center">
+                                <a href="{{ route('management.machines.edit', [$orgId, $laundryId, $machine['id']]) }}"
+                                    class="btn btn-transparent flex justify-center">
+                                    <span class ="icons icons-sobre">edit_note</span>
+                                </a>
+                            </td>
+                            <td data-title="Détails" class="px-6 py-4 text-center">
+                                <a href="{{ route('management.machines.show', [$orgId, $laundryId, $machine['id']]) }}"
+                                    class="btn btn-transparent flex justify-center">
+                                    <span class ="icons icons-sobre">page_info</span>
+                                </a>
+                            </td>
 
-        @if (count($machines) === 0)
-            <article class="flex items-center justify-center">
-                <p class="mt-10">Aucune machine n'a été créée</p>
-            </article>
-        @else
-            @foreach ($machines as $machine)
-                <a href="{{ route('management.machines.show', [$orgId,$laundryId,$machine['id']]) }}" class="items">
-                    <!-- Icon -->
-                    <span class="icons icons-less-forte col-span-12 md:col-span-1">
-                        {{$machine['type']}}
-                    </span>
+                            <td data-title="Supprimer" class="px-6 py-4 text-center">
+                                <!-- Route to delete user reservation -->
+                                <button type="submit"
+                                    class="btn btn-transparent flex w-full justify-center btn-admin-delete-machine"
+                                    data-modal-target="delete-machine-modal"
+                                    data-modal-show="delete-machine-modal"
+                                    data-organization-id="{{ $orgId }}"
+                                    data-laundry-id="{{ $laundryId }}"
+                                    data-machine-id="{{ $machine['id'] }}">
+                                    <span class ="icons icons-forte">delete</span>
+                                </button>
+                            </td>
 
-                    <!-- Title -->
-                    <p class="col-span-11 xl:-ml-5 font-semibold text-rollingStone">
-                        {{ $machine['name'] }}
-                    </p>
-
-
-                    <!-- Description -->
-                    <div class="flex flex-col gap-2 md:col-start-2 col-span-11 xl:-ml-5">
-                        <p class="mt-1 text-sm font-normal"> {{ $machine['description'] }} </p>
-                    </div>
-
-                    <!-- Type -->
-                    <div class="flex gap-2 md:col-start-2 col-span-11 xl:-ml-5 justify-end items-center">
-                        <label for="type" class="font-semibold text-rollingStone">type de machine:</label>
-                        <p id="type" class="text-sm font-normal"> {{ $machine['typeName'] }} </p>
-                    </div>
-                </a>
-            @endforeach
+                        </tr>
+                    @endforeach
+                @endif
+            </tbody>
+        </table>
+        <div class="flex justify-center p-2">
             {{ $machines->links() }}
-        @endif
-    </section>
+        </div>
+    </article>
 
+    <x-modal>
+        @slot('id', 'delete-machine-modal')
+        @slot('form', 'delete-machine-form')
+        @slot('icon', 'warning')
+        @slot('confirm', 'Supprimer')
+        @slot('close', 'Annuler')
+        @slot('closable', true)
+        @slot('header', 'Supprimer la machine')
+        <x-slot name="body">
+            <form id="delete-machine-form" action="" method="post">
+                @csrf
+                @method('DELETE')
+
+                <input type="hidden" name="id" value="">
+
+                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
+                    <strong>DÉFINITIVEMENT</strong> supprimer cet machine ! <br>
+                    Cette action est <strong>IRRÉVERSIBLE</strong> ! L'machine sera définitivement supprimée !
+                    <br>
+                    <strong>
+                        Êtes-vous sûr de vouloir continuer ?
+                    </strong>
+                </p>
+            </form>
+        </x-slot>
+    </x-modal>
 @endsection
