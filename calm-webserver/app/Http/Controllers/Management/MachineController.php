@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Utils\Paginate;
 use Illuminate\Http\Request;
+use App\Utils\MachineType;
 
 class MachineController extends Controller
 {
@@ -80,7 +81,7 @@ class MachineController extends Controller
 
     public function create(string $orgId, string $laundryId)
     {
-        $types = ['dry' => 'Sechage', 'wash' => 'Lavage'];
+
         return view(
             'management.machines.create',
             [
@@ -88,7 +89,7 @@ class MachineController extends Controller
                 "pageTitle" => "Machine Creation",
                 "pageDescription" => "Créez votre machine",
             ],
-            compact('types', 'orgId', 'laundryId')
+            compact(MachineType::cases(), 'orgId', 'laundryId')
         );
     }
 
@@ -129,7 +130,6 @@ class MachineController extends Controller
 
     public function edit(string $orgId, string $laundryId, string $id)
     {
-        $types = ['dry' => 'Sechage', 'wash' => 'Lavage'];
         $organization = Auth::user()->organizations->find($orgId);
         if (empty($organization)) {
             return back()->withErrors(["Permission denied for this organization."])->withInput();
@@ -154,6 +154,8 @@ class MachineController extends Controller
                 'name' => $laundry->name
             ];
         });
+
+        $types = MachineType::all();
 
         return view(
             'management.machines.edit',

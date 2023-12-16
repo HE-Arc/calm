@@ -63,18 +63,14 @@
                 </div>
 
                 <div class="text-center">
-                    <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input type="checkbox" name="type" value="wash" id="wash" class="sr-only peer choose-wash-dry" @if(old("type") === "wash") checked @endif>
-                        <div
-                            class="toggle-switch peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:bg-vividTangerine"></div>
-                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Laver</span>
-                    </label>
 
+                    @foreach ($machinesTypes as $name => $value)
                     <label class="relative inline-flex items-center mr-5 cursor-pointer">
-                        <input type="checkbox" name="type" value="dry" id="dry" class="sr-only peer choose-wash-dry" @if(old("type") === "dry") checked @endif>
+                        <input type="checkbox" name="type" value="{{$name}}" id="{{$name}}" class="sr-only peer choose-wash-dry" @if(old("type") === "{{$name}}") checked @endif>
                         <div class="toggle-switch peer peer-focus:ring-4 peer-focus:ring-vividTangerine peer-checked:after:translate-x-full peer-checked:after:border-white peer-checked:bg-vividTangerine"></div>
-                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">Sécher</span>
+                        <span class="ml-3 text-sm font-medium text-gray-900 dark:text-gray-300">{{$value}}</span>
                     </label>
+                    @endforeach
                 </div>
 
                 <div>
