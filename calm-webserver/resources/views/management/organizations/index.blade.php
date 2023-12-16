@@ -36,9 +36,9 @@
                         </a>
 
                         <!-- TODO Link to right route (web.php) -->
-                        <!--<a href="{#{ route('management.invitation.index', $organization['id']) }}" class="btn btn-sobre">
+                        <a href="{{ route('invitation.index', $organization['id']) }}" class="btn btn-sobre">
                             Gestions des invitations
-                        </a>-->
+                        </a>
                     </div>
                 </article>
             @endforeach

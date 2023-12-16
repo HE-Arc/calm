@@ -14,6 +14,14 @@
                             Voici la liste de tous les <strong class="text-seaNymph">codes d'invitations</strong>
                             ayant permis aux utilisateurs d'entrer dans votre organisation.
 
+                            <div class="pt-4 text-center lg:text-left">
+                                <form method="post" action="{{ route('invitation.create', ['org' => $org->id]) }}">
+                                    @csrf
+                                    @method('POST')
+                                    <button type="submit" class="btn block lg:inline-block btn-forte">Créer une nouvelle invitation</button>
+                                </form>
+                            </div>
+
                             <div class="pt-4 text-center lg:text-right">
                                 <label class="relative inline-flex items-center mr-5 cursor-pointer">
                                     <input type="checkbox" name="showOnlyActivateInvitations" value="showOnlyActivateInvitations"
@@ -45,68 +53,46 @@
                         </thead>
 
                         <tbody>
-                        <!-- foreach($invitations as $invitation) -->
-                            <!-- TODO Change if condition => if disable == true, the class is add -->
-                            <tr class="bg-white border-b hover:bg-gray-50 @if(1 == 2)disable-line @endif">
+                            @foreach($invitations as $invitation)
+                            <tr class="bg-white border-b hover:bg-gray-50 @if(!$invitation->is_active)disable-line @endif">
                                 <td data-title="Date de création" class="px-6 lg:py-4 text-center font-medium text-gray-900">
-                                    12.10.2312
+                                    {{$invitation->created_at->format("d.m.Y")}}
                                 </td>
                                 <td data-title="Code" class="px-6 lg:py-4 text-center">
-                                    DSAD-DFEC-OFRG-DOER
+                                    {{$invitation->code}}
                                 </td>
                                 <td data-title="Crée par" class="px-6 lg:py-4 text-center">
-                                    admin@admin.com
+                                    ??????????????
                                 </td>
                                 <td data-title="Nombre d'inscriptions via ce code" class="px-6 lg:py-4 text-center">
-                                    5
+                                    {{$invitation->userCount()}}
                                 </td>
                                 <td class="px-6 py-4 text-center">
-                                    <!-- TODO Change if condition => if disable == true, the activaer button is show -->
-                                    @if(1 == 2)
-                                        <button class="btn btn-sobre flex w-full justify-center">
-                                            Activater
-                                        </button>
+                                    @if(!$invitation->is_active)
+                                        <form method="post" action="{{route('invitation.enable', ['id' => $invitation->id])}}">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-sobre flex w-full justify-center">
+                                                Activer
+                                            </button>
+                                        </form>
                                     @else
-                                        <button class="btn btn-sobre flex w-full justify-center">
-                                            Désactiver
-                                        </button>
+                                        <form method="post" action="{{route('invitation.disable', ['id' => $invitation->id])}}">
+                                            @csrf
+                                            @method('PUT')
+                                            <button type="submit" class="btn btn-sobre flex w-full justify-center">
+                                                @if($invitation->userCount() == 0) Supprimer @else Désactiver @endif
+                                            </button>
+                                        </form>
                                     @endif
                                 </td>
                             </tr>
-
-                            <tr class="bg-white border-b hover:bg-gray-50 @if(1 == 1)disable-line @endif">
-                                <td data-title="Date de création" class="px-6 lg:py-4 text-center font-medium text-gray-900">
-                                    12.10.2312
-                                </td>
-                                <td data-title="Code" class="px-6 lg:py-4 text-center">
-                                    DSAD-DFEC-OFRG-DOER
-                                </td>
-                                <td data-title="Crée par" class="px-6 lg:py-4 text-center">
-                                    admin@admin.com
-                                </td>
-                                <td data-title="Nombre d'inscriptions via ce code" class="px-6 lg:py-4 text-center">
-                                    5
-                                </td>
-                                <td class="px-6 py-4 text-center">
-                                    <!-- TODO Change if condition => if disable == true, the activaer button is show -->
-                                    @if(1 == 1)
-                                        <button class="btn btn-sobre flex w-full justify-center">
-                                            Activater
-                                        </button>
-                                    @else
-                                        <button class="btn btn-sobre flex w-full justify-center">
-                                            Désactiver
-                                        </button>
-                                    @endif
-                                </td>
-                            </tr>
-                        <!-- endforeach -->
+                          @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
         </article>
-        <!-- TODO Change variable for invitation -->
-        {{$users->links()}}
+        {{$invitations->links()}}
     </div>
 @endsection
