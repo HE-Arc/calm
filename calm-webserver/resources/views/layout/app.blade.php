@@ -117,7 +117,7 @@
                         @can('admin')
                             <li>
                                 <a href="{{ route('management.organizations.index') }}"
-                                    class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0">Gestion
+                                    class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'organizations' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Gestion
                                     des organisations</a>
                             </li>
                         @endcan

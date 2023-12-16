@@ -2,9 +2,10 @@
 @section('content')
     <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Qu'est-ce que CALM ?</h1>
     <p class="text-justify">
-        <strong>C</strong>apable and <strong>A</strong>ccessible <strong>L</strong>aundry <strong>M</strong>anager
-        (CALM) est une application web permettant la gestion de buanderies dans les immeubles locatifs. Elle proposerait
-        en particulier la planification horaire et la gestion des réservations.
+        <strong class="text-seaNymph">C</strong>apable and <strong class="text-seaNymph">A</strong>ccessible
+        <strong class="text-seaNymph">L</strong>aundry <strong class="text-seaNymph">M</strong>anager (CALM) est une
+        application web permettant la gestion de buanderies dans les immeubles locatifs. Elle propose en
+        particulier la planification horaire et la gestion des réservations.
     </p>
 
     <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Notre équipe</h1>

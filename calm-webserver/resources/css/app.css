@@ -120,6 +120,15 @@
     }
 }
 
+/* INVITATION MANAGEMENT */
+.disable-line td {
+    opacity: 0.5;
+}
+
+.disable-line td:has(button) {
+    opacity: 1;
+}
+
 
 /*
     Users management
