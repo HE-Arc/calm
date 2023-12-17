@@ -101,7 +101,7 @@ class InvitationController extends Controller
     public function processJoin(Request $request)
     {
         $request->validate([
-            'code' => ['required', 'alpha']
+            'code' => ['required', 'alpha_num:ascii']
         ]);
 
         if(!Invitation::where('code', $request['code'])->exists())
