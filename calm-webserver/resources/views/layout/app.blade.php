@@ -109,7 +109,7 @@
                             </li>
 
                             <li>
-                                <a href="{{ route('invitation.join')}}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'jointOrganization' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Rejoindre une organisation</a>
+                                <a href="{{ route('invitation.joinView')}}" class="block py-2 pl-3 pr-4 rounded hover:bg-rollingStone md:hover:bg-transparent md:hover:text-rollingStone md:p-0 {{ $page === 'jointOrganization' ? 'md:text-rollingStone bg-rollingStone md:bg-transparent' : '' }}">Rejoindre une organisation</a>
                             </li>
                         @endauth
 

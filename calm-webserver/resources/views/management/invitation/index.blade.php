@@ -1,8 +1,5 @@
 @extends('layout.app')
 @section('content')
-
-    <!-- TODO Update the organizations\index.php to add right link to this view -->
-
     <div class="flex flex-col gap-4 items-center justify-center">
         <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm">
             <div class="flex flex-col gap-4 items-center justify-center">
@@ -72,7 +69,20 @@
                                             {{ $invitation->created_at->format('d.m.Y') }}
                                         </td>
                                         <td data-title="Code" class="px-6 lg:py-4 text-center">
-                                            {{ $invitation->code }}
+                                            <span class="pr-2 flex justify-evenly">
+                                                <span class="code-to-copy">{{$invitation->code}}</span>
+                                                <svg class="flowbite-icon-svg cursor-pointer copy-to-clipboard"
+                                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                                     fill="none" viewBox="0 0 18 20"
+                                                     data-tooltip-target="tooltip-click" data-tooltip-trigger="click">
+                                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m7.708 2.292.706-.706A2 2 0 0 1 9.828 1h6.239A.97.97 0 0 1 17 2v12a.97.97 0 0 1-.933 1H15M6 5v4a1 1 0 0 1-1 1H1m11-4v12a.97.97 0 0 1-.933 1H1.933A.97.97 0 0 1 1 18V9.828a2 2 0 0 1 .586-1.414l2.828-2.828A2 2 0 0 1 5.828 5h5.239A.97.97 0 0 1 12 6Z"/>
+                                                </svg>
+
+                                                <div id="tooltip-click" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-seaNymph rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                                    Texte copié
+                                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                                </div>
+                                            </span>
                                         </td>
                                         <td data-title="Crée par" class="px-6 lg:py-4 text-center">
                                             {{ $invitation->user?->email }}

@@ -58,7 +58,8 @@ Route::get("management/{org}/invite", [InvitationController::class, 'index'])->m
 Route::put("management/invite/{id}/enable", [InvitationController::class, 'enable'])->middleware('auth')->can('admin')->name('invitation.enable');
 Route::put("management/invite/{id}/disable", [InvitationController::class, 'disable'])->middleware('auth')->can('admin')->name('invitation.disable');
 Route::post("management/{org}/invite", [InvitationController::class, 'create'])->middleware('auth')->can('admin')->name('invitation.create');
-Route::get("join", [InvitationController::class, 'join'])->middleware('auth')->name('invitation.join');
+Route::get("organisation/join", [InvitationController::class, 'joinView'])->middleware('auth')->name('invitation.joinView');
+Route::post("organisation/join", [InvitationController::class, 'join'])->middleware('auth')->name('invitation.join');
 
 // LAUNDRIES MANAGEMENT
 Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');

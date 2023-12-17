@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Invitation;
+use App\Models\Organization;
 use App\Utils\Paginate;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class InvitationController extends Controller
@@ -87,12 +89,44 @@ class InvitationController extends Controller
         ]);
     }
 
-    public function join()
+    public function joinView()
     {
         return view('management.invitation.join', [
             "page" => "jointOrganization",
             "pageTitle" => "Invitations",
             "pageDescription" => "Rejoindre une organisation",
+        ]);
+    }
+
+    public function join(Request $request)
+    {
+        $request->validate([
+            'code' => ['required', 'alpha']
+        ]);
+
+        if(!Invitation::where('code', $request['code'])->exists())
+        {
+            return back()->withErrors([
+                "Le code n'existe pas ou n'est pas valide !"
+            ])->withInput([
+                'code' => $request['code'],
+            ]);
+        }
+
+        $invitation = Invitation::where('code', $request['code'])->firstOrFail();
+        $organization = Organization::find($invitation->organization_id);
+        $user = Auth::user();
+
+        if($organization->users->contains($user)){
+            return back()->withErrors([
+                "Vous faites déjà parti de l'organisation $organization->name"
+            ]);
+        }
+
+        $organization->users()->attach($user->id);
+
+        return redirect()->route('home', $organization->id)->with([
+            "success" => "Vous avez été ajouté à l'organisation $organization->name"
         ]);
     }
 }
