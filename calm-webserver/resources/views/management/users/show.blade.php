@@ -88,13 +88,8 @@
 
                 <input type="hidden" name="id" value="">
 
-                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
-                    <strong>DÉFINITIVEMENT</strong> supprimer la réservation de cet utilisateur ! <br>
-                    Cette action est <strong>IRRÉVERSIBLE</strong> ! La réservation sera définitivement supprimée !
-                    <br>
-                    <strong>
-                        Êtes-vous sûr de vouloir continuer ?
-                    </strong>
+                <p class="text-gray-500">
+                    Êtes-vous sûr de vouloir supprimer la réservation de cet utilisateur ?
                 </p>
             </form>
         </x-slot>

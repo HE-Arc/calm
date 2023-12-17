@@ -11,7 +11,7 @@
     <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Notre équipe</h1>
     <ul class="text-center">
         <li class="p-1">Nima Dehkli</li>
-        <li class="p-1">Lucas Gostelli</li>
+        <li class="p-1">Lucas Gosteli</li>
         <li class="p-1">Miranda Fleury</li>
     </ul>
 

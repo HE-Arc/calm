@@ -18,8 +18,7 @@ class LaundryController extends Controller
             return back()->withErrors(["Cette organisation n'existe pas"])->withInput();
         }
 
-        $laundries = $organization->laundries;
-        $laundries = Paginate::paginate(collect($laundries)->sortBy('name')->reverse()->toArray(), 5);
+        $laundries = Paginate::paginate($organization->laundries);
 
         return view(
             'management.laundries.index',
@@ -28,8 +27,9 @@ class LaundryController extends Controller
                 "pageTitle" => "Laundries Management",
                 "pageDescription" => "Gérez vos buandries",
                 "pageParent" => ["management.organizations.index" => []],
+                "laundries" => $laundries,
+                "org" => $organization
             ],
-            compact('laundries','orgId')
         );
     }
 
@@ -37,11 +37,11 @@ class LaundryController extends Controller
     {
         $organization = Auth::user()->organizations->find($orgId);
         if (empty($organization)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
         $laundry = $organization->laundries->find($id);
         if (empty($laundry)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
         $machines = $laundry->machines;
 
@@ -86,11 +86,13 @@ class LaundryController extends Controller
         $organization = $organizations->find($orgId);
 
         if ($organization == null) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
-        if (Laundry::where('name', $request->name)->exists()) {
-            return back()->withErrors(["Laundry already exists."])->withInput();
+        if ($organization->laundries->where('name', $request->name)->isNotEmpty()) {
+            return back()
+                ->withErrors(["Une buanderie avec le même nom existe déjà dans cette organisation"])
+                ->withInput();
         }
 
 
@@ -101,7 +103,7 @@ class LaundryController extends Controller
         ]);
 
         return redirect()->route('management.laundries.index',$orgId)->with([
-            'success' => 'Buandrie crée avec succes',
+            'success' => 'Buanderie créée avec succès',
         ]);
     }
 
@@ -109,11 +111,11 @@ class LaundryController extends Controller
     {
         $organization = Auth::user()->organizations->find($orgId);
         if (empty($organization)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
         $laundry = $organization->laundries->find($id);
         if (empty($laundry)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
         $machines = $laundry->machines;
 
@@ -138,7 +140,7 @@ class LaundryController extends Controller
 
         $organization = Auth::user()->organizations->find($orgId);
         if (!$organization->laundries->contains($id)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
         $laundry = Laundry::find($id);
@@ -149,26 +151,26 @@ class LaundryController extends Controller
         ]);
 
         return redirect()->route('management.laundries.show',[$orgId, $id])->with([
-            'success' => 'Buandrie mise à jour avec succes',
+            'success' => 'Buanderie mise à jour avec succès',
         ]);
     }
 
     public function destroy(string $orgId, string $id)
     {
         if (!Auth::user()->organizations->contains($orgId)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $organization = Auth::user()->organizations->find($orgId);
 
         if (!$organization->laundries->contains($id)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
         Laundry::find($id)->delete();
 
         return redirect()->route('management.laundries.index',$orgId)->with([
-            'success' => 'Buandrie supprimé avec succes',
+            'success' => 'Buanderie supprimée avec succès',
         ]);
     }
 }

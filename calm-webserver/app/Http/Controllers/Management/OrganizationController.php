@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\management;
+namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Laundry;
@@ -61,13 +61,8 @@ class OrganizationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:organizations,name',
         ]);
-
-
-        if (Organization::where('name', $request->name)->exists()) {
-            return back()->withErrors(["Organization already exists."])->withInput();
-        }
 
         Organization::create([
             'name' => $request->name,
@@ -81,7 +76,7 @@ class OrganizationController extends Controller
     public function edit(string $id)
     {
         if (!Auth::user()->organizations->contains($id)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $organization = Organization::find($id);
@@ -99,7 +94,7 @@ class OrganizationController extends Controller
     public function update(Request $request, string $id)
     {
         if (!Auth::user()->organizations->contains($id)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $request->validate([
@@ -113,20 +108,20 @@ class OrganizationController extends Controller
 
 
         return redirect()->route('management.organizations.show', $id)->with([
-            'success' => 'Organisation mise à jour avec succes',
+            'success' => 'Organisation mise à jour avec succès',
         ]);
     }
 
     public function destroy(string $id)
     {
         if (!Auth::user()->organizations->contains($id)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         Organization::find($id)->delete();
 
         return redirect()->route('management.organizations.index')->with([
-            'success' => 'Organisation supprimé avec succes',
+            'success' => 'Organisation supprimée avec succès',
         ]);
     }
 

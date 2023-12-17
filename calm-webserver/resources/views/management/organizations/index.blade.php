@@ -16,13 +16,13 @@
                             Nom
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Geston des buanderies
+                            Gestion des buanderies
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Gestion des utilisateurs
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Gestoin des invitations
+                            Gestion des invitations
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Modifier
@@ -40,7 +40,7 @@
                     @if ($organizations->isEmpty())
                         <tr>
                             <td colspan="5" class="px-6 lg:py-4 text-center font-medium text-gray-900">
-                                Aucune Organisation n'a été créée
+                                Aucune organisation n'a été créée
                             </td>
                         </tr>
                     @else
@@ -120,10 +120,15 @@
 
                 <input type="hidden" name="id" value="">
 
-                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
-                    <strong>DÉFINITIVEMENT</strong> supprimer cet organisation ! <br>
-                    Cette action est <strong>IRRÉVERSIBLE</strong> ! L'organisation sera définitivement supprimée !
+                <p class="text-gray-500">Vous êtes sur le point de définitivement supprimer cette organisation ! <br>
+
+                    Cette action est <strong>irréversible</strong> ! <br>
+
+                    Tous les utilisateurs vont être retirés de l'organisation, les buanderies, les machines et
+                    toutes les réservations seront supprimées.
+
                     <br>
+
                     <strong>
                         Êtes-vous sûr de vouloir continuer ?
                     </strong>
