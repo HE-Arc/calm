@@ -135,14 +135,20 @@
                 @slot('icon', 'info')
                 @slot('background', 'error')
                 <x-slot name="header">
-                    <span class="font-medium">Veillez à ce que ces exigences soient respectées :</span>
+                    <span class="font-medium">Une erreur est survenue : </span>
                 </x-slot>
                 <x-slot name="message">
-                    <ul class="mt-1.5 ml-4 list-disc list-inside">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                    @if($errors->count() == 1)
+                        <div class="mt-1.5">
+                            {{$errors->all()[0]}}
+                        </div>
+                    @else
+                        <ul class="mt-1.5 ml-4 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 </x-slot>
             </x-toast>
         @elseif (session('success'))
@@ -151,12 +157,12 @@
                 @slot('icon', 'done')
                 @slot('background', 'success')
                 <x-slot name="header">
-                    <span class="font-medium"> Les opérations suivantes ce sont effectuées avec success:</span>
+                    <span class="font-medium"></span>
                 </x-slot>
                 <x-slot name="message">
-                    <ul class="mt-1.5 ml-4 list-disc list-inside">
-                        <li>{{ session('success') }}</li>
-                    </ul>
+                    <div class="mt-1.5">
+                        {{ session('success') }}
+                    </div>
                 </x-slot>
             </x-toast>
         @endif
