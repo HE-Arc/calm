@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Management\InvitationController;
+use App\Models\Invitation;
+use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,6 +67,23 @@ class LoginController extends Controller
         User::create($userData);
 
         $id = User::where('email', $request->email)->first()->id;
+
+        // Check if join code exists
+        if ($request->has("code")) {
+            if(!Invitation::where('code', $request['code'])->exists())
+            {
+                return back()->withErrors([
+                    "Le code n'existe pas ou n'est pas valide !"
+                ])->withInput([
+                    'code' => $request['code'],
+                ]);
+            }
+
+            $invitation = Invitation::where('code', $request['code'])->firstOrFail();
+            $organization = Organization::find($invitation->organization_id);
+            $organization->users()->attach($id);
+        }
+
         Auth::loginUsingId($id);
 
         return redirect()->route('home')->with([

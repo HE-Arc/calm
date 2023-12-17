@@ -59,7 +59,7 @@ Route::put("management/invite/{id}/enable", [InvitationController::class, 'enabl
 Route::put("management/invite/{id}/disable", [InvitationController::class, 'disable'])->middleware('auth')->can('admin')->name('invitation.disable');
 Route::post("management/{org}/invite", [InvitationController::class, 'create'])->middleware('auth')->can('admin')->name('invitation.create');
 Route::get("organisation/join", [InvitationController::class, 'joinView'])->middleware('auth')->name('invitation.joinView');
-Route::post("organisation/join", [InvitationController::class, 'join'])->middleware('auth')->name('invitation.join');
+Route::post("organisation/join", [InvitationController::class, 'processJoin'])->middleware('auth')->name('invitation.join');
 
 // LAUNDRIES MANAGEMENT
 Route::get("management/{orgId}/laundries", [\App\Http\Controllers\Management\LaundryController::class, 'index'])->middleware('auth')->can('admin')->name('management.laundries.index');

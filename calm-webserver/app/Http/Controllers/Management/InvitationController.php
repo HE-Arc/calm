@@ -98,7 +98,7 @@ class InvitationController extends Controller
         ]);
     }
 
-    public function join(Request $request)
+    public function processJoin(Request $request)
     {
         $request->validate([
             'code' => ['required', 'alpha']
