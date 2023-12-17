@@ -18,8 +18,7 @@ class LaundryController extends Controller
             return back()->withErrors(["Cette organisation n'existe pas"])->withInput();
         }
 
-        $laundries = $organization->laundries;
-        $laundries = Paginate::paginate(collect($laundries)->sortBy('name')->reverse()->toArray(), 5);
+        $laundries = Paginate::paginate($organization->laundries);
 
         return view(
             'management.laundries.index',
@@ -28,8 +27,9 @@ class LaundryController extends Controller
                 "pageTitle" => "Laundries Management",
                 "pageDescription" => "Gérez vos buandries",
                 "pageParent" => ["management.organizations.index" => []],
+                "laundries" => $laundries,
+                "org" => $organization
             ],
-            compact('laundries','orgId')
         );
     }
 
@@ -89,7 +89,7 @@ class LaundryController extends Controller
             return back()->withErrors(["Permission denied for this organization."])->withInput();
         }
 
-        if (Laundry::where('name', $request->name)->exists()) {
+        if ($organization->laundries->where('name', $request->name)->isNotEmpty()) {
             return back()->withErrors(["Laundry already exists."])->withInput();
         }
 
