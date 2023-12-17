@@ -108,7 +108,7 @@ import 'flowbite';
 
     function deleteOrganization(button, form)
     {
-        form.action = "/management/" + button.dataset.organizationId;
+        form.action = "/management/organizations/" + button.dataset.organizationId;
     }
 
     function deleteLaundry(button, form)
