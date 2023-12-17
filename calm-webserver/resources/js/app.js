@@ -121,6 +121,11 @@ import 'flowbite';
         form.action = "/management/" + button.dataset.organizationId + "/laundries/" + button.dataset.laundryId + "/machines/" + button.dataset.machineId;
     }
 
+    function exitOrganization(button, form)
+    {
+        form.action = "/user/organization/" + button.dataset.organizationId;
+    }
+
     /**
      * Toggle the display of invitation lines based on the checkbox state.
      */
@@ -220,6 +225,12 @@ import 'flowbite';
             });
         })
 
+        const exitOrganizationButtons = getElements(".btn-exit-organization");
+        exitOrganizationButtons.forEach((button) => {
+           addEvent(button, "click", () => {
+               exitOrganization(button, getElement("#quit-organization-form"))
+           });
+        });
 
         const toggleInvitationShow = getElement("#showOnlyActivateInvitations");
         addEvent(toggleInvitationShow, "change", toggleInvitaionDisplay);

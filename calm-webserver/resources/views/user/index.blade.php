@@ -2,9 +2,7 @@
 @section('content')
     <article class="container flex flex-col items-gap-4 w-full mx-auto rounded-sm md:w-1/2">
 
-        <div>
-            <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Compte</h1>
-        </div>
+        <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Compte</h1>
 
         <div class="flex flex-row items-end mb-5">
             <div class="flex-grow w-full pr-4">
@@ -50,7 +48,58 @@
                         data-modal-show="user-account-edit-password-modal">Modifier</button>
             </div>
         </div>
-        <button class="btn btn-less-forte w-full mt-40 md:mt-60"
+
+        <h1 class="font-title text-4xl text-center my-3 text-seaNymph mt-10">Organisations</h1>
+        <article class="overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="table-auto w-full">
+                <caption class="p-5 text-justify dark:text-white dark:bg-gray-800">
+                    Voici la <strong class="text-seaNymph">liste des organisations</strong> auxquelles vous appartenez.
+                    Ici, vous avez la possiblité de quitter une organisation.
+                </caption>
+                <thead>
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        Nom de l'organisation
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Quitter
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @if ($organizations->isEmpty())
+                    <tr>
+                        <td colspan="5" class="px-6 lg:py-4 text-center font-medium text-gray-900">
+                            Vous ne faites parti d'aucune organisation. <br>
+                            <a class="btn btn-forte my-5 inline-block" href="{{ route('invitation.joinView')}}">Rejoindre une organisation</a>
+                        </td>
+                    </tr>
+                @else
+                    @foreach ($organizations as $organization)
+                        <tr>
+                            <td data-title="Nom" class="px-6 lg:py-4 text-center font-medium text-gray-900">
+                                {{ $organization->name }}
+                            </td>
+                            <td data-title="Quitter" class="px-6 py-4 text-center">
+                                <button type="submit" class="btn btn-transparent btn-exit-organization"
+                                        data-organization-id="{{ $organization->id }}"
+                                        data-modal-target="quit-organization-modal"
+                                        data-modal-show="quit-organization-modal">
+                                    <span class="icons icons-forte">logout</span>
+                                </button>
+                            </td>
+                        </tr>
+                    @endforeach
+                @endif
+                </tbody>
+            </table>
+
+            <div class="flex justify-center p-2">
+                {{ $organizations->links() }}
+            </div>
+        </article>
+
+        <button class="btn btn-less-forte w-full mt-20"
                 data-modal-target="user-account-delete-confirm-modal"
                 data-modal-show="user-account-delete-confirm-modal">Supprimer le compte</button>
     </article>
@@ -222,6 +271,34 @@
                     Cette action est <strong>IRRÉVERSIBLE</strong> ! Toutes vos réservations seront définitivement supprimées !
                     Vous ne pourrez plus rejoindre votre organisation à moins d'y être à nouveau invité !
                     <br>
+                    <br>
+                    <strong>
+                        Êtes-vous sûr de vouloir continuer ?
+                    </strong>
+                </p>
+            </form>
+        </x-slot>
+    </x-modal>
+
+    <x-modal>
+        @slot('id', 'quit-organization-modal')
+        @slot('form', 'quit-organization-form')
+        @slot('icon', 'warning')
+        @slot('confirm', 'Quitter')
+        @slot('close', 'Annuler')
+        @slot('closable', true)
+        @slot('header', 'Quitter l\'organisation')
+        <x-slot name="body">
+            <form id="quit-organization-form" action="#" method="post">
+                @csrf
+                @method('DELETE')
+
+                <input type="hidden" name="id" value="">
+
+                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
+                    <strong>DÉFINITIVEMENT</strong> quitter cette organisation ! <br>
+                    Cette action est <strong>IRRÉVERSIBLE</strong> ! Vous ne ferez plus parti de l'organisation, à
+                    moins de la rejoindre à nouveau !
                     <br>
                     <strong>
                         Êtes-vous sûr de vouloir continuer ?
