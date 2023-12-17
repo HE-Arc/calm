@@ -69,7 +69,7 @@ class LoginController extends Controller
         $id = User::where('email', $request->email)->first()->id;
 
         // Check if join code exists
-        if ($request->has("code")) {
+        if ($request->has("code") && !empty($request["code"])) {
             if(!Invitation::where('code', $request['code'])->exists())
             {
                 return back()->withErrors([
