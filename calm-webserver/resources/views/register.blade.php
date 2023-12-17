@@ -84,7 +84,7 @@
                             </svg>
                         </div>
 
-                        <input id="" name="" type="text" class="block w-full pl-10 input input-sobre">
+                        <input id="code" value="{{old('code')}}" name="code" type="text" class="block w-full pl-10 input input-sobre">
                     </div>
                 </div>
 
