@@ -96,8 +96,8 @@
                                                     action="{{ route('invitation.enable', ['id' => $invitation->id]) }}">
                                                     @csrf
                                                     @method('PUT')
-                                                    <button type="submit" class="btn btn-sobre flex w-full justify-center">
-                                                        Activer
+                                                    <button type="submit" class="btn btn-transparent flex w-full justify-center">
+                                                        <span class="icons icons-sobre"> replay </span>
                                                     </button>
                                                 </form>
                                             @else
@@ -109,7 +109,7 @@
                                                         @if ($invitation->userCount() == 0)
                                                             <span class="icons icons-forte"> delete </span>
                                                         @else
-                                                        <span class="icons icons-sobre"> visibility_off </span>
+                                                        <span class="icons icons-sobre"> block </span>
                                                         @endif
                                                     </button>
                                                 </form>
