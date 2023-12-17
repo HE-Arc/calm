@@ -86,4 +86,13 @@ class InvitationController extends Controller
             "success" => "Nouvelle invitation créée avec le code $invitation->code"
         ]);
     }
+
+    public function join()
+    {
+        return view('management.invitation.join', [
+            "page" => "jointOrganization",
+            "pageTitle" => "Invitations",
+            "pageDescription" => "Rejoindre une organisation",
+        ]);
+    }
 }

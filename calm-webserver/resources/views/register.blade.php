@@ -76,6 +76,19 @@
                 </div>
 
                 <div>
+                    <label for="passwordConfirmation">Code pour rejoindre une organisation (facultatif)</label>
+                    <div class="relative mt-2">
+                        <div class="flowbite-icon-div">
+                            <svg class="flowbite-icon-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+                                <path d="M17 16h-1V2a1 1 0 1 0 0-2H2a1 1 0 0 0 0 2v14H1a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM5 4a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4Zm0 5V8a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1Zm6 7H7v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3Zm2-7a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1Zm0-4a1 1 0 0 1-1 1h-1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h1a1 1 0 0 1 1 1v1Z"/>
+                            </svg>
+                        </div>
+
+                        <input id="" name="" type="text" class="block w-full pl-10 input input-sobre">
+                    </div>
+                </div>
+
+                <div>
                     <button type="submit" class="btn btn-sobre flex justify-center w-full ">Inscription</button>
                 </div>
             </form>

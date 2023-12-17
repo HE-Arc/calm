@@ -150,6 +150,28 @@ import 'flowbite';
     }
 
     /**
+     * Copies the text content of a specified element to the clipboard and provides visual feedback.
+     */
+    function copyToClipboard()
+    {
+        let element = this.parentElement.querySelector(".code-to-copy");
+        let textToCopy = element.innerText;
+
+        navigator.clipboard.writeText(textToCopy)
+            .then(() => {
+                let initColor = this.style.color;
+                this.style.color = "#8DAAA6";
+
+                setTimeout(() => {
+                    this.style.color = initColor;
+                }, 3000);
+            })
+            .catch(err => {
+                console.error('Unable to copy text', err);
+            });
+    }
+
+    /**
      * Main program
      */
     (function mainProgram() {
@@ -201,5 +223,10 @@ import 'flowbite';
 
         const toggleInvitationShow = getElement("#showOnlyActivateInvitations");
         addEvent(toggleInvitationShow, "change", toggleInvitaionDisplay);
+
+        const copyToClipboardIcon = getElements(".copy-to-clipboard");
+        copyToClipboardIcon.forEach((button) => {
+            addEvent(button, "click", copyToClipboard);
+        });
     }()); //mainProgram
 }()); //Main IIFE
