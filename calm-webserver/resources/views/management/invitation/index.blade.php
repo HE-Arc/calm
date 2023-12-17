@@ -44,7 +44,7 @@
                                     Code
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Crée par
+                                    Créé par
                                 </th>
                                 <th scope="col" class="px-6 py-3">
                                     Nombre d'inscriptions via ce code
