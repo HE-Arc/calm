@@ -6,8 +6,8 @@
         <table class="table-auto w-full">
             <caption class="p-5 text-justify dark:text-white dark:bg-gray-800">
                 <div class="mx-auto mt-2 text-right">
-                    <a href="{{ route('management.machines.create', [$orgId, $laundryId]) }}" class="btn btn-forte">Créer une
-                        nouvelle Machine</a>
+                    <a href="{{ route('management.machines.create', [$organization->id, $laundry->id]) }}" class="btn btn-forte">Créer une
+                        nouvelle machine</a>
                 </div>
             </caption>
             <thead>
@@ -35,7 +35,7 @@
             <tbody>
                 @if ($machines->isEmpty())
                     <tr>
-                        <td colspan="5" class="px-6 lg:py-4 text-center font-medium text-gray-900">Aucune buanderie n'a
+                        <td colspan="5" class="px-6 lg:py-4 text-center font-medium text-gray-900">Aucune machine n'a
                             été créée</td>
                     </tr>
                 @else

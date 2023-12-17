@@ -76,7 +76,7 @@ class OrganizationController extends Controller
     public function edit(string $id)
     {
         if (!Auth::user()->organizations->contains($id)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $organization = Organization::find($id);
@@ -94,7 +94,7 @@ class OrganizationController extends Controller
     public function update(Request $request, string $id)
     {
         if (!Auth::user()->organizations->contains($id)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $request->validate([
@@ -108,20 +108,20 @@ class OrganizationController extends Controller
 
 
         return redirect()->route('management.organizations.show', $id)->with([
-            'success' => 'Organisation mise à jour avec succes',
+            'success' => 'Organisation mise à jour avec succès',
         ]);
     }
 
     public function destroy(string $id)
     {
         if (!Auth::user()->organizations->contains($id)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         Organization::find($id)->delete();
 
         return redirect()->route('management.organizations.index')->with([
-            'success' => 'Organisation supprimé avec succes',
+            'success' => 'Organisation supprimée avec succès',
         ]);
     }
 

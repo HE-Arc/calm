@@ -16,13 +16,13 @@
                             Nom
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Geston des buanderies
+                            Gestion des buanderies
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Gestion des utilisateurs
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Gestoin des invitations
+                            Gestion des invitations
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Modifier
@@ -40,7 +40,7 @@
                     @if ($organizations->isEmpty())
                         <tr>
                             <td colspan="5" class="px-6 lg:py-4 text-center font-medium text-gray-900">
-                                Aucune Organisation n'a été créée
+                                Aucune organisation n'a été créée
                             </td>
                         </tr>
                     @else

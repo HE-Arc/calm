@@ -18,13 +18,13 @@ class MachineController extends Controller
         $organization = Auth::user()->organizations->find($orgId);
 
         if (empty($organization)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $laundry = Laundry::with('machines')->find($laundryId);
 
         if (empty($laundry)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
 
@@ -46,17 +46,17 @@ class MachineController extends Controller
     {
         $organization = Auth::user()->organizations->find($orgId);
         if (empty($organization)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $laundry = Laundry::with('machines')->find($laundryId);
         if (empty($laundry)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
         $machine = $laundry->machines->find($id);
         if (empty($machine)) {
-            return back()->withErrors(["This Machine does not exist for this organization."])->withInput();
+            return back()->withErrors(["La machine n'existe pas"])->withInput();
         }
 
         $machine->typeName = $machine->typeName();
@@ -101,13 +101,15 @@ class MachineController extends Controller
         $organization = $organizations->find($orgId);
 
         if ($organization == null) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $laundry = $organization->laundries->find($laundryId);
 
         if ($laundry == null) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
+        }
+
         if($laundry->machines->where('name', $request['name'])->count() != 0){
             return back()->withErrors("Une machine avec le nom ${request['name']} existe déjà dans la buanderie");
         }
@@ -120,7 +122,7 @@ class MachineController extends Controller
         ]);
 
         return redirect()->route('management.machines.index', [$orgId, $laundryId])->with([
-            'success' => 'Machine crée avec succes',
+            'success' => 'Machine créée avec succès',
         ]);
     }
 
@@ -129,18 +131,18 @@ class MachineController extends Controller
     {
         $organization = Auth::user()->organizations->find($orgId);
         if (empty($organization)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $laundries = $organization->laundries;
         $laundry = $laundries->find($laundryId);
         if (empty($laundry)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
         $machine = $laundry->machines->find($id);
         if (empty($machine)) {
-            return back()->withErrors(["This Machine does not exist for this organization."])->withInput();
+            return back()->withErrors(["La machine n'existe pas"])->withInput();
         }
 
         $machine->typeName = $machine->typeName();
@@ -169,7 +171,6 @@ class MachineController extends Controller
 
     public function update(Request $request, string $orgId, string $laundryId, string $id)
     {
-
         $request->validate([
             'name' => 'required',
             'description' => 'required',
@@ -179,18 +180,18 @@ class MachineController extends Controller
 
         $organization = Auth::user()->organizations->find($orgId);
         if (!$organization->laundries->contains($laundryId)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie ou l'organisation n'existe pas"])->withInput();
         }
 
         $laundry = Laundry::find($laundryId);
         if (empty($laundry)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
         $machine = $laundry->machines->find($id);
 
         if (empty($machine)) {
-            return back()->withErrors(["This Machine does not exist for this organization."])->withInput();
+            return back()->withErrors(["La machine n'existe pas"])->withInput();
         }
 
         if ($request->laundry_id != $laundryId) {
@@ -202,7 +203,7 @@ class MachineController extends Controller
             ]);
 
             return redirect()->route('management.machines.index',[$orgId, $laundryId])->with([
-                'success' => 'Machine a été déplacer et mise à jour avec succes',
+                'success' => 'Machine déplacée et mise à jour avec succès',
             ]);
         } else {
             $machine->update([
@@ -211,26 +212,26 @@ class MachineController extends Controller
                 'type' => $request->type,
             ]);
             return redirect()->route('management.machines.show', [$orgId, $laundryId, $id])->with([
-                'success' => 'Machine mise à jour avec succes',
+                'success' => 'Machine mise à jour avec succès',
             ]);
         }
     }
     public function destroy(string $orgId, string $laundryId, string $id)
     {
         if (!Auth::user()->organizations->contains($orgId)) {
-            return back()->withErrors(["Permission denied for this organization."])->withInput();
+            return back()->withErrors(["L'organisation n'existe pas"])->withInput();
         }
 
         $organization = Auth::user()->organizations->find($orgId);
 
         if (!$organization->laundries->contains($laundryId)) {
-            return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+            return back()->withErrors(["La buanderie n'existe pas"])->withInput();
         }
 
         Machine::find($id)->delete();
 
         return redirect()->route('management.machines.index', [$orgId, $laundryId])->with([
-            'success' => 'Machine supprimé avec succes',
+            'success' => 'Machine supprimée avec succès',
         ]);
     }
 }
