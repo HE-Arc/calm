@@ -101,10 +101,9 @@
 
                 <input type="hidden" name="id" value="">
 
-                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
-                    <strong>DÉFINITIVEMENT</strong> supprimer cet machine ! <br>
-                    Cette action est <strong>IRRÉVERSIBLE</strong> ! L'machine sera définitivement supprimée !
+                <p class="text-gray-500">Vous êtes sur le point de supprimer cette machine.
                     <br>
+
                     <strong>
                         Êtes-vous sûr de vouloir continuer ?
                     </strong>

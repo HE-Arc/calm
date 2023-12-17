@@ -106,10 +106,14 @@
 
                 <input type="hidden" name="id" value="">
 
-                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
-                    <strong>DÉFINITIVEMENT</strong> supprimer cet buanderie ! <br>
-                    Cette action est <strong>IRRÉVERSIBLE</strong> ! La buanderie sera définitivement supprimée !
+                <p class="text-gray-500">Vous êtes sur le point de
+                    définitement supprimer cette buanderie ! <br>
+
+                    Cette action est <strong>irréversible</strong>. Toutes les machines et les réservations de
+                    cette buanderie seront définitivement supprimées.
+
                     <br>
+
                     <strong>
                         Êtes-vous sûr de vouloir continuer ?
                     </strong>

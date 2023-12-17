@@ -120,10 +120,15 @@
 
                 <input type="hidden" name="id" value="">
 
-                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
-                    <strong>DÉFINITIVEMENT</strong> supprimer cet organisation ! <br>
-                    Cette action est <strong>IRRÉVERSIBLE</strong> ! L'organisation sera définitivement supprimée !
+                <p class="text-gray-500">Vous êtes sur le point de définitivement supprimer cette organisation ! <br>
+
+                    Cette action est <strong>irréversible</strong> ! <br>
+
+                    Tous les utilisateurs vont être retirés de l'organisation, les buanderies, les machines et
+                    toutes les réservations seront supprimées.
+
                     <br>
+
                     <strong>
                         Êtes-vous sûr de vouloir continuer ?
                     </strong>
