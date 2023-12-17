@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Invitation;
 use App\Models\Organization;
 use App\Utils\Paginate;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -101,29 +102,39 @@ class InvitationController extends Controller
     public function processJoin(Request $request)
     {
         $request->validate([
-            'code' => ['required', 'alpha']
+            'code' => ['required', 'alpha_num:ascii']
         ]);
 
-        if(!Invitation::where('code', $request['code'])->exists())
+        $user = Auth::user();
+
+        if($user->is_admin){
+            return redirect()
+                ->route('home')
+                ->withErrors([
+                    "Les administrateurs ne sont pas autorisé à rejoindre une organisation avec un code d'invitation"
+                ]);
+        }
+
+        $invitation = Invitation::get_from_code($request["code"]);
+
+        if(is_null($invitation))
         {
             return back()->withErrors([
-                "Le code n'existe pas ou n'est pas valide !"
+                "Le code n'existe pas ou n'est plus valide !"
             ])->withInput([
                 'code' => $request['code'],
             ]);
         }
 
-        $invitation = Invitation::where('code', $request['code'])->firstOrFail();
         $organization = Organization::find($invitation->organization_id);
-        $user = Auth::user();
 
         if($organization->users->contains($user)){
             return back()->withErrors([
-                "Vous faites déjà parti de l'organisation $organization->name"
+                "Vous faites déjà partie de l'organisation $organization->name"
             ]);
         }
 
-        $organization->users()->attach($user->id);
+        $organization->users()->attach($user->id, ["invitation_id" => $invitation->id, "joined_at" => Carbon::now()]);
 
         return redirect()->route('home', $organization->id)->with([
             "success" => "Vous avez été ajouté à l'organisation $organization->name"

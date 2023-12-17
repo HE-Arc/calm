@@ -41,4 +41,10 @@ class Invitation extends Model
         return $this->belongsTo(User::class);
     }
 
+    public static function get_from_code(string $code) : ?Invitation {
+        $invitation = Invitation::where('code', $code)->first();
+
+        return (!is_null($invitation) and $invitation->is_active) ? $invitation : null;
+    }
+
 }

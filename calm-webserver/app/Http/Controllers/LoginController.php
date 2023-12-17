@@ -7,6 +7,7 @@ use App\Models\Invitation;
 use App\Models\Organization;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -48,7 +49,7 @@ class LoginController extends Controller
             "name" => "required|ascii|min:2|max:32",
             "email" => "required|email:rfc,dns|unique:users,email",
             "password" => "required|ascii|min:8|max:32|same:passwordConfirmation",
-            "passwordConfirmation" => "required"
+            "passwordConfirmation" => "required",
         ]);
 
         $userData = [
@@ -56,39 +57,49 @@ class LoginController extends Controller
             "email" => $request->email,
             "password" => Hash::make($request->password),
             "is_activated" => false,
-            "is_admin" => false,
+            "is_admin" => $request->has("isAdmin"),
         ];
 
-        // Check if admin field is check
-        if ($request->has('isAdmin')) {
-            $userData['is_admin'] = true;
-        }
-
-        User::create($userData);
-
-        $id = User::where('email', $request->email)->first()->id;
 
         // Check if join code exists
         if ($request->has("code") && !empty($request["code"])) {
-            if(!Invitation::where('code', $request['code'])->exists())
-            {
-                return back()->withErrors([
-                    "Le code n'existe pas ou n'est pas valide !"
-                ])->withInput([
-                    'code' => $request['code'],
-                ]);
+            if($userData["is_admin"]){
+                return back()
+                    ->withErrors([
+                        "Les administrateurs ne sont pas autorisé à rejoindre une organisation avec un code d'invitation"
+                    ])->withInput();
             }
 
-            $invitation = Invitation::where('code', $request['code'])->firstOrFail();
+            $invitation = Invitation::get_from_code($request["code"]);
+
+            if(is_null($invitation))
+            {
+                return back()->withErrors([
+                    "Le code n'existe pas ou n'est plus valide !"
+                ])->withInput();
+            }
+
+            User::create($userData);
+            $user = User::where('email', $request->email)->first();
+
             $organization = Organization::find($invitation->organization_id);
-            $organization->users()->attach($id);
+            $organization->users()->attach($user->id, ["invitation_id" => $invitation->id, "joined_at" => Carbon::now()]);
+
+            Auth::loginUsingId($user->id);
+
+            return redirect()->route('home')->with([
+                "success" => "Votre compte a été créé et vous avez été ajouté à l'organisation $organization->name"
+            ]);
+        } else {
+            User::create($userData);
+            $user = User::where('email', $request->email)->first();
+
+            Auth::loginUsingId($user->id);
+
+            return redirect()->route('home')->with([
+                "success" => "Votre compte a été créé"
+            ]);
         }
-
-        Auth::loginUsingId($id);
-
-        return redirect()->route('home')->with([
-            "success" => "Votre compte a été créé"
-        ]);
     }
 
     public function logout(Request $request){

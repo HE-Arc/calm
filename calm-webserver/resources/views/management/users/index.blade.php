@@ -104,12 +104,12 @@
 
                 <input type="hidden" name="id" value="">
 
-                <p class="text-gray-500"><strong>!!! ATTENTION !!! </strong> Vous êtes sur le point de
-                    <strong>DÉFINITIVEMENT</strong> supprimer ce compte utilisateur ! <br>
-                    Cette action est <strong>IRRÉVERSIBLE</strong> ! Toutes les informations relatives au compte ainsi
-                    que toutes les réservations seront définitivement supprimées !
-                    L'utilisateur ne pourra plus rejoindre votre organisation à moins d'y être à nouveau invité !
-                    <br>
+                <p class="text-gray-500">Vous êtes sur le point d'expulser cet utilisateur de votre organisation.
+
+                    Il ne pourra plus revenir à moins que vous l'invitiez à nouveau ou qu'il possède
+                    un code d'invitation valide.
+
+
                     <br>
                     <strong>
                         Êtes-vous sûr de vouloir continuer ?

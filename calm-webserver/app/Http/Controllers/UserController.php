@@ -83,6 +83,12 @@ class UserController extends Controller
             "current_password" => "required|current_password"
         ]);
 
+        if($user->is_admin and $user->organizations->count() != 0){
+            return back()->withErrors(["Vous ne pouvez pas supprimer votre compte
+            car vous faites encore partie d'une ou plusieurs organisations. Veuillez
+            d'abord quitter ou supprimer vos organisations et réessayer."]);
+        }
+
         $user->delete();
 
         return redirect()->route('home')->with([
@@ -92,13 +98,18 @@ class UserController extends Controller
 
     public function exitOrganization($orgId)
     {
-        $organization = Organization::find($orgId);
-        print_r($organization);
+        $organization = Organization::findOrFail($orgId);
 
         if(!$organization->users->contains(Auth::user()))
         {
             return back()->withErrors([
-                "Vous ne faites pas parti de l'organisation $organization->name"
+                "L'organisation n'existe pas"
+            ]);
+        }
+
+        if($organization->adminUsers()->count() == 1 and Auth::user()->is_admin){
+            return back()->withErrors([
+                "Vous ne pouvez pas quitter l'organisation car vous êtes son seul administrateur"
             ]);
         }
 
