@@ -28,14 +28,7 @@ class MachineController extends Controller
         }
 
 
-        $machines = $laundry->machines;
-
-        $machines = $machines->map(function ($machine) {
-            $machine->typeName = $machine->typeName();
-            return $machine;
-        });
-
-        $machines = Paginate::paginate(collect($machines)->sortBy('name')->reverse()->toArray(), 5);
+        $machines = Paginate::paginate($laundry->machines);
 
         return view(
             'management.machines.index',
@@ -45,7 +38,7 @@ class MachineController extends Controller
                 "pageDescription" => "Gérez vos machines",
                 "pageParent" => ["management.laundries.index" => ["orgId" => $orgId]],
             ],
-            compact('machines', 'orgId', 'laundryId')
+            compact('machines', 'organization', 'laundry')
         );
     }
 
@@ -115,6 +108,8 @@ class MachineController extends Controller
 
         if ($laundry == null) {
             return back()->withErrors(["This Laundry does not exist for this organization."])->withInput();
+        if($laundry->machines->where('name', $request['name'])->count() != 0){
+            return back()->withErrors("Une machine avec le nom ${request['name']} existe déjà dans la buanderie");
         }
 
         $laundry->machines()->create([

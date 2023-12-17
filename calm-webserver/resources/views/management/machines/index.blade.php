@@ -42,24 +42,22 @@
                     @foreach ($machines as $machine)
                         <tr>
                             <td data-title="Nom" class="px-6 lg:py-4 text-center font-medium text-gray-900">
-                                {{ $machine['name'] }}
+                                {{ $machine->name }}
                             </td>
                             <td data-title="Description" class="px-6 py-4 text-center">
-                                {{ $machine['description'] }}
+                                {{ $machine->description }}
                             </td>
                             <td data-title="Type" class="px-6 py-4 text-center">
-                                <span class="icons icons-less-forte">
-                                    {{ $machine['type'] }}
-                                </span>
+                                    {{ $machine->typeName() }}
                             </td>
                             <td data-title="Modifier" class="px-6 py-4 text-center">
-                                <a href="{{ route('management.machines.edit', [$orgId, $laundryId, $machine['id']]) }}"
+                                <a href="{{ route('management.machines.edit', [$organization->id, $laundry->id, $machine->id]) }}"
                                     class="btn btn-transparent flex justify-center">
                                     <span class ="icons icons-sobre">edit_note</span>
                                 </a>
                             </td>
                             <td data-title="Détails" class="px-6 py-4 text-center">
-                                <a href="{{ route('management.machines.show', [$orgId, $laundryId, $machine['id']]) }}"
+                                <a href="{{ route('management.machines.show', [$organization->id, $laundry->id, $machine->id]) }}"
                                     class="btn btn-transparent flex justify-center">
                                     <span class ="icons icons-sobre">page_info</span>
                                 </a>
@@ -71,9 +69,9 @@
                                     class="btn btn-transparent flex w-full justify-center btn-admin-delete-machine"
                                     data-modal-target="delete-machine-modal"
                                     data-modal-show="delete-machine-modal"
-                                    data-organization-id="{{ $orgId }}"
-                                    data-laundry-id="{{ $laundryId }}"
-                                    data-machine-id="{{ $machine['id'] }}">
+                                    data-organization-id="{{ $organization->id }}"
+                                    data-laundry-id="{{ $laundry->id }}"
+                                    data-machine-id="{{ $machine->id }}">
                                     <span class ="icons icons-forte">delete</span>
                                 </button>
                             </td>
