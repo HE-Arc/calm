@@ -197,15 +197,15 @@ Don't forget to give the project a star! Thanks again!
 
 <!-- LICENSE -->
 ## License
-TODO Complete when we have choose the license
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact
 
-* Nima Dekhli - [github@ylked](https://github.com/ylked) - [nima.dekhli@he-arc.ch](mailto:nima.dekhli@he-arc.ch?subject=[GitHub]%20CALM)
+* Nima Dekhli - [github@ylked](https://github.com/ylked) - [nima@dekhli.ch](mailto:nima@dekhli.ch?subject=[GitHub]%20CALM)
 * Lucas Gosteli - [github@lugopi](https://github.com/lugopi) - [lucas.gosteli@he-arc.ch](mailto:lucas.gosteli@he-arc.ch?subject=[GitHub]%20CALM)
 * Miranda Fleury - [github@ClawdeenFleury](https://github.com/ClawdeenFleury) - [miranda.fleury@he-arc.ch](mailto:miranda.fleury@he-arc.ch?subject=[GitHub]%20CALM)
 
@@ -231,7 +231,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 [issues-shield]: https://img.shields.io/github/issues/HE-Arc/calm.svg?style=for-the-badge
 [issues-url]: https://github.com/HE-Arc/calm/issues
 [license-shield]: https://img.shields.io/github/license/HE-Arc/calm.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
+[license-url]: https://github.com/HE-Arc/calm/blob/main/LICENSE
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
 [Tailwind.com]: https://img.shields.io/badge/Tailwind%20CSS-2.x-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white
