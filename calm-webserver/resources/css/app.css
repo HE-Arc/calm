@@ -128,6 +128,10 @@
     .flowbite-icon-svg {
         @apply w-4 h-4 text-gray-500;
     }
+
+    .goTop {
+        @apply hidden hover:bg-rollingStone bg-seaNymph rounded-[2.5rem] p-4 fixed bottom-5 right-5 cursor-pointer border-0;
+    }
 }
 
 /* INVITATION MANAGEMENT */

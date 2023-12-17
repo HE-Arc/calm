@@ -176,10 +176,32 @@ import 'flowbite';
             });
     }
 
+    function scrollFunction(element) {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            element.style.display = "block";
+        } else {
+            element.style.display = "none";
+        }
+    }
+
+    /**
+     * When the user clicks on the button, scroll to the top of the document
+     */
+    function goTop()
+    {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    }
+
     /**
      * Main program
      */
     (function mainProgram() {
+
+        const goTopButton = getElement("#goTop");
+        addEvent(goTopButton, "click", goTop);
+        window.onscroll = function() {scrollFunction(goTopButton)};
+
         // Filter laundries list when user select an organisation
         const selectedOrganisation = getElement("#organisations");
         addEvent(selectedOrganisation, "change", () => {

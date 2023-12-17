@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="scroll-smooth" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -186,11 +186,17 @@
     </main>
 
     <footer class="bg-white rounded-lg m-4 text-center mt-auto mx-auto">
+        <button class="goTop" id="goTop" title="Go to top">
+            <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 8">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7 7.674 1.3a.91.91 0 0 0-1.348 0L1 7"/>
+            </svg>
+        </button>
+
         <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-            <span class="text-sm text-gray-500 sm:text-center">
-                &copy; 2023 <a href="https://he-arc.ch" target="_blank" class="hover:underline">Haute Ecole Arc</a>.
-                Tous droits réservés.
-            </span>
+		<span class="text-sm text-gray-500 sm:text-center">
+			&copy; 2023 <a href="https://he-arc.ch" target="_blank" class="hover:underline">Haute Ecole Arc</a>.
+			Tous droits réservés.
+		</span>
         </div>
     </footer>
 </body>
