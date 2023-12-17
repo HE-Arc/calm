@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\management;
+namespace App\Http\Controllers\Management;
 
 use App\Http\Controllers\Controller;
 use App\Models\Laundry;
