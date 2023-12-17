@@ -49,11 +49,12 @@
             </div>
         </div>
 
-        <h2 class="font-title text-4xl text-center my-3 text-seaNymph mt-10">Vos organisations</h2>
+        <h1 class="font-title text-4xl text-center my-3 text-seaNymph mt-10">Organisations</h1>
         <article class="overflow-x-auto shadow-md sm:rounded-lg">
             <table class="table-auto w-full">
                 <caption class="p-5 text-justify dark:text-white dark:bg-gray-800">
-                    Voici la liste des organisations auxquelles vous appartenez. Vous avez la possiblité d'en quitter.
+                    Voici la <strong class="text-seaNymph">liste des organisations</strong> auxquelles vous appartenez.
+                    Ici, vous avez la possiblité de quitter une organisation.
                 </caption>
                 <thead>
                 <tr>
