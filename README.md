@@ -120,6 +120,10 @@ If you are working on a local machine with Xampp, for example, start the `apache
 To enter the following commands, you need to be in the `~/calm/calm-server/` directory.
 
 Install dependencies and set up the Laravel project.
+
+Before all these operations, you need to copy the `.env.example`, rename it to `.env` and place it in the root of the
+`~\calm-webserver\`. You'll need to adapt it to your database configurations.
+
 ```sh
 composer install
 ```
