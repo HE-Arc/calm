@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Organization;
 use App\Models\User;
+use App\Utils\Paginate;
 use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -11,6 +13,9 @@ class UserController extends Controller
 {
     public function index()
     {
+
+        $organizations = Auth::user()->organizations;
+
         return view(
             "user.index",
             [
@@ -18,9 +23,9 @@ class UserController extends Controller
                 "pageTitle" => "Compte",
                 "pageDescription" => "Accéder à toutes vos informations de compte. Vous pouvez les consulter et les modifier.
                 Vous pouvez également supprimer votre compte.",
+                "organizations" => Paginate::paginate($organizations, 5)
             ],
         );
-
     }
 
     public function updateName(Request $request)
@@ -82,6 +87,26 @@ class UserController extends Controller
 
         return redirect()->route('home')->with([
             "success" => "Votre compte a bien été supprimé"
+        ]);
+    }
+
+    public function exitOrganization($orgId)
+    {
+        $organization = Organization::find($orgId);
+        print_r($organization);
+
+        if(!$organization->users->contains(Auth::user()))
+        {
+            return back()->withErrors([
+                "Vous ne faites pas parti de l'organisation $organization->name"
+            ]);
+        }
+
+        // Delete user from organization
+        $organization->users()->detach(Auth::user()->id);
+
+        return redirect()->route('user.index')->with([
+            "success" => "Vous avez bien quitté l'organisation $organization->name"
         ]);
     }
 }
