@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h1 class="text-center text-4xl font-title text-seaNymph font-bold">Inscription</h1>
         </div>
