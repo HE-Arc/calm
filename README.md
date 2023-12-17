@@ -230,7 +230,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [stars-url]: https://github.com/HE-Arc/calm/stargazers
 [issues-shield]: https://img.shields.io/github/issues/HE-Arc/calm.svg?style=for-the-badge
 [issues-url]: https://github.com/HE-Arc/calm/issues
-[license-shield]: https://img.shields.io/github/license/HE-Arc/calm.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/badge/license-MIT-green?style=for-the-badge
 [license-url]: https://github.com/HE-Arc/calm/blob/main/LICENSE
 [Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
