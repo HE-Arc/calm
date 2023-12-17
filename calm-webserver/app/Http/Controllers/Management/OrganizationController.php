@@ -61,13 +61,8 @@ class OrganizationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|unique:organizations,name',
         ]);
-
-
-        if (Organization::where('name', $request->name)->exists()) {
-            return back()->withErrors(["Organization already exists."])->withInput();
-        }
 
         Organization::create([
             'name' => $request->name,
