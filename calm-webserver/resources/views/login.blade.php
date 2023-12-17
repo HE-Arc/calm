@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+    <div class="flex min-h-full flex-col justify-center px-6 py-6 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
             <h1 class="text-center text-4xl font-title text-seaNymph font-bold">Connexion</h1>
         </div>
@@ -20,13 +20,7 @@
                 </div>
 
                 <div>
-                    <div class="flex items-center justify-between">
-                        <label for="password" >Mot de passe</label>
-                        <div class="text-sm">
-                            <a href="#" class="font-semibold text-rollingStone hover:text-seaNymph">Mot de passe oublié ?</a>
-                        </div>
-                    </div>
-
+                    <label for="password" >Mot de passe</label>
                     <div class="relative mt-2">
                         <div class="flowbite-icon-div">
                             <svg class="flowbite-icon-svg" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 20">
