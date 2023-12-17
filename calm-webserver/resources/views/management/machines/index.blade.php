@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des Machines</h1>
+    <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des machines dans {{$laundry->name}}</h1>
 
     <article class="overflow-x-auto w-full shadow-md sm:rounded-lg">
         <table class="table-auto w-full">

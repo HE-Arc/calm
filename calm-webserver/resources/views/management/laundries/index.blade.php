@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-    <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des buanderies</h1>
+    <h1 class="font-title text-4xl text-center my-3 text-seaNymph">Gestion des buanderies de {{$org->name}}</h1>
 
     <section class="flex flex-col gap-4 items-center justify-center">
         <article class="overflow-x-auto w-full shadow-md sm:rounded-lg">
