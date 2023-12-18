@@ -62,7 +62,6 @@
                                     </a>
                                 </td>
 
-                                <!-- TODO Link to right route (web.php) -->
                                 <td data-title="Gestion des invitations" class="px-6 py-4 text-center">
                                     <a href="{{ route('invitation.index', $organization['id']) }}"
                                      class="btn btn-transparent flex justify-center">

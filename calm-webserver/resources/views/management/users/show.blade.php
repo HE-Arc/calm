@@ -44,7 +44,7 @@
                             </td>
                             <td data-title="Date" class="px-6 lg:py-4 text-center">
                                 <!-- Date reservation -->
-                                {{ $reservation['start'] }}
+                                {{ \Carbon\Carbon::parse($reservation['start'])->format('d.m.Y H:i') }}
                             </td>
                             <td data-title="Type" class="px-6 lg:py-4 text-center">
                                 <!-- Type of machine -->
@@ -57,7 +57,6 @@
                                     data-modal-target="delete-user-reservation-modal"
                                     data-modal-show="delete-user-reservation-modal"
                                     data-reservation-id="{{ $reservation['id'] }}">
-                                    <!-- TODO Changer the route inside the app.js function deleteUserReservation -->
                                     <span class="icons icons-forte">delete</span>
                                 </button>
                             </td>
