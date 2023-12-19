@@ -236,9 +236,9 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-url]: https://github.com/HE-Arc/calm/issues
 [license-shield]: https://img.shields.io/badge/license-MIT-green?style=for-the-badge
 [license-url]: https://github.com/HE-Arc/calm/blob/main/LICENSE
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
+[Laravel.com]: https://img.shields.io/badge/Laravel-10.28.0-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
 [Laravel-url]: https://laravel.com
-[Tailwind.com]: https://img.shields.io/badge/Tailwind%20CSS-2.x-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white
+[Tailwind.com]: https://img.shields.io/badge/Tailwind%20CSS-3.3.7-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
 [Flowbite.com]: https://img.shields.io/badge/Flowbite-3B82F6?style=for-the-badge&logo=flowbite-css&logoColor=white
 [Flowbite-url]: https://flowbite.com
